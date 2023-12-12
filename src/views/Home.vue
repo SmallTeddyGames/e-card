@@ -1,13 +1,12 @@
-<template>
-  <div h-screen w-full flex-center of-hidden>
-    <h1>Home</h1>
-    <div i-carbon-logo-github text-2xl ml-2 />
-  </div>
-</template>
-
 <script lang='ts' setup>
-    
+import GameNav from './GameNav.vue'
+import GameContent from './GameContent.vue'
 </script>
 
-<style scoped lang='scss'>
-</style>
+<template>
+  <main h-100dvh h-screen w-screen of-hidden grid="~ rows-[max-content_1fr]">
+    <GameNav />
+
+    <GameContent />
+  </main>
+</template>

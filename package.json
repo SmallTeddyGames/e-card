@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@unocss/reset": "^0.58.0",
+    "@vueuse/core": "^10.7.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
