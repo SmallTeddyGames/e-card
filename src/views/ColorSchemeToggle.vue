@@ -4,7 +4,6 @@ const colorMode = useColorMode()
 
 const toggleMode = () => {
   colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
-  console.log(colorMode.value)
 }
 </script>
 

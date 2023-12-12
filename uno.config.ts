@@ -10,6 +10,7 @@ import {
 
 export default defineConfig({
   shortcuts: {
+    'bg-active': 'bg-gray:10',
     'flex-center': 'flex items-center justify-center',
   },
   theme: {

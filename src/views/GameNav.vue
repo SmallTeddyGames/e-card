@@ -1,5 +1,7 @@
 <script setup>
+import FullScreenToggle from './FullScreenToggle.vue';
 import ColorSchemeToggle from './ColorSchemeToggle.vue'
+import GitHubButton from './GitHubButton.vue'
 </script>
 
 <template>
@@ -8,9 +10,8 @@ import ColorSchemeToggle from './ColorSchemeToggle.vue'
       E-Card
     </div>
     <div flex-auto />
+    <GitHubButton />
     <ColorSchemeToggle />
-    <a rounded p2 title="GitHub" hover="bg-active" href="https://github.com/SmallTeddy/e-card" target="_blank">
-      <div i-carbon-logo-github text-2xl />
-    </a>
+    <FullScreenToggle />
   </nav>
 </template>
