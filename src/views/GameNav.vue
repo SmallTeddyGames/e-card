@@ -1,4 +1,5 @@
 <script setup>
+import ChangeBackImage from './ChangeBackImage.vue';
 import FullScreenToggle from './FullScreenToggle.vue';
 import ColorSchemeToggle from './ColorSchemeToggle.vue'
 import GitHubButton from './GitHubButton.vue'
@@ -11,6 +12,7 @@ import GitHubButton from './GitHubButton.vue'
     </div>
     <div flex-auto />
     <GitHubButton />
+    <ChangeBackImage />
     <ColorSchemeToggle />
     <FullScreenToggle />
   </nav>
