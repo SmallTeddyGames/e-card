@@ -10,6 +10,7 @@ import {
 
 export default defineConfig({
   shortcuts: {
+    'border-base': 'border-gray-200 dark:border-gray-500',
     'bg-active': 'bg-gray:10',
     'flex-center': 'flex items-center justify-center',
   },

@@ -1,4 +1,5 @@
 <script lang='ts' setup>
+import GameInformation from './GameInformation.vue';
 import { useStorage } from '@vueuse/core'
 
 const bgImage = useStorage('bgImage', 1, localStorage) || ref(1)
@@ -25,7 +26,9 @@ const bgImage = useStorage('bgImage', 1, localStorage) || ref(1)
       <div h-full w-screen bg-green grid="~ cols-3">
         <div w-full bg-gray:80 flex-center>记牌器区域</div>
         <div w-full bg-gray:50 flex-center>手牌区域</div>
-        <div w-full bg-gray:80 flex-center>局数信息</div>
+        <div w-full bg-gray:80 flex-center>
+          <GameInformation />
+        </div>
       </div>
     </div>
   </div>
