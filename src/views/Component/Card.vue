@@ -43,23 +43,14 @@ const handleCardClick = (cardInfo: CardItem) => {
   <div grid="~ cols-5 gap-5">
     <img
       w-120px
+      relative
       cursor-pointer
+      transition-top-500
       v-for="cardItem in cardItems"
-      :class="cardItem.isClick ? 'clicked' : ''"
+      :class="cardItem.isClick ? 'top--20px' : 'top-0'"
       :alt="cardItem.role"
       :src="getAssetsFile(cardItem.img)"
       @click="handleCardClick(cardItem)"
     />
   </div>
 </template>
-
-<style>
-img {
-  position: relative;
-  transition: top 0.3s ease;
-}
-
-.clicked {
-  top: -20px;
-}
-</style>
