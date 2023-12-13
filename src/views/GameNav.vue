@@ -1,8 +1,8 @@
 <script setup>
-import ChangeBackImage from './ChangeBackImage.vue';
-import FullScreenToggle from './FullScreenToggle.vue';
-import ColorSchemeToggle from './ColorSchemeToggle.vue'
-import GitHubButton from './GitHubButton.vue'
+import ChangeBackImage from './NavButton/ChangeBackImage.vue';
+import FullScreenToggle from './NavButton/FullScreenToggle.vue';
+import ColorSchemeToggle from './NavButton/ColorSchemeToggle.vue'
+import GitHubButton from './NavButton/GitHubButton.vue'
 </script>
 
 <template>

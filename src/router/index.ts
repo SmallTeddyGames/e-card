@@ -8,8 +8,12 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/Home.vue'),
     },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('../views/404.vue'), },
-  ],
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('../views/404.vue')
+    }
+  ]
 })
 
 export default router
