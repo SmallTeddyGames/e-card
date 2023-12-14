@@ -1,9 +1,11 @@
 <script lang='ts' setup>
 import GameInformation from '../Component/GameInformation.vue';
 import Card from '../Component/Card.vue'
+import StartInfo from '../Component/StartInfo.vue'
 </script>
 
 <template>
+  <StartInfo />
   <div h-full grid="~ rows-4">
       <div h-full w-screen bg-red grid="~ cols-5">
         <!-- <div w-full bg-gray:80 flex-center>记牌器区域</div> -->
