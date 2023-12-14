@@ -1,6 +1,5 @@
 <script lang='ts' setup>
 import { getAssetsFile , moveDom} from '../../utils/index'
-import { nextTick } from 'vue' 
 import type { CardItem } from '../Type/cardType'
 
 const props = defineProps({
