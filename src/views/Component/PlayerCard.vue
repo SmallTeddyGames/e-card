@@ -1,6 +1,7 @@
 <script lang='ts' setup>
 import { getAssetsFile , moveDom} from '../../utils/index'
-import { nextTick } from 'vue'
+import { nextTick } from 'vue' 
+import type { CardItem } from '../Type/cardType'
 
 const props = defineProps({
   role: {
@@ -8,12 +9,6 @@ const props = defineProps({
     default: 'emperor',
   }
 })
-
-type CardItem = {
-  role: string
-  img: string
-  isClick: boolean
-}
 
 const emperorCardItems = ref([
   { role: 'emperor', img: 'emperor.jpg', isClick: false, sort: 1, group:'emperor', },
