@@ -7,3 +7,9 @@ html, body {
 .dark {
   color-scheme: dark;
 }
+.cardDisposeArea{
+  position: absolute;
+  right: 520px;
+  bottom: 243px;
+  top: inherit; 
+}

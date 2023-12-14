@@ -1,5 +1,6 @@
 <script lang='ts' setup>
-import { getAssetsFile } from '../../utils/index'
+import { getAssetsFile , moveDom} from '../../utils/index'
+import { nextTick } from 'vue'
 
 const props = defineProps({
   role: {
@@ -15,18 +16,18 @@ type CardItem = {
 }
 
 const emperorCardItems = ref([
-  { role: 'emperor', img: 'emperor.jpg', isClick: false, sort: 1 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5 }
+  { role: 'emperor', img: 'emperor.jpg', isClick: false, sort: 1, group:'emperor', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group:'emperor', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group:'emperor', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4, group:'emperor', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5, group:'emperor', }
 ])
 const slaveCardItems = ref([
-  { role: 'slave',   img: 'slave.jpg',   isClick: false, sort: 1 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4 },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5 }
+  { role: 'slave',   img: 'slave.jpg',   isClick: false, sort: 1, group:'slave', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group:'slave', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group:'slave', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4, group:'slave', },
+  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5, group:'slave', }
 ])
 
 const cardItems = computed(() => {
@@ -37,20 +38,37 @@ const handleCardClick = (cardInfo: CardItem) => {
   cardItems.value.map(v => v.isClick = false)
   cardInfo.isClick = true
 }
+const disopseCard = ( group:String, cardInfos: String) => { 
+    let roleClass = document.querySelector('.'+group+'.'+cardInfos)   
+    // roleClass.classList.add('cardDisposeArea')  
+    moveDom(roleClass)
+} 
+
 </script>
 
 <template>
   <div grid="~ cols-5 gap-5">
-    <img
+    <div
       w-120px
       relative
       cursor-pointer
-      transition-top-500
-      v-for="cardItem in cardItems"
-      :class="cardItem.isClick ? 'top--20px' : 'top-0'"
-      :alt="cardItem.role"
-      :src="getAssetsFile(cardItem.img)"
-      @click="handleCardClick(cardItem)"
-    />
+      transition-all-500
+      v-for="(cardItem,index) in cardItems"
+      :class="[cardItem.isClick ? 'top--20px' : 'top-0' ,cardItem.group , cardItem.role+index]" 
+      
+    >
+      <img 
+        :alt="cardItem.role"
+        :src="getAssetsFile(cardItem.img)" 
+        @click="handleCardClick(cardItem)"
+      />
+      <div text-center @click="disopseCard(cardItem.group , cardItem.role+index)">
+        弃置
+      </div>
+    </div>
+    
+    
   </div>
 </template>
+<style scoped> 
+</style>
