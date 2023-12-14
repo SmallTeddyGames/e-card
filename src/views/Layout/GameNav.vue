@@ -1,4 +1,5 @@
 <script setup>
+import GameInfoToggle from '../NavButton/GameInfoToggle.vue';
 import ChangeBackImage from '../NavButton/ChangeBackImage.vue';
 import FullScreenToggle from '../NavButton/FullScreenToggle.vue';
 import ColorSchemeToggle from '../NavButton/ColorSchemeToggle.vue'
@@ -12,8 +13,9 @@ import GitHubButton from '../NavButton/GitHubButton.vue'
     </div>
     <div flex-auto />
     <GitHubButton />
-    <ChangeBackImage />
+    <GameInfoToggle />
     <ColorSchemeToggle />
+    <ChangeBackImage />
     <FullScreenToggle />
   </nav>
 </template>
