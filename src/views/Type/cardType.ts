@@ -1,6 +1,7 @@
 export interface CardItem {
-  role: string
-  img: string
+  role: 'emperor' | 'citizen' | 'slave'
+  img: 'emperor.jpg' | 'citizen.jpg' | 'slave.jpg'
   isClick?: boolean
   sort?: number
+  group?:  'emperor' | 'slave'
 }

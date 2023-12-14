@@ -10,14 +10,14 @@ const props = defineProps({
   }
 })
 
-const emperorCardItems = ref([
+const emperorCardItems: Ref<CardItem[]> = ref([
   { role: 'emperor', img: 'emperor.jpg', isClick: false, sort: 1, group:'emperor', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group:'emperor', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group:'emperor', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4, group:'emperor', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5, group:'emperor', }
 ])
-const slaveCardItems = ref([
+const slaveCardItems: Ref<CardItem[]>  = ref([
   { role: 'slave',   img: 'slave.jpg',   isClick: false, sort: 1, group:'slave', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group:'slave', },
   { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group:'slave', },
