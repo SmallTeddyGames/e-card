@@ -23,7 +23,7 @@ const playerRole = computed(() => {
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
-
+// 弃用 
 const dropedComputerCardItems = ref([]);
 const dropedPlayerCardItems = ref([])
 /**
@@ -32,6 +32,10 @@ const dropedPlayerCardItems = ref([])
  * @param cardInfo
  */
 const playerCardCheck = (cardInfo: CardItem) => {
+  if(playerCardInfo.value){
+    dropedPlayerCardItems.value.push(playerCardInfo.value);
+    dropedComputerCardItems.value.push(computerCardInfo.value)
+  }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
   playerCardInfo.value = copyPlayerCardInfo
@@ -58,10 +62,10 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <ComputedCard ref="computerCardRef" role="slave" :cardItems="state.computerCardItems" />
         </div>
         <div bg-gray:50 flex-center>
-          <CheckCard :card-info="computerCardInfo" />
+          <CheckCard :card-info="[computerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <CheckCard :card-info="playerCardInfo" />
+          <CheckCard :card-info="[playerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
           <PlayerCard ref="playerCardRef" role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />

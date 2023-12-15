@@ -16,8 +16,9 @@ const rot = 10
 
 <template>
   <div v-if="cardItems.length > 0" flex-center relative card-size>
-    <img
-      v-for="(cardInfo, index) in cardItems"
+    <draggable :list="cardItems"  :group="'drop'" item-key="sort">
+    <template #item="{ element:cardInfo, index }">
+      <img
       card-size
       cursor-pointer
       absolute
@@ -27,6 +28,9 @@ const rot = 10
       :alt="cardInfo.role"
       :src="getAssetsFile(cardInfo.img)"
     />
+    </template>
+  </draggable>
+   
   </div>
   <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
     弃<br />牌<br />区<br />域

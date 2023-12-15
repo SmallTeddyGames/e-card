@@ -4,7 +4,7 @@ import type { CardItem } from '../Type/cardType'
 
 const props = withDefaults(
   defineProps<{
-    cardInfo?: CardItem | null
+    cardInfo?: CardItem[] | null
   }>(),
   {
     cardInfo: () => null
@@ -13,12 +13,12 @@ const props = withDefaults(
 </script>
 
 <template>
-  <div v-if="cardInfo">
+  <div v-if="cardInfo[0]">
     <img
       card-size
       cursor-pointer
-      :alt="cardInfo.role"
-      :src="getAssetsFile(cardInfo.img)"
+      :alt="cardInfo[0].role"
+      :src="getAssetsFile(cardInfo[0].img)"
     />
   </div>
   <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
