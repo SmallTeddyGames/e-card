@@ -10,7 +10,6 @@ import { useStorage } from '@vueuse/core'
 import type { CardItem } from '../Type/cardType'
 import { useGlobalState } from '../../store';
 
-const { proxy } = getCurrentInstance() as any
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
 const state = useGlobalState()
@@ -32,7 +31,7 @@ const dropedPlayerCardItems: Ref<CardItem[]> = ref([])
  * @param cardInfo
  */
 const playerCardCheck = (cardInfo: CardItem) => {
-  if(playerCardInfo.value){
+  if (playerCardInfo.value) {
     dropedPlayerCardItems.value.push(playerCardInfo.value);
     dropedComputerCardItems.value.push(computerCardInfo.value)
   }
@@ -71,22 +70,25 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
 </script>
 
 <template>
-  <StartInfo ref="showInfoRef"  />
+  <StartInfo ref="showInfoRef" />
   <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
-          <ComputedCard ref="computerCardRef" role="slave" :cardItems="state.computerCardItems" />
+          <!-- 电脑手牌区域 -->
+          <ComputedCard role="slave" :cardItems="state.computerCardItems" />
         </div>
         <div bg-gray:50 flex-center>
-          <CheckCard ref="computedCheckRef" :card-info="[computerCardInfo]" />
+          <!-- 电脑检查区域 -->
+          <CheckCard :card-info="[computerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <CheckCard ref="playerCheckRef" :card-info="[playerCardInfo]" />
+          <!-- 玩家检查区域 -->
+          <CheckCard :card-info="[playerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="state.playerCardItems"
-            @card-check="playerCardCheck" />
+          <!-- 玩家手牌区域 -->
+          <PlayerCard role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
         </div>
       </div>
     </transition>
@@ -94,15 +96,19 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
     <transition name="game-info" mode="out-in">
       <div v-show="isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
         <div h-full w-full bg-gray:80 flex-center>
+          <!-- 电脑对局信息区域 -->
           <GameInformation />
         </div>
         <div w-full bg-gray:80 flex-center>
+          <!-- 电脑弃牌区域 -->
           <DropCard :cardItems="dropedComputerCardItems" />
         </div>
         <div w-full bg-gray:80 flex-center>
+           <!-- 玩家弃牌区域 -->
           <DropCard :cardItems="dropedPlayerCardItems" />
         </div>
         <div h-full w-full bg-gray:80 flex-center>
+          <!-- 玩家对局信息区域 -->
           <GameInformation />
         </div>
       </div>

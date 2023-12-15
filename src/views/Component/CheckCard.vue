@@ -14,12 +14,7 @@ const props = withDefaults(
 
 <template>
   <div v-if="cardInfo[0]">
-    <img
-      card-size
-      cursor-pointer
-      :alt="cardInfo[0].role"
-      :src="getAssetsFile(cardInfo[0].img)"
-    />
+    <img card-size cursor-pointer :alt="cardInfo[0].role" :src="getAssetsFile(cardInfo[0].img)" />
   </div>
   <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
     检<br />查<br />区<br />域

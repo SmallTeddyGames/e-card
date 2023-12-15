@@ -41,18 +41,11 @@ defineExpose({
 
 <template>
   <div grid="~ cols-5 gap-5">
-    <div
-      card-size
-      relative
-      cursor-pointer
-      transition-all-500
-      v-for="(cardItem, index) in cardItems"
-      :class="[
-        cardItem.isClick ? 'top--20px' : 'top-0',
-        cardItem.group,
-        cardItem.role + index
-      ]"
-    >
+    <div card-size relative cursor-pointer transition-all-500 v-for="(cardItem, index) in cardItems" :class="[
+      cardItem.isClick ? 'top--20px' : 'top-0',
+      cardItem.group,
+      cardItem.role + index
+    ]">
       <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" />
     </div>
   </div>

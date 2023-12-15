@@ -41,7 +41,8 @@ defineExpose({
 </script>
 
 <template>
-  <draggable :list="cardItems" tag="div" :group="{name:role,pull:true,put:false,revertClone:true}" :component-data="{grid:`~ cols-5 gap-5`}" item-key="sort" :sort="true" >
+  <draggable :list="cardItems" tag="div" :group="{ name: role, pull: true, put: false, revertClone: true }"
+    :component-data="{ grid: `~ cols-5 gap-5` }" item-key="sort" :sort="true">
     <template #item="{ element, index }">
       <div card-size relative cursor-pointer transition-all-500 :class="[
         element.isClick ? 'top--20px' : 'top-0',
