@@ -14,22 +14,18 @@ const emits = defineEmits({
   'card-check': (cardInfo: CardItem) => true
 })
 
-const playerCardItems = ref()
+const computedCardItems = ref()
 
 watch(
   () => props.cardItems,
   (val) => {
-    playerCardItems.value = val
+    computedCardItems.value = val
   },
   { immediate: true }
 )
 
-const handleCardClick = (cardInfo: CardItem) => {
-  playerCardItems.value.map(v => v.isClick = false)
-  cardInfo.isClick = true
-}
-
 const cardCheckClick = (cardInfo: CardItem) => {
+  computedCardItems.value = computedCardItems.value.filter(card => card.sort !== cardInfo.sort)
   emits('card-check', cardInfo)
 }
 
@@ -42,10 +38,7 @@ defineExpose({
   <div grid="~ cols-5 gap-5">
     <div card-size relative cursor-pointer transition-all-500 v-for="(cardItem, index) in cardItems"
       :class="[cardItem.isClick ? 'top--20px' : 'top-0', cardItem.group, cardItem.role + index]">
-      <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" @click="handleCardClick(cardItem)" />
-      <div v-if="cardItem.isClick" text-center>
-        <button @click="cardCheckClick(cardItem)">check</button>
-      </div>
+      <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" />
     </div>
   </div>
 </template>

@@ -3,15 +3,18 @@ import { getAssetsFile } from '../../utils/index'
 import type { CardItem } from '../Type/cardType'
 
 const props = withDefaults(defineProps<{
-  cardInfo?: CardItem
+  cardInfo?: CardItem | null
 }>(), {
-  cardInfo: () => ({ role: 'citizen', img: 'citizen.jpg' })
+  cardInfo: () => null
 })
 </script>
 
 <template>
-  <div>
+  <div v-if="cardInfo">
     <img card-size cursor-pointer :alt="cardInfo.role" :src="getAssetsFile(cardInfo.img)" />
+  </div>
+  <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
+    检<br />查<br />区<br />域
   </div>
 </template>
 
