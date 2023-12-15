@@ -3,6 +3,7 @@ import GameInformation from '../Component/GameInformation.vue';
 import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
+import DropCard from '../Component/DropCard.vue';
 import { useStorage } from '@vueuse/core'
 
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
@@ -12,7 +13,7 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
   <StartInfo />
   <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
-      <div grid="~ rows-4" col-span-3 h-full w-fullr  >
+      <div grid="~ rows-4" col-span-3 h-full w-fullr>
         <div w-full bg-gray:50 flex-center>
           <PlayerCard role="slave" />
         </div>
@@ -33,8 +34,15 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
         <div h-full w-full bg-gray:80 flex-center>
           <GameInformation />
         </div>
-        <div w-full bg-gray:80 flex-center>弃牌区域</div>
-        <div w-full bg-gray:80 flex-center>弃牌区域</div>
+        <div w-full bg-gray:80 flex-center>
+          <DropCard />
+        </div>
+        <div w-full bg-gray:80 flex-center>
+          <DropCard :cardItems="[
+            { role: 'citizen', img: 'citizen.jpg' },
+            { role: 'citizen', img: 'citizen.jpg' }
+          ]" />
+        </div>
         <div h-full w-full bg-gray:80 flex-center>
           <GameInformation />
         </div>

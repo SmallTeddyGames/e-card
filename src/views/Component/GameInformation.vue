@@ -1,6 +1,6 @@
 <script lang='ts' setup>
 const emperorItems = [1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1]
-const  slaveItems = emperorItems.map(item => !!item)
+const slaveItems = emperorItems.map(item => !!item)
 
 const emperorScore = emperorItems.reduce((a, b) => a + b, 0)
 const slaveScore = 21 - emperorScore
@@ -23,7 +23,7 @@ const slaveScore = 21 - emperorScore
     <tr>
       <td>奴隶</td>
       <td v-for="v in slaveItems">
-        <div w-20px h-20px border-rd-10px :class="v ? 'bg-red' : 'bg-green'"></div>  
+        <div w-20px h-20px border-rd-10px :class="v ? 'bg-red' : 'bg-green'"></div>
       </td>
       <td>{{ slaveScore }}</td>
     </tr>
@@ -35,7 +35,7 @@ table,
 tr,
 td {
   --uno: border-base border-1;
-} 
+}
 
 table tr td {
   --uno: w-26px h-26px text-center;

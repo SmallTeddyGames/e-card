@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<{
 
 <template>
   <div>
-    <img w-120px cursor-pointer :alt="cardInfo.role" :src="getAssetsFile(cardInfo.img)" />
+    <img card-size cursor-pointer :alt="cardInfo.role" :src="getAssetsFile(cardInfo.img)" />
   </div>
 </template>
 
