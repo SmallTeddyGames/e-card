@@ -4,7 +4,6 @@ import ComputedCard from '../Component/ComputedCard.vue'
 import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
-<<<<<<< HEAD
 import DropCard from '../Component/DropCard.vue';
 import { getRandomNumber, deepClone } from '../../utils'
 import { useStorage } from '@vueuse/core'
