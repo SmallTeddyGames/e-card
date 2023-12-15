@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { getRandomNumber } from '../../utils'
-import { useGlobalState } from '../../store'
-import { getName, initRoleItems } from '../../utils/game.util'
+import { getRandomNumber } from '@/utils'
+import { useGlobalState } from '@/store'
+import { getName, initRoleItems } from '@/utils/game.util'
 const state = useGlobalState()
 const showGameInfo = ref(true)
 const info: Ref<any> = ref({
