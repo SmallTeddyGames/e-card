@@ -10,9 +10,9 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 
 <template>
   <StartInfo />
-  <div h-full w-screen grid="~" :class="isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1'">
+  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1','transCont']">
     <transition name="game-center" mode="out-in">
-      <div grid="~ rows-4" col-span-3 h-full w-full>
+      <div grid="~ rows-4" col-span-3 h-full w-fullr class="playArea" >
         <div w-full bg-gray:50 flex-center>
           <PlayerCard role="slave" />
         </div>
@@ -42,3 +42,16 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
     </transition>
   </div>
 </template>
+<style scoped >
+.transCont{
+  /* 
+    摄像机距离窗口的距离及位置
+  */
+  transform-style: preserve-3d;
+  perspective: 200px; 
+  perspective-origin: center;
+}
+.playArea{
+  transform: translateZ(10px) rotateX(10deg) translateZ(-200px);
+}
+</style>

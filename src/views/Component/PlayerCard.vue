@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import { getAssetsFile , moveDom} from '../../utils/index'
+import { getAssetsFile } from '../../utils/index'
 import type { CardItem } from '../Type/cardType'
 
 const props = defineProps({
@@ -31,13 +31,7 @@ const cardItems = computed(() => {
 const handleCardClick = (cardInfo: CardItem) => {
   cardItems.value.map(v => v.isClick = false)
   cardInfo.isClick = true
-}
-const disopseCard = ( group:String, cardInfos: String) => { 
-    let roleClass = document.querySelector('.'+group+'.'+cardInfos)   
-    // roleClass.classList.add('cardDisposeArea')  
-    moveDom(roleClass)
 } 
-
 </script>
 
 <template>
@@ -56,13 +50,11 @@ const disopseCard = ( group:String, cardInfos: String) => {
         :src="getAssetsFile(cardItem.img)" 
         @click="handleCardClick(cardItem)"
       />
-      <div text-center @click="disopseCard(cardItem.group , cardItem.role+index)">
-        弃置
+      <div text-center>
+        check
       </div>
     </div>
     
     
   </div>
 </template>
-<style scoped> 
-</style>
