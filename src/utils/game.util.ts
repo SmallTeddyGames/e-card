@@ -11,7 +11,7 @@ export const getSpecifyImg = (type: 'emperor' | 'slave' | 'citizen') => {
 }
 // 创建卡片 传入类型 序号 分组
 export const createCard = (type: 'emperor' | 'slave' | 'citizen', sort: number, group: 'emperor' | 'slave'): CardItem => {
-    return { role: type, img: getSpecifyImg(type), isClick: false, sort, group };
+    return {role: type, img: getSpecifyImg(type), isClick: false, sort, group };
 }
 // 初始化阵营卡片
 export const initRoleItems = (role: 'emperor' | 'slave') => {
