@@ -8,35 +8,41 @@ import DropCard from '../Component/DropCard.vue';
 import { getRandomNumber } from '../../utils'
 import { useStorage } from '@vueuse/core'
 import type { CardItem } from '../Type/cardType'
+import { Ref } from "vue";
+import { useGlobalState } from '../../store';
 
 const { proxy } = getCurrentInstance() as any
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
+// 全局信息变量
+const state = useGlobalState()
 
-const role: Ref<'emperor' | 'slave'> = ref('emperor')
+const playerRole = computed(() => {
+  return state.value.playerRole;
+})
 
-const emperorCardItems: Ref<CardItem[]> = ref([
-  { role: 'emperor', img: 'emperor.jpg', isClick: false, sort: 1, group: 'emperor', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group: 'emperor', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group: 'emperor', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4, group: 'emperor', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5, group: 'emperor', }
-])
-const slaveCardItems: Ref<CardItem[]> = ref([
-  { role: 'slave', img: 'slave.jpg', isClick: false, sort: 1, group: 'slave', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 2, group: 'slave', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 3, group: 'slave', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 4, group: 'slave', },
-  { role: 'citizen', img: 'citizen.jpg', isClick: false, sort: 5, group: 'slave', }
-])
+const playerCardItems = computed((): CardItem[] => state.value.playerCardItems)
 
+const computerCardItems = computed((): CardItem[] => state.value.computerCardItems)
+
+// 玩家当前打出的卡片信息
 const playerCardInfo: Ref<CardItem> | null = ref()
+// 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
+/**
+ * 进行检查
+ * 检查规则是去除玩家和电脑选中的卡牌
+ * @param cardInfo
+ */
 const playerCardCheck = (cardInfo: CardItem) => {
+  // 玩家操作
   playerCardInfo.value = cardInfo
-  slaveCardItems.value = slaveCardItems.value.filter(card => card.sort !== cardInfo.sort)
+  state.value.playerCardItems = state.value.playerCardItems.filter(card => card.sort !== cardInfo.sort);
+  //todo 算法待定 电脑操作 
+  const sort = getRandomNumber(state.value.computerCardItems.length);
+  computerCardInfo.value = state.value.computerCardItems[sort];
+  console.log("随机到",sort,computerCardInfo.value);
 
-  computerCardInfo.value = emperorCardItems.value.find(card => card.sort === getRandomNumber(emperorCardItems.value.length))
-  emperorCardItems.value = emperorCardItems.value.filter(card => card.sort !== computerCardInfo.value.sort)
+  state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== sort)
 }
 </script>
 
@@ -46,7 +52,7 @@ const playerCardCheck = (cardInfo: CardItem) => {
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
-          <ComputedCard ref="computerCardRef" role="slave" :cardItems="slaveCardItems" />
+          <ComputedCard ref="computerCardRef" role="slave" :cardItems="computerCardItems" />
         </div>
         <div bg-gray:50 flex-center>
           <CheckCard :card-info="computerCardInfo" />
@@ -55,7 +61,7 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <CheckCard :card-info="playerCardInfo" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="emperorCardItems" @card-check="playerCardCheck" />
+          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="playerCardItems" @card-check="playerCardCheck" />
         </div>
       </div>
     </transition>
