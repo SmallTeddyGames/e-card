@@ -13,6 +13,7 @@ export default defineConfig({
     'border-base': 'border-gray-200 dark:border-gray-500',
     'bg-active': 'bg-gray:10',
     'flex-center': 'flex items-center justify-center',
+    'card-size': 'w-120px h-164px'
   },
   theme: {
     colors: {
