@@ -5,7 +5,7 @@ import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
 import DropCard from '../Component/DropCard.vue';
-import { getRandomNumber, deepClone } from '../../utils'
+import { getRandomNumber, deepClone, nextRounds } from '../../utils'
 import { useStorage } from '@vueuse/core'
 import type { CardItem } from '../Type/cardType'
 import { useGlobalState } from '../../store';
@@ -14,7 +14,7 @@ const { proxy } = getCurrentInstance() as any
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
 const state = useGlobalState()
-
+const showInfoRef = ref<InstanceType<typeof StartInfo>>(null)
 const playerRole = computed(() => {
   return state.value.playerRole
 })
@@ -60,16 +60,18 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
     dropedPlayerCardItems.value.push(playerCard)
     dropedComputerCardItems.value.push(computerCard)
   } else {
-    // todo: 对局结束，进行下一局，记分
+    // 对局结束，进行下一局，记分
     dropedPlayerCardItems.value = []
     dropedComputerCardItems.value = []
+    nextRounds();
+    showInfoRef.value.reshow();
   }
 
 }
 </script>
 
 <template>
-  <StartInfo />
+  <StartInfo ref="showInfoRef"  />
   <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>

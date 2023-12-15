@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
-import { getName, initRoleItems } from '@/utils/game.util'
+import { getName, initRoleItems, initRounds } from '@/utils/game.util'
 const state = useGlobalState()
 const showGameInfo = ref(true)
 const info: Ref<any> = ref({
@@ -11,22 +11,22 @@ const info: Ref<any> = ref({
 const name = computed(() => {
   return getName(info.value.playerRole)
 })
-// 初始化 数据
 // 随机抽取角色 并初始化轮次
-info.value = Object.assign(state.value, {
-  playerRole:
-    Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave',
-  rounds: 1
-})
-// 初始化手牌
-state.value.playerCardItems = initRoleItems(info.value.playerRole);
-state.value.computerCardItems = initRoleItems(info.value.playerRole == "emperor" ? "slave" : "emperor");
-
+initRounds(Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave',1)
+info.value = state.value;
 onMounted(() => {
+  reshow();
+})
+// 暴露出去重现方法
+const reshow = ()=>{
+  showGameInfo.value = true
   setTimeout(() => {
     showGameInfo.value = false
   }, 3000)
-})
+}
+defineExpose({
+  reshow
+});
 </script>
 
 <template>
