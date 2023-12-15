@@ -5,5 +5,5 @@ export const getAssetsFile = (url: string) => {
 
 // 根据最大数字生成随机数
 export const getRandomNumber = (max: number): number => {
-  return Math.floor(Math.random() * max) + 1;
+  return Math.floor(Math.random() * max) + 1
 }
