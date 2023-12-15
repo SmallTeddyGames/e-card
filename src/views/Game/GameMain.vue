@@ -23,9 +23,15 @@ const playerRole = computed(() => {
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
+<<<<<<< HEAD
 // 弃用 
 const dropedComputerCardItems = ref([]);
 const dropedPlayerCardItems = ref([])
+=======
+
+const dropedComputerCardItems: Ref<CardItem[]> = ref([]);
+const dropedPlayerCardItems: Ref<CardItem[]> = ref([])
+>>>>>>> 41b89616e69d8d8c5e5c33c68237f1aa19c2222b
 /**
  * 进行检查
  * 检查规则是去除玩家和电脑选中的卡牌
@@ -45,30 +51,46 @@ const playerCardCheck = (cardInfo: CardItem) => {
   const copyComputerCardInfo = deepClone(state.value.computerCardItems[sort])
   computerCardInfo.value = copyComputerCardInfo;
   state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== copyComputerCardInfo.sort)
+
+  setTimeout(() => {
+    checkedCard(copyPlayerCardInfo, copyComputerCardInfo)
+  }, 1000)
+}
+
+const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
+  computerCardInfo.value = null
+  playerCardInfo.value = null
+
+  if (playerCard.role === computerCard.role) {
+    // 平局
+    dropedPlayerCardItems.value.push(playerCard)
+    dropedComputerCardItems.value.push(computerCard)
+  } else {
+    // todo: 对局结束，进行下一局，记分
+    dropedPlayerCardItems.value = []
+    dropedComputerCardItems.value = []
+  }
+
 }
 </script>
 
 <template>
   <StartInfo />
-  <div
-    h-full
-    w-screen
-    grid="~"
-    :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']"
-  >
+  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
           <ComputedCard ref="computerCardRef" role="slave" :cardItems="state.computerCardItems" />
         </div>
         <div bg-gray:50 flex-center>
-          <CheckCard :card-info="[computerCardInfo]" />
+          <CheckCard ref="computedCheckRef" :card-info="[computerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <CheckCard :card-info="[playerCardInfo]" />
+          <CheckCard ref="playerCheckRef" :card-info="[playerCardInfo]" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
+          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="state.playerCardItems"
+            @card-check="playerCardCheck" />
         </div>
       </div>
     </transition>
