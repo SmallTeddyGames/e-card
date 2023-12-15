@@ -23,7 +23,7 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
           <CheckCard :card-info="{ role: 'citizen', img: 'citizen.jpg' }" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard role="emperor" />
+          <PlayerCard role="emperor" hasCheck />
         </div>
       </div>
     </transition>
