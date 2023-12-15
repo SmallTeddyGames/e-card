@@ -5,10 +5,9 @@ import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
 import DropCard from '../Component/DropCard.vue';
-import { getRandomNumber } from '../../utils'
+import { getRandomNumber, deepClone } from '../../utils'
 import { useStorage } from '@vueuse/core'
 import type { CardItem } from '../Type/cardType'
-import { Ref } from "vue";
 import { useGlobalState } from '../../store';
 
 const { proxy } = getCurrentInstance() as any
@@ -35,14 +34,16 @@ const computerCardInfo: Ref<CardItem> | null = ref()
  */
 const playerCardCheck = (cardInfo: CardItem) => {
   // 玩家操作
-  playerCardInfo.value = cardInfo
-  state.value.playerCardItems = state.value.playerCardItems.filter(card => card.sort !== cardInfo.sort);
+  const copyPlayerCardInfo = deepClone(cardInfo)
+  playerCardInfo.value = copyPlayerCardInfo
+  state.value.playerCardItems = state.value.playerCardItems.filter(card => card.sort !== copyPlayerCardInfo.sort);
   //todo 算法待定 电脑操作 
   const sort = getRandomNumber(state.value.computerCardItems.length);
-  computerCardInfo.value = state.value.computerCardItems[sort];
+  const copyComputerCardInfo = deepClone(state.value.computerCardItems[sort])
+  computerCardInfo.value = copyComputerCardInfo;
   console.log("随机到",sort,computerCardInfo.value);
 
-  state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== sort)
+  state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== copyComputerCardInfo.sort)
 }
 </script>
 
