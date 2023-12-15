@@ -1,9 +1,10 @@
-<script lang='ts' setup>
-import GameInformation from '../Component/GameInformation.vue';
+<script lang="ts" setup>
+import GameInformation from '../Component/GameInformation.vue'
 import ComputedCard from '../Component/ComputedCard.vue'
 import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
+<<<<<<< HEAD
 import DropCard from '../Component/DropCard.vue';
 import { getRandomNumber, deepClone } from '../../utils'
 import { useStorage } from '@vueuse/core'
@@ -16,12 +17,14 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 const state = useGlobalState()
 
 const playerRole = computed(() => {
-  return state.value.playerRole;
+  return state.value.playerRole
 })
 
 const playerCardItems = computed((): CardItem[] => state.value.playerCardItems)
 
-const computerCardItems = computed((): CardItem[] => state.value.computerCardItems)
+const computerCardItems = computed(
+  (): CardItem[] => state.value.computerCardItems
+)
 
 // 玩家当前打出的卡片信息
 const playerCardInfo: Ref<CardItem> | null = ref()
@@ -49,11 +52,20 @@ const playerCardCheck = (cardInfo: CardItem) => {
 
 <template>
   <StartInfo />
-  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
+  <div
+    h-full
+    w-screen
+    grid="~"
+    :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']"
+  >
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
-          <ComputedCard ref="computerCardRef" role="slave" :cardItems="computerCardItems" />
+          <ComputedCard
+            ref="computerCardRef"
+            role="slave"
+            :cardItems="computerCardItems"
+          />
         </div>
         <div bg-gray:50 flex-center>
           <CheckCard :card-info="computerCardInfo" />
@@ -62,7 +74,12 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <CheckCard :card-info="playerCardInfo" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="playerCardItems" @card-check="playerCardCheck" />
+          <PlayerCard
+            ref="playerCardRef"
+            role="emperor"
+            :cardItems="playerCardItems"
+            @card-check="playerCardCheck"
+          />
         </div>
       </div>
     </transition>
@@ -76,10 +93,12 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <DropCard />
         </div>
         <div w-full bg-gray:80 flex-center>
-          <DropCard :cardItems="[
-            { role: 'citizen', img: 'citizen.jpg' },
-            { role: 'citizen', img: 'citizen.jpg' }
-          ]" />
+          <DropCard
+            :cardItems="[
+              { role: 'citizen', img: 'citizen.jpg' },
+              { role: 'citizen', img: 'citizen.jpg' }
+            ]"
+          />
         </div>
         <div h-full w-full bg-gray:80 flex-center>
           <GameInformation />
