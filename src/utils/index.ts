@@ -5,8 +5,7 @@ export const getAssetsFile = (url: string) => {
 
 // 根据最大数字生成随机数 取下标 0 - max-1
 export const getRandomNumber = (max: number): number => {
-<<<<<<< HEAD
-  return (Math.floor(Math.random() * max) + 1) % max;
+  return (Math.floor(Math.random() * max) + 1) % max
 }
 
 export const deepClone = (obj, map = new WeakMap()) => {
@@ -33,8 +32,4 @@ export const deepClone = (obj, map = new WeakMap()) => {
   }
 
   return clone;
-=======
-  return Math.floor(Math.random() * max) + 1
-  return (Math.floor(Math.random() * max) + 1) % max
->>>>>>> 6dfa0c834215998681cccd72d2285851ca606637
 }

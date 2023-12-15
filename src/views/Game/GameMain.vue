@@ -4,7 +4,6 @@ import ComputedCard from '../Component/ComputedCard.vue'
 import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
-<<<<<<< HEAD
 import DropCard from '../Component/DropCard.vue';
 import { getRandomNumber, deepClone } from '../../utils'
 import { useStorage } from '@vueuse/core'
@@ -20,16 +19,13 @@ const playerRole = computed(() => {
   return state.value.playerRole
 })
 
-const playerCardItems = computed((): CardItem[] => state.value.playerCardItems)
-
-const computerCardItems = computed(
-  (): CardItem[] => state.value.computerCardItems
-)
-
 // 玩家当前打出的卡片信息
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
+
+const dropedComputerCardItems = ref([]);
+const dropedPlayerCardItems = ref([])
 /**
  * 进行检查
  * 检查规则是去除玩家和电脑选中的卡牌
@@ -44,8 +40,6 @@ const playerCardCheck = (cardInfo: CardItem) => {
   const sort = getRandomNumber(state.value.computerCardItems.length);
   const copyComputerCardInfo = deepClone(state.value.computerCardItems[sort])
   computerCardInfo.value = copyComputerCardInfo;
-  console.log("随机到",sort,computerCardInfo.value);
-
   state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== copyComputerCardInfo.sort)
 }
 </script>
@@ -61,11 +55,7 @@ const playerCardCheck = (cardInfo: CardItem) => {
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
-          <ComputedCard
-            ref="computerCardRef"
-            role="slave"
-            :cardItems="computerCardItems"
-          />
+          <ComputedCard ref="computerCardRef" role="slave" :cardItems="state.computerCardItems" />
         </div>
         <div bg-gray:50 flex-center>
           <CheckCard :card-info="computerCardInfo" />
@@ -74,12 +64,7 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <CheckCard :card-info="playerCardInfo" />
         </div>
         <div w-full bg-gray:50 flex-center>
-          <PlayerCard
-            ref="playerCardRef"
-            role="emperor"
-            :cardItems="playerCardItems"
-            @card-check="playerCardCheck"
-          />
+          <PlayerCard ref="playerCardRef" role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
         </div>
       </div>
     </transition>
@@ -90,15 +75,10 @@ const playerCardCheck = (cardInfo: CardItem) => {
           <GameInformation />
         </div>
         <div w-full bg-gray:80 flex-center>
-          <DropCard />
+          <DropCard :cardItems="dropedComputerCardItems" />
         </div>
         <div w-full bg-gray:80 flex-center>
-          <DropCard
-            :cardItems="[
-              { role: 'citizen', img: 'citizen.jpg' },
-              { role: 'citizen', img: 'citizen.jpg' }
-            ]"
-          />
+          <DropCard :cardItems="dropedPlayerCardItems" />
         </div>
         <div h-full w-full bg-gray:80 flex-center>
           <GameInformation />

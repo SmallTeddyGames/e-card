@@ -19,10 +19,9 @@ info.value = Object.assign(state.value, {
   rounds: 1
 })
 // 初始化手牌
-state.value.playerCardItems = initRoleItems(info.value.playerRole)
-state.value.computerCardItems = initRoleItems(
-  info.value.playerRole == 'emperor' ? 'slave' : 'emperor'
-)
+state.value.playerCardItems = initRoleItems(info.value.playerRole);
+state.value.computerCardItems = initRoleItems(info.value.playerRole == "emperor" ? "slave" : "emperor");
+
 onMounted(() => {
   setTimeout(() => {
     showGameInfo.value = false
