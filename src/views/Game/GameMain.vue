@@ -23,15 +23,9 @@ const playerRole = computed(() => {
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
-<<<<<<< HEAD
-// 弃用 
-const dropedComputerCardItems = ref([]);
-const dropedPlayerCardItems = ref([])
-=======
 
 const dropedComputerCardItems: Ref<CardItem[]> = ref([]);
 const dropedPlayerCardItems: Ref<CardItem[]> = ref([])
->>>>>>> 41b89616e69d8d8c5e5c33c68237f1aa19c2222b
 /**
  * 进行检查
  * 检查规则是去除玩家和电脑选中的卡牌
