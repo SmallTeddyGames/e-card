@@ -8,7 +8,8 @@ unocss： <a href="https://unocss.dev/interactive/" _blank>https://unocss.dev/in
 
 grid： <a href="https://cssgrid-generator.netlify.app/" _blank>https://cssgrid-generator.netlify.app/</a>
 
-todo list：
+
+## todo list
 
 - [x] 布局和基础功能按钮开发
 - [x] 手牌区域组件开发
