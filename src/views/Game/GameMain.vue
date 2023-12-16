@@ -5,10 +5,11 @@ import PlayerCard from '../Component/PlayerCard.vue'
 import StartInfo from '../Component/StartInfo.vue'
 import CheckCard from '../Component/CheckCard.vue'
 import DropCard from '../Component/DropCard.vue';
-import { getRandomNumber, deepClone, nextRounds } from '../../utils'
 import { useStorage } from '@vueuse/core'
 import type { CardItem } from '../Type/cardType'
+import type { LogItem } from '../Type/logType'
 import { useGlobalState } from '../../store';
+import { getRandomNumber, deepClone, nextRounds } from '../../utils'
 
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
@@ -22,18 +23,20 @@ const playerRole = computed(() => {
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
+// 玩家弃牌区域数据
+const dropedCardItems: Ref<CardItem[]> = ref([])
+const gameInfoItems: Ref<Number[]> = ref([])
+// 玩家出牌日志
+const logItems: Ref<LogItem[]> = ref([])
 
-const dropedComputerCardItems: Ref<CardItem[]> = ref([]);
-const dropedPlayerCardItems: Ref<CardItem[]> = ref([])
 /**
  * 进行检查
  * 检查规则是去除玩家和电脑选中的卡牌
- * @param cardInfo
+ * @param cardInfo 卡牌信息
  */
 const playerCardCheck = (cardInfo: CardItem) => {
   if (playerCardInfo.value) {
-    dropedPlayerCardItems.value.push(playerCardInfo.value);
-    dropedComputerCardItems.value.push(computerCardInfo.value)
+    dropedCardItems.value.push(playerCardInfo.value, computerCardInfo.value);
   }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
@@ -50,22 +53,24 @@ const playerCardCheck = (cardInfo: CardItem) => {
   }, 1000)
 }
 
+/**
+ * 检查卡牌
+ * @param playerCard  玩家卡牌信息
+ * @param computerCard  电脑卡牌信息
+ */
 const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
   computerCardInfo.value = null
   playerCardInfo.value = null
 
   if (playerCard.role === computerCard.role) {
     // 平局
-    dropedPlayerCardItems.value.push(playerCard)
-    dropedComputerCardItems.value.push(computerCard)
+    dropedCardItems.value.push(playerCard, computerCard);
   } else {
     // 对局结束，进行下一局，记分
-    dropedPlayerCardItems.value = []
-    dropedComputerCardItems.value = []
+    dropedCardItems.value = []
     nextRounds();
     showInfoRef.value.reshow();
   }
-
 }
 </script>
 
@@ -95,21 +100,13 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
 
     <transition name="game-info" mode="out-in">
       <div v-show="isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
-        <div h-full w-full bg-gray:80 flex-center>
+        <div h-full w-full bg-gray:80 flex-center row-span-3>
           <!-- 电脑对局信息区域 -->
           <GameInformation />
         </div>
-        <div w-full bg-gray:80 flex-center>
+        <div w-full bg-gray:80 flex-center row-span-1>
           <!-- 电脑弃牌区域 -->
-          <DropCard :cardItems="dropedComputerCardItems" />
-        </div>
-        <div w-full bg-gray:80 flex-center>
-           <!-- 玩家弃牌区域 -->
-          <DropCard :cardItems="dropedPlayerCardItems" />
-        </div>
-        <div h-full w-full bg-gray:80 flex-center>
-          <!-- 玩家对局信息区域 -->
-          <GameInformation />
+          <DropCard :cardItems="dropedCardItems" />
         </div>
       </div>
     </transition>
