@@ -3,7 +3,7 @@ import { useStorage } from '@vueuse/core'
 
 const bgImage = useStorage('bgImage', 1, localStorage)
 const toggleBackImage = () => {
-  if(bgImage.value >= 4) {
+  if (bgImage.value >= 4) {
     bgImage.value = 1
   } else {
     bgImage.value++
