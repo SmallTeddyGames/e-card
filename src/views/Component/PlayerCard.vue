@@ -1,14 +1,16 @@
-<script lang='ts' setup>
-import { getAssetsFile } from '../../utils/index'
+<script lang="ts" setup>
+import { getAssetsFile } from '@/utils'
 import type { CardItem } from '../Type/cardType'
-
-const props = withDefaults(defineProps<{
-  role: String
-  cardItems: CardItem[]
-}>(), {
-  role: () => 'emperor',
-  cardItems: () => []
-})
+const props = withDefaults(
+  defineProps<{
+    role: String
+    cardItems: CardItem[]
+  }>(),
+  {
+    role: () => 'emperor',
+    cardItems: () => []
+  }
+)
 
 const emits = defineEmits({
   'card-check': (cardInfo: CardItem) => true
@@ -25,7 +27,7 @@ watch(
 )
 
 const handleCardClick = (cardInfo: CardItem) => {
-  playerCardItems.value.map(v => v.isClick = false)
+  playerCardItems.value.map((v) => (v.isClick = false))
   cardInfo.isClick = true
 }
 
@@ -39,13 +41,19 @@ defineExpose({
 </script>
 
 <template>
-  <div grid="~ cols-5 gap-5">
-    <div card-size relative cursor-pointer transition-all-500 v-for="(cardItem, index) in cardItems"
-      :class="[cardItem.isClick ? 'top--20px' : 'top-0', cardItem.group, cardItem.role + index]">
-      <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" @click="handleCardClick(cardItem)" />
-      <div v-if="cardItem.isClick" text-center>
-        <button @click="cardCheckClick(cardItem)">check</button>
+  <draggable :list="cardItems" tag="div" :group="{ name: role, pull: true, put: false, revertClone: true }"
+    :component-data="{ grid: `~ cols-5 gap-5` }" item-key="sort" :sort="true">
+    <template #item="{ element, index }">
+      <div card-size relative cursor-pointer transition-all-500 :class="[
+        element.isClick ? 'top--20px' : 'top-0',
+        element.group,
+        element.role + index
+      ]">
+        <img :alt="element.role" :src="getAssetsFile(element.img)" @click="handleCardClick(element)" />
+        <div v-if="element.isClick" text-center>
+          <button @click="cardCheckClick(element)">check</button>
+        </div>
       </div>
-    </div>
-  </div>
+    </template>
+  </draggable>
 </template>

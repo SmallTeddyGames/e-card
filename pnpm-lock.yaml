@@ -17,6 +17,9 @@ dependencies:
   vue-router:
     specifier: ^4.2.5
     version: 4.2.5(vue@3.3.11)
+  vuedraggable:
+    specifier: ^4.1.0
+    version: 4.1.0(vue@3.3.11)
 
 devDependencies:
   '@antfu/eslint-config':
@@ -28,6 +31,9 @@ devDependencies:
   '@iconify/json':
     specifier: ^2.2.147
     version: 2.2.156
+  '@types/node':
+    specifier: ^20.10.4
+    version: 20.10.4
   '@vitejs/plugin-vue':
     specifier: ^4.5.0
     version: 4.5.2(vite@5.0.7)(vue@3.3.11)
@@ -45,7 +51,7 @@ devDependencies:
     version: 0.17.2(@vueuse/core@10.7.0)
   vite:
     specifier: ^5.0.0
-    version: 5.0.7
+    version: 5.0.7(@types/node@20.10.4)
   vue-tsc:
     specifier: ^1.8.22
     version: 1.8.25(typescript@5.3.3)
@@ -1031,6 +1037,12 @@ packages:
       '@types/unist': 2.0.10
     dev: true
 
+  /@types/node@20.10.4:
+    resolution: {integrity: sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==, tarball: https://registry.npmmirror.com/@types/node/-/node-20.10.4.tgz}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
   /@types/normalize-package-data@2.4.4:
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==, tarball: https://registry.npmmirror.com/@types/normalize-package-data/-/normalize-package-data-2.4.4.tgz}
     dev: true
@@ -1192,7 +1204,7 @@ packages:
       '@unocss/core': 0.58.0
       '@unocss/reset': 0.58.0
       '@unocss/vite': 0.58.0(vite@5.0.7)
-      vite: 5.0.7
+      vite: 5.0.7(@types/node@20.10.4)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -1389,7 +1401,7 @@ packages:
       chokidar: 3.5.3
       fast-glob: 3.3.2
       magic-string: 0.30.5
-      vite: 5.0.7
+      vite: 5.0.7(@types/node@20.10.4)
     transitivePeerDependencies:
       - rollup
     dev: true
@@ -1401,7 +1413,7 @@ packages:
       vite: ^4.0.0 || ^5.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 5.0.7
+      vite: 5.0.7(@types/node@20.10.4)
       vue: 3.3.11(typescript@5.3.3)
     dev: true
 
@@ -3409,6 +3421,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /sortablejs@1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==, tarball: https://registry.npmmirror.com/sortablejs/-/sortablejs-1.14.0.tgz}
+    dev: false
+
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==, tarball: https://registry.npmmirror.com/source-map-js/-/source-map-js-1.0.2.tgz}
     engines: {node: '>=0.10.0'}
@@ -3574,6 +3590,10 @@ packages:
       mlly: 1.4.2
     dev: true
 
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==, tarball: https://registry.npmmirror.com/undici-types/-/undici-types-5.26.5.tgz}
+    dev: true
+
   /unimport@3.6.1:
     resolution: {integrity: sha512-zKzbp8AQ+l8QK3XrONtUBdgBbMI8TkGh8hBYF77ZkVqMLLIAHwGSwJRFolPQMBx/5pezeRKvmu2gzlqnxRZeqQ==, tarball: https://registry.npmmirror.com/unimport/-/unimport-3.6.1.tgz}
     dependencies:
@@ -3630,7 +3650,7 @@ packages:
       '@unocss/transformer-directives': 0.58.0
       '@unocss/transformer-variant-group': 0.58.0
       '@unocss/vite': 0.58.0(vite@5.0.7)
-      vite: 5.0.7
+      vite: 5.0.7(@types/node@20.10.4)
     transitivePeerDependencies:
       - postcss
       - rollup
@@ -3699,7 +3719,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite@5.0.7:
+  /vite@5.0.7(@types/node@20.10.4):
     resolution: {integrity: sha512-B4T4rJCDPihrQo2B+h1MbeGL/k/GMAHzhQ8S0LjQ142s6/+l3hHTT095ORvsshj4QCkoWu3Xtmob5mazvakaOw==, tarball: https://registry.npmmirror.com/vite/-/vite-5.0.7.tgz}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -3727,6 +3747,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 20.10.4
       esbuild: 0.19.9
       postcss: 8.4.32
       rollup: 4.8.0
@@ -3808,6 +3829,15 @@ packages:
       '@vue/server-renderer': 3.3.11(vue@3.3.11)
       '@vue/shared': 3.3.11
       typescript: 5.3.3
+
+  /vuedraggable@4.1.0(vue@3.3.11):
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==, tarball: https://registry.npmmirror.com/vuedraggable/-/vuedraggable-4.1.0.tgz}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.3.11(typescript@5.3.3)
+    dev: false
 
   /webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==, tarball: https://registry.npmmirror.com/webpack-sources/-/webpack-sources-3.2.3.tgz}

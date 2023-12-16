@@ -1,7 +1,10 @@
+import { Group } from "./groupType";
+import { Role } from "./roleType";
+
 export type CardItem = {
-  role: 'emperor' | 'citizen' | 'slave'
-  img: 'emperor.jpg' | 'citizen.jpg' | 'slave.jpg'
-  isClick?: boolean
-  sort?: number
-  group?:  'emperor' | 'slave'
+  role: Role;
+  img: string; //  'emperor.jpg' | 'citizen.jpg' | 'slave.jpg'|
+  isClick?: boolean;
+  sort?: number;
+  group?: Group;
 }

@@ -1,10 +1,9 @@
-<script lang='ts' setup>
-import GameMain from '../Game/GameMain.vue';
+<script lang="ts" setup>
+import GameMain from '../Game/GameMain.vue'
 import { useStorage } from '@vueuse/core'
-import { getAssetsFile } from '../../utils/index'
+import { getAssetsFile } from '@/utils'
 
 const bgImage = useStorage('bgImage', 1, localStorage) || ref(1)
-
 </script>
 
 <template>
