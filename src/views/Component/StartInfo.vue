@@ -28,7 +28,7 @@ const reshow = () => {
     }, 2000);
   }
 }
-//游戏菜单控制器
+// 游戏菜单控制器
 const menuController = () => {
   startGame()
 }
@@ -55,8 +55,7 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="show" flex-center flex-col h-screen w-screen relative font-size-40px bg-gray:50>
-    <div v-if="!showGameInfo"><button @click="startGame">{{ startLabel(info.rounds) }}</button></div>
+  <div v-if="show" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
     <div v-if="showGameInfo">
       <div w-160px h-56px flex-center rd-8px gap-5>
         第 <span text-green> {{ info?.rounds }} </span> 局
@@ -64,6 +63,9 @@ defineExpose({
       <div w-240px h-56px flex-center rd-8px>
         角色 ： <span text-red>{{ name }}</span>
       </div>
+    </div>
+    <div v-else>
+      <button @click="startGame">{{ startLabel(info.rounds) }}</button>
     </div>
   </div>
 </template>
