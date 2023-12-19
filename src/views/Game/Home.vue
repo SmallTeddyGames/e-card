@@ -1,4 +1,4 @@
-<script lang='ts' setup>
+<script lang="ts" setup>
 import GameNav from '../Layout/GameNav.vue'
 import GameContent from '../Layout/GameContent.vue'
 </script>
