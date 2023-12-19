@@ -1,0 +1,1 @@
+import{_ as e,j as t,k as c,l as o}from"./index-KBfqoxMH.js";const s={},n={"h-100dvh":"","h-screen":"","w-screen":"","flex-center":""},_=o("div",{"text-6xl":""}," 4 0 4 Not Found ",-1),r=[_];function a(d,i){return t(),c("div",n,r)}const h=e(s,[["render",a]]);export{h as default};
