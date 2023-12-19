@@ -52,6 +52,11 @@ const playerCardCheck = (cardInfo: CardItem) => {
   }, 1000)
 }
 
+/**
+ * 判断游戏结果
+ * @param playerCard  玩家卡牌信息
+ * @param computerCard  电脑卡牌信息
+ */
 const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem => {
   const results = {
     emperor: { emperor: null, citizen: 'win', slave: 'lose' },
@@ -93,7 +98,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
 
 <template>
   <StartInfo ref="showInfoRef" />
-  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
+  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">  
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
