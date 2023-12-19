@@ -64,8 +64,81 @@ defineExpose({
         角色 ： <span text-red>{{ name }}</span>
       </div>
     </div>
-    <div v-else>
+    <div v-else flex-col flex-center gap-10>
       <button @click="startGame">{{ startLabel(info.rounds) }}</button>
+
+      <div flex-center gap-10>
+        <div class="card-emperor">
+          <div class="front"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card-citizen">
+          <div class="front"></div>
+          <div class="back"></div>
+        </div>
+        <div class="card-slave">
+          <div class="front"></div>
+          <div class="back"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.card-emperor,
+.card-citizen,
+.card-slave {
+  --uno: 'card-size';
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  animation: card-rotate 3s infinite;
+}
+
+@keyframes card-rotate {
+  0% {
+    transform: rotateY(0);
+  }
+
+  50% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(0);
+  }
+}
+
+.card-emperor .front,
+.card-emperor .back,
+.card-citizen .front,
+.card-citizen .back,
+.card-slave .front,
+.card-slave .back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.card-emperor .front {
+  background-image: url('../../assets/emperor.jpg');
+}
+
+.card-citizen .front {
+  background-image: url('../../assets/citizen.jpg');
+}
+
+.card-slave .front {
+  background-image: url('../../assets/slave.jpg');
+}
+
+.card-emperor .back,
+.card-citizen .back,
+.card-slave .back {
+  background-image: url('../../assets/card-bg.jpg');
+  transform: rotateY(180deg);
+}
+</style>
