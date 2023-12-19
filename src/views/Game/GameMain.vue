@@ -25,9 +25,8 @@ const playerCardInfo: Ref<CardItem> | null = ref()
 const computerCardInfo: Ref<CardItem> | null = ref()
 // 玩家弃牌区域数据
 const dropedCardItems: Ref<CardItem[]> = ref([])
-const gameInfoItems: Ref<Number[]> = ref([])
-// 玩家出牌日志
-const logItems: Ref<LogItem[]> = ref([])
+// 游戏日志
+const gameInfoItems: Ref<LogItem[]> = ref([])
 
 /**
  * 进行检查
@@ -53,6 +52,22 @@ const playerCardCheck = (cardInfo: CardItem) => {
   }, 1000)
 }
 
+const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem => {
+  const results = {
+    emperor: { emperor: null, citizen: 'win', slave: 'lose' },
+    citizen: { emperor: 'lose', citizen: null, slave: 'win' },
+    slave: { emperor: 'win', citizen: 'lose', slave: null },
+  };
+  const result = results[playerCard.role][computerCard.role];
+  const logItem: LogItem = {
+    round: state.value.rounds,
+    role: playerRole.value,
+    result: result,
+    score: result === 'win' ? 1 : 0,
+  };
+  return logItem;
+}
+
 /**
  * 检查卡牌
  * @param playerCard  玩家卡牌信息
@@ -66,6 +81,8 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
     // 平局
     dropedCardItems.value.push(playerCard, computerCard);
   } else {
+    const logItem = judgeRoundWinner(playerCard, computerCard)
+    gameInfoItems.value.push(logItem)
     // 对局结束，进行下一局，记分
     dropedCardItems.value = []
     nextRounds();
@@ -102,7 +119,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
       <div v-show="isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
         <div h-full w-full bg-gray:80 flex-center row-span-3>
           <!-- 电脑对局信息区域 -->
-          <GameInformation />
+          <GameInformation :game-info-items="gameInfoItems" />
         </div>
         <div w-full bg-gray:80 flex-center row-span-1>
           <!-- 电脑弃牌区域 -->
