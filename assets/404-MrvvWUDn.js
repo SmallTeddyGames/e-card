@@ -1,1 +1,0 @@
-import{_ as e,i as t,j as c,k as o}from"./index-crHs0D0R.js";const s={},n={"h-100dvh":"","h-screen":"","w-screen":"","flex-center":""},_=o("div",{"text-6xl":""}," 4 0 4 Not Found ",-1),r=[_];function a(d,i){return t(),c("div",n,r)}const h=e(s,[["render",a]]);export{h as default};
