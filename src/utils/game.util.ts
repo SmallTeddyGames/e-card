@@ -14,11 +14,11 @@ export const getSpecifyImg = (type: 'emperor' | 'slave' | 'citizen') => {
 }
 // 创建卡片 传入类型 序号 分组
 export const createCard = (type: 'emperor' | 'slave' | 'citizen', sort: number, group: 'emperor' | 'slave'): CardItem => {
-    return {role: type, img: getSpecifyImg(type), isClick: false, sort, group };
+    return { role: type, img: getSpecifyImg(type), isClick: false, sort, group };
 }
 // 初始化阵营卡片
 export const initRoleItems = (role: 'emperor' | 'slave') => {
-    const items: CardItem[] = Array(4).fill(0).map((_, idx) => createCard('citizen', idx+1, role));
+    const items: CardItem[] = Array(4).fill(0).map((_, idx) => createCard('citizen', idx + 1, role));
     items.unshift(createCard(role, 0, role));
     return items;
 }
@@ -27,13 +27,13 @@ export const initRoleItems = (role: 'emperor' | 'slave') => {
  * @param role 
  * @returns 
  */
-export const getReverseRole = (role:Group)=> role == "emperor" ? "slave" : "emperor"
+export const getReverseRole = (role: Group) => role == "emperor" ? "slave" : "emperor"
 /**
  * 初始化轮次 
  * @param playerRole 
  * @param rounds 
  */
-export const initRounds = (playerRole:Group,rounds:number)=>{
+export const initRounds = (playerRole: Group, rounds: number) => {
     // 初始化角色
     state.value.playerRole = playerRole;
     state.value.rounds = rounds;
@@ -43,8 +43,8 @@ export const initRounds = (playerRole:Group,rounds:number)=>{
 /**
  * 下一轮
  */
-export const nextRounds = ()=>{
+export const nextRounds = () => {
     const nextRole = getReverseRole(state.value.playerRole);
-    const nexeRound = state.value.rounds+1;
-    initRounds(nextRole,nexeRound);
+    const nexeRound = state.value.rounds + 1;
+    initRounds(nextRole, nexeRound);
 }
