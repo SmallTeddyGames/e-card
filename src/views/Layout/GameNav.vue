@@ -15,7 +15,6 @@ import GitHubButton from '@/views/NavButton/GitHubButton.vue'
     <ChangeGameStatus />
     <!-- git按钮 -->
     <GitHubButton />
-    <!-- todo: 游戏开始之前隐藏 -->
     <!-- 游戏信息控制按钮 -->
     <GameInfoToggle />
     <!-- 颜色切换按钮 -->
