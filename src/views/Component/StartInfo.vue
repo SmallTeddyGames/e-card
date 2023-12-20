@@ -1,7 +1,9 @@
 <script lang='ts' setup>
+import Card from '@/views/Component/Card.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
-import { getName, initRoleItems, initRounds } from '@/utils/game.util'
+import { getName, initRounds } from '@/utils/game.util'
+
 const state = useGlobalState()
 const showGameInfo = ref(false);
 const show = ref(true);
@@ -10,17 +12,17 @@ const info: Ref<any> = ref({
   playerRole: getRandomNumber(2) == 0 ? 'emperor' : 'slave',
   rounds: 1
 })
-const name = computed(() => {
-  return getName(info.value.playerRole)
-})
+// 角色名称
+const name = computed(() => getName(info.value.playerRole))
+
 // 随机抽取角色 并初始化轮次
 initRounds(Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave', 1)
 info.value = state.value;
-onMounted(() => {
-  reshow();
-})
-// 暴露出去重现方法
-const reshow = () => {
+
+/**
+ * 暴露出去重现方法
+ */
+const reshow = (): void => {
   show.value = true;
   if (info.value.rounds <= maxRounds.value && info.value.rounds > 1) {
     setTimeout(() => {
@@ -28,12 +30,22 @@ const reshow = () => {
     }, 2000);
   }
 }
-// 游戏菜单控制器
+
+onMounted(() => {
+  reshow();
+})
+
+/**
+ * 游戏菜单控制器
+ */
 const menuController = () => {
   startGame()
 }
-//游戏开始
-const startGame = () => {
+
+/**
+ * 游戏开始
+ */
+const startGame = (): void => {
   showGameInfo.value = true
   setTimeout(() => {
     show.value = false;
@@ -42,13 +54,19 @@ const startGame = () => {
     }
   }, 2000);
 }
-const startLabel = (rounds: number) => {
+
+/**
+ * 开始按钮
+ * @param rounds 轮次
+ */
+const startLabel = (rounds: number): string => {
   let label = '开始';
   if (rounds > 1 && rounds <= maxRounds.value) {
     label = '继续'
   }
   return label;
 }
+
 defineExpose({
   reshow
 });
@@ -68,77 +86,11 @@ defineExpose({
       <button @click="startGame">{{ startLabel(info.rounds) }}</button>
 
       <div flex-center gap-10>
-        <div class="card-emperor">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
-        <div class="card-citizen">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
-        <div class="card-slave">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
+        <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
+        <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation />
+        <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.card-emperor,
-.card-citizen,
-.card-slave {
-  --uno: 'card-size';
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-  animation: card-rotate 3s infinite;
-}
-
-@keyframes card-rotate {
-  0% {
-    transform: rotateY(0);
-  }
-
-  50% {
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    transform: rotateY(0);
-  }
-}
-
-.card-emperor .front,
-.card-emperor .back,
-.card-citizen .front,
-.card-citizen .back,
-.card-slave .front,
-.card-slave .back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-size: cover;
-  backface-visibility: hidden;
-}
-
-.card-emperor .front {
-  background-image: url('../../assets/emperor.jpg');
-}
-
-.card-citizen .front {
-  background-image: url('../../assets/citizen.jpg');
-}
-
-.card-slave .front {
-  background-image: url('../../assets/slave.jpg');
-}
-
-.card-emperor .back,
-.card-citizen .back,
-.card-slave .back {
-  background-image: url('../../assets/card-bg.jpg');
-  transform: rotateY(180deg);
-}
-</style>

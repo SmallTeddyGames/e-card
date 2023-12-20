@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import GameNav from '../Layout/GameNav.vue'
-import GameContent from '../Layout/GameContent.vue'
+import GameNav from '@/views/Layout/GameNav.vue'
+import GameContent from '@/views/Layout/GameContent.vue'
 </script>
 
 <template>

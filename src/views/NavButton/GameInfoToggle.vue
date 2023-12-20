@@ -2,7 +2,11 @@
 import { useStorage } from '@vueuse/core'
 
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
-const toggle = () => isShowGameInfo.value = !isShowGameInfo.value
+
+/**
+ * 切换游戏信息
+ */
+const toggle = (): boolean => isShowGameInfo.value = !isShowGameInfo.value
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { getAssetsFile } from '@/utils'
-import type { CardItem } from '../Type/cardType'
+import Card from './Card.vue'
+import type { CardItem } from '@/views/Type'
 
 const props = withDefaults(
   defineProps<{
@@ -27,7 +27,11 @@ watch(
   { immediate: true }
 )
 
-const cardCheckClick = (cardInfo: CardItem) => {
+/**
+ * 卡牌点击
+ * @param cardInfo 卡牌信息
+ */
+const cardCheckClick = (cardInfo: CardItem): void => {
   computedCardItems.value = computedCardItems.value.filter(
     (card) => card.sort !== cardInfo.sort
   )
@@ -46,7 +50,7 @@ defineExpose({
       cardItem.group,
       cardItem.role + index
     ]">
-      <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" />
+      <Card :card-info="cardItem" />
     </div>
   </div>
 </template>

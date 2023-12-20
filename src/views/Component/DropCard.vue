@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { getAssetsFile, getRandomNumber } from '@/utils'
-import type { CardItem } from '../Type/cardType'
+import type { CardItem } from '@/views/Type'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     cardItems?: CardItem[]
   }>(),
