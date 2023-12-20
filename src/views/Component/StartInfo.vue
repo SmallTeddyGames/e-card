@@ -3,12 +3,13 @@ import Card from '@/views/Component/Card.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'
+import { GroupEn } from '@/views/Type'
 
 const state = useGlobalState()
 const showGameInfo = ref(false);
 const show = ref(true);
 const maxRounds = ref(21)
-const info: Ref<any> = ref({
+const info: Ref<{ playerRole: GroupEn; rounds: number }> = ref({
   playerRole: getRandomNumber(2) == 0 ? 'emperor' : 'slave',
   rounds: 1
 })
