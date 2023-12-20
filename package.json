@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@unocss/reset": "^0.58.0",
@@ -22,6 +24,7 @@
     "@types/node": "^20.10.4",
     "@vitejs/plugin-vue": "^4.5.0",
     "eslint": "^8.54.0",
+    "gh-pages": "^6.1.0",
     "typescript": "^5.2.2",
     "unocss": "^0.58.0",
     "unplugin-auto-import": "^0.17.2",

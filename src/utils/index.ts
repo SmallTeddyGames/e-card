@@ -20,7 +20,7 @@ export const getRandomNumber = (max: number): number => {
  * @param map 已经拷贝的对象
  * @returns 
  */
-export const deepClone = (obj: any, map = new WeakMap()): any => {
+export const deepClone = (obj, map = new WeakMap()) => {
   // 如果是基本数据类型，则直接返回
   if (obj === null || typeof obj !== 'object') {
     return obj;
@@ -28,11 +28,11 @@ export const deepClone = (obj: any, map = new WeakMap()): any => {
 
   // 如果已经拷贝过该对象，则直接返回拷贝后的对象
   if (map.has(obj)) {
-    return map.get(obj);
+    return map.get(obj)!;
   }
 
   // 根据对象的类型进行深拷贝
-  let clone = Array.isArray(obj) ? [] : {};
+  const clone = Array.isArray(obj) ? [] : {};
 
   // 将当前对象和对应的拷贝存储到map中
   map.set(obj, clone);
