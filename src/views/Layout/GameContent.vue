@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import GameMain from '../Game/GameMain.vue'
+import GameMain from '@/views/Game/GameMain.vue'
 import { useStorage } from '@vueuse/core'
 import { getAssetsFile } from '@/utils'
 

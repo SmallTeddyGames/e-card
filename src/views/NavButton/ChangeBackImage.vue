@@ -2,7 +2,11 @@
 import { useStorage } from '@vueuse/core'
 
 const bgImage = useStorage('bgImage', 1, localStorage)
-const toggleBackImage = () => {
+
+/**
+ * 切换背景
+ */
+const toggleBackImage = (): void => {
   if (bgImage.value >= 4) {
     bgImage.value = 1
   } else {

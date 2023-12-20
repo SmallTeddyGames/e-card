@@ -1,24 +1,22 @@
 <script lang="ts" setup>
-import GameInformation from '../Component/GameInformation.vue'
-import ComputedCard from '../Component/ComputedCard.vue'
-import PlayerCard from '../Component/PlayerCard.vue'
-import StartInfo from '../Component/StartInfo.vue'
-import CheckCard from '../Component/CheckCard.vue'
-import DropCard from '../Component/DropCard.vue';
+import GameInformation from '@/views/Component/GameInformation.vue'
+import ComputedCard from '@/views/Component/ComputedCard.vue'
+import PlayerCard from '@/views/Component/PlayerCard.vue'
+import StartInfo from '@/views/Component/StartInfo.vue'
+import CheckCard from '@/views/Component/CheckCard.vue'
+import DropCard from '@/views/Component/DropCard.vue';
 import { useStorage } from '@vueuse/core'
-import type { CardItem } from '../Type/cardType'
-import type { LogItem } from '../Type/logType'
-import { useGlobalState } from '../../store';
-import { getRandomNumber, deepClone, nextRounds } from '../../utils'
+import type { CardItem, LogItem } from '@/views/Type'
+import { useGlobalState } from '@/store';
+import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
 const state = useGlobalState()
+// 游戏信息Ref
 const showInfoRef = ref<InstanceType<typeof StartInfo>>(null)
-const playerRole = computed(() => {
-  return state.value.playerRole
-})
-
+// 玩家角色
+const playerRole = computed(() => state.value.playerRole)
 // 玩家当前打出的卡片信息
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
@@ -33,7 +31,7 @@ const gameInfoItems: Ref<LogItem[]> = ref([])
  * 检查规则是去除玩家和电脑选中的卡牌
  * @param cardInfo 卡牌信息
  */
-const playerCardCheck = (cardInfo: CardItem) => {
+const playerCardCheck = (cardInfo: CardItem): void => {
   if (playerCardInfo.value) {
     dropedCardItems.value.push(playerCardInfo.value, computerCardInfo.value);
   }
@@ -78,7 +76,7 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
  * @param playerCard  玩家卡牌信息
  * @param computerCard  电脑卡牌信息
  */
-const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
+const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
   computerCardInfo.value = null
   playerCardInfo.value = null
 
@@ -98,7 +96,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
 
 <template>
   <StartInfo ref="showInfoRef" />
-  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">  
+  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>

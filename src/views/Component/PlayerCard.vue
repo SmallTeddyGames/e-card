@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import Card from './Card.vue'
 import { getAssetsFile } from '@/utils'
-import type { CardItem } from '../Type/cardType'
+import type { CardItem } from '@/views/Type'
 const props = withDefaults(
   defineProps<{
     role: String
@@ -26,12 +27,20 @@ watch(
   { immediate: true }
 )
 
-const handleCardClick = (cardInfo: CardItem) => {
+/**
+ * 卡牌点击
+ * @param cardInfo 卡牌信息
+ */
+const handleCardClick = (cardInfo: CardItem): void => {
   playerCardItems.value.map((v) => (v.isClick = false))
   cardInfo.isClick = true
 }
 
-const cardCheckClick = (cardInfo: CardItem) => {
+/**
+ * 检查卡牌点击
+ * @param cardInfo 卡牌信息
+ */
+const cardCheckClick = (cardInfo: CardItem): void => {
   emits('card-check', cardInfo)
 }
 
@@ -49,7 +58,7 @@ defineExpose({
         element.group,
         element.role + index
       ]">
-        <img :alt="element.role" :src="getAssetsFile(element.img)" @click="handleCardClick(element)" />
+        <Card :cardInfo="element" @card-click="handleCardClick" />
         <div v-if="element.isClick" text-center>
           <button @click="cardCheckClick(element)">check</button>
         </div>

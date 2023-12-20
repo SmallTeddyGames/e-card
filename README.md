@@ -32,7 +32,6 @@ e-card
 │  │  ├─ citizen.jpg
 │  │  ├─ emperor.jpg
 │  │  ├─ slave.jpg
-│  │  └─ vue.svg
 │  ├─ main.ts
 │  ├─ router # 路由
 │  │  └─ index.ts

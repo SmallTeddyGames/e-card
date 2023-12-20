@@ -2,7 +2,10 @@
 import { useColorMode } from '@vueuse/core'
 const colorMode = useColorMode()
 
-const toggleMode = () => {
+/**
+ * 切换模式
+ */
+const toggleMode = (): void => {
   colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
 }
 </script>

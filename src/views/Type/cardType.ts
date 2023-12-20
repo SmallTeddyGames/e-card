@@ -1,4 +1,4 @@
-import { Group } from "./groupType";
+import { GroutEn } from "./groupType";
 import { Role } from "./roleType";
 
 export type CardItem = {
@@ -6,5 +6,5 @@ export type CardItem = {
   img: string; //  'emperor.jpg' | 'citizen.jpg' | 'slave.jpg'|
   isClick?: boolean;
   sort?: number;
-  group?: Group;
+  group?: GroutEn;
 }
