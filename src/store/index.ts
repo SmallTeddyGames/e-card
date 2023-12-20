@@ -9,7 +9,7 @@ export const useGlobalState = createGlobalState(
     // 当前局此
     rounds: 0,
     // 游戏状态
-    gameState: 'Pause',
+    gameState: 'init',
     // 玩家当前持有卡牌
     playerCardItems: [],
     // 电脑当前持有卡牌

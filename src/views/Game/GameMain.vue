@@ -5,7 +5,7 @@ import PlayerCard from '@/views/Component/PlayerCard.vue'
 import StartInfo from '@/views/Component/StartInfo.vue'
 import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
-import type { CardItem, LogItem } from '@/views/Type'
+import type { CardItem, LogItem, GameStatus } from '@/views/Type'
 import { useGlobalState } from '@/store';
 import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
@@ -90,6 +90,15 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     showInfoRef.value.reshow();
   }
 }
+
+watch(
+  () => state.value.gameState,
+  (state: GameStatus) => {
+    if(state === 'init') {
+      dropedCardItems.value = []
+    }
+  }
+)
 </script>
 
 <template>

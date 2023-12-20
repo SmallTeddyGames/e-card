@@ -1,6 +1,5 @@
 import { useGlobalState } from "@/store";
 import { CardItem, GroupEn, GroupCn, Role } from "@/views/Type";
-import { getAssetsFile } from "./index";
 
 const state = useGlobalState()
 
@@ -21,7 +20,7 @@ export const getName = (group: GroupEn): GroupCn => {
  * @returns 
  */
 export const createCard = (type: Role, sort: number, group: GroupEn): CardItem => {
-    return { role: type, img: getAssetsFile(`${type}.jpg`), isClick: false, sort, group };
+    return { role: type, img: `${type}.jpg`, isClick: false, sort, group };
 }
 
 /**
@@ -48,11 +47,17 @@ export const getReverseRole = (group: GroupEn): GroupEn => group == "emperor" ? 
  * @param rounds 回合数
  */
 export const initRounds = (playerRole: GroupEn, rounds: number): void => {
-    // 初始化角色
-    state.value.playerRole = playerRole;
-    state.value.rounds = rounds;
-    state.value.playerCardItems = initRoleItems(playerRole);
-    state.value.computerCardItems = initRoleItems(getReverseRole(playerRole));
+    // 初始化
+    state.value = {
+        playerRole,
+        rounds,
+        gameState: "init",
+        isAiBattle: true,
+        playerCardItems: initRoleItems(playerRole),
+        computerCardItems: initRoleItems(getReverseRole(playerRole)),
+        bgImage: 1,
+        isShowGameInfo: true
+    }
 }
 
 /**

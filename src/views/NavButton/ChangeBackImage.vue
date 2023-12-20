@@ -7,7 +7,6 @@ const state = useGlobalState()
  * 切换背景
  */
 const toggleBackImage = (): void => {
-  console.log(state.value.bgImage)
   if (state.value.bgImage >= 4) {
     state.value.bgImage = 1
   } else {

@@ -13,7 +13,7 @@ const toggle = (): void => {
 </script>
 
 <template>
-  <button rounded p-2 hover="bg-active" @click="toggle">
+  <button v-show="state.gameState === 'start'" rounded p-2 hover="bg-active" @click="toggle">
     <div
       :class="{ 'i-material-symbols:right-panel-close-rounded': state.isShowGameInfo, 'i-material-symbols:right-panel-open-rounded': !state.isShowGameInfo }"
       text-2xl />
