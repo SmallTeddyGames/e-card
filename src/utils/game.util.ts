@@ -66,5 +66,8 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
 export const nextRounds = (): void => {
     const nextRole = getReverseRole(state.value.playerRole);
     const nextRound = state.value.rounds + 1;
-    initRounds(nextRole, nextRound);
+    state.value.playerRole = nextRole;
+    state.value.rounds = nextRound;
+    state.value.playerCardItems = initRoleItems(nextRole)
+    state.value.computerCardItems = initRoleItems(getReverseRole(nextRole))
 }

@@ -96,6 +96,7 @@ watch(
   (state: GameStatus) => {
     if(state === 'init') {
       dropedCardItems.value = []
+      gameInfoItems.value = []
     }
   }
 )
