@@ -20,7 +20,7 @@ export const getRandomNumber = (max: number): number => {
  * @param map 已经拷贝的对象
  * @returns 
  */
-export const deepClone = (obj: unknown, map = new WeakMap()): unknown => {
+export const deepClone = (obj, map = new WeakMap()) => {
   // 如果是基本数据类型，则直接返回
   if (obj === null || typeof obj !== 'object') {
     return obj;
