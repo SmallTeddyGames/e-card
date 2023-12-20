@@ -1,7 +1,9 @@
 <script lang='ts' setup>
+import Card from '../Component/Card.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRoleItems, initRounds } from '@/utils/game.util'
+
 const state = useGlobalState()
 const showGameInfo = ref(false);
 const show = ref(true);
@@ -68,77 +70,11 @@ defineExpose({
       <button @click="startGame">{{ startLabel(info.rounds) }}</button>
 
       <div flex-center gap-10>
-        <div class="card-emperor">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
-        <div class="card-citizen">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
-        <div class="card-slave">
-          <div class="front"></div>
-          <div class="back"></div>
-        </div>
+        <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
+        <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation />
+        <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
       </div>
     </div>
   </div>
 </template>
 
-<style scoped>
-.card-emperor,
-.card-citizen,
-.card-slave {
-  --uno: 'card-size';
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-  animation: card-rotate 3s infinite;
-}
-
-@keyframes card-rotate {
-  0% {
-    transform: rotateY(0);
-  }
-
-  50% {
-    transform: rotateY(180deg);
-  }
-
-  100% {
-    transform: rotateY(0);
-  }
-}
-
-.card-emperor .front,
-.card-emperor .back,
-.card-citizen .front,
-.card-citizen .back,
-.card-slave .front,
-.card-slave .back {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-size: cover;
-  backface-visibility: hidden;
-}
-
-.card-emperor .front {
-  background-image: url('../../assets/emperor.jpg');
-}
-
-.card-citizen .front {
-  background-image: url('../../assets/citizen.jpg');
-}
-
-.card-slave .front {
-  background-image: url('../../assets/slave.jpg');
-}
-
-.card-emperor .back,
-.card-citizen .back,
-.card-slave .back {
-  background-image: url('../../assets/card-bg.jpg');
-  transform: rotateY(180deg);
-}
-</style>

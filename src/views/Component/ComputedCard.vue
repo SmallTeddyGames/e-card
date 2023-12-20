@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Card from './Card.vue'
 import { getAssetsFile } from '@/utils'
 import type { CardItem } from '../Type/cardType'
 
@@ -46,7 +47,7 @@ defineExpose({
       cardItem.group,
       cardItem.role + index
     ]">
-      <img :alt="cardItem.role" :src="getAssetsFile(cardItem.img)" />
+      <Card :card-info="cardItem" />
     </div>
   </div>
 </template>

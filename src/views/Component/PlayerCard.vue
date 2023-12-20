@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Card from './Card.vue'
 import { getAssetsFile } from '@/utils'
 import type { CardItem } from '../Type/cardType'
 const props = withDefaults(
@@ -49,7 +50,7 @@ defineExpose({
         element.group,
         element.role + index
       ]">
-        <img :alt="element.role" :src="getAssetsFile(element.img)" @click="handleCardClick(element)" />
+        <Card :cardInfo="element" @card-click="handleCardClick" />
         <div v-if="element.isClick" text-center>
           <button @click="cardCheckClick(element)">check</button>
         </div>
