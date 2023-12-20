@@ -1,9 +1,9 @@
 <script setup>
-import GameInfoToggle from '../NavButton/GameInfoToggle.vue'
-import ChangeBackImage from '../NavButton/ChangeBackImage.vue'
-import FullScreenToggle from '../NavButton/FullScreenToggle.vue'
-import ColorSchemeToggle from '../NavButton/ColorSchemeToggle.vue'
-import GitHubButton from '../NavButton/GitHubButton.vue'
+import GameInfoToggle from '@/views/NavButton/GameInfoToggle.vue'
+import ChangeBackImage from '@/views/NavButton/ChangeBackImage.vue'
+import FullScreenToggle from '@/views/NavButton/FullScreenToggle.vue'
+import ColorSchemeToggle from '@/views/NavButton/ColorSchemeToggle.vue'
+import GitHubButton from '@/views/NavButton/GitHubButton.vue'
 </script>
 
 <template>

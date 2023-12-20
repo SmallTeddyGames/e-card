@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
-import type { CardItem } from '../Type/cardType'
+import type { CardItem } from '@/views/Type'
 
 withDefaults(
   defineProps<{

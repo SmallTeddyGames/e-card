@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import Card from '../Component/Card.vue'
+import Card from '@/views/Component/Card.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'

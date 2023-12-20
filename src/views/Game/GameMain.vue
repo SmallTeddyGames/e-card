@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import GameInformation from '../Component/GameInformation.vue'
-import ComputedCard from '../Component/ComputedCard.vue'
-import PlayerCard from '../Component/PlayerCard.vue'
-import StartInfo from '../Component/StartInfo.vue'
-import CheckCard from '../Component/CheckCard.vue'
-import DropCard from '../Component/DropCard.vue';
+import GameInformation from '@/views/Component/GameInformation.vue'
+import ComputedCard from '@/views/Component/ComputedCard.vue'
+import PlayerCard from '@/views/Component/PlayerCard.vue'
+import StartInfo from '@/views/Component/StartInfo.vue'
+import CheckCard from '@/views/Component/CheckCard.vue'
+import DropCard from '@/views/Component/DropCard.vue';
 import { useStorage } from '@vueuse/core'
-import type { CardItem } from '../Type/cardType'
-import type { LogItem } from '../Type/logType'
-import { useGlobalState } from '../../store';
-import { getRandomNumber, deepClone, nextRounds } from '../../utils'
+import type { CardItem, LogItem } from '@/views/Type'
+import { useGlobalState } from '@/store';
+import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量

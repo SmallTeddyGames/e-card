@@ -1,5 +1,5 @@
 <script lang='ts' setup>
-import type { CardItem } from '../Type/cardType'
+import type { CardItem } from '@/views/Type'
 import { getAssetsFile } from '@/utils';
 
  withDefaults(

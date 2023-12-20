@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { LogItem } from '../Type/logType'
+import type { LogItem } from '@/views/Type'
 
 const props = withDefaults(
   defineProps<{

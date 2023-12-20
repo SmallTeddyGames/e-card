@@ -1,7 +1,5 @@
 import { useGlobalState } from "@/store";
-import { CardItem } from "@/views/Type/cardType";
-import { Group } from "@/views/Type/groupType";
-import { Role } from "@/views/Type/roleType";
+import { CardItem, Group, Role } from "@/views/Type";
 
 const state = useGlobalState()
 

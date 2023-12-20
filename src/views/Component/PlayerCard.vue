@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
 import { getAssetsFile } from '@/utils'
-import type { CardItem } from '../Type/cardType'
+import type { CardItem } from '@/views/Type'
 const props = withDefaults(
   defineProps<{
     role: String
