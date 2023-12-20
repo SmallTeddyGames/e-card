@@ -31,7 +31,7 @@ const gameInfoItems: Ref<LogItem[]> = ref([])
  * 检查规则是去除玩家和电脑选中的卡牌
  * @param cardInfo 卡牌信息
  */
-const playerCardCheck = (cardInfo: CardItem) => {
+const playerCardCheck = (cardInfo: CardItem): void => {
   if (playerCardInfo.value) {
     dropedCardItems.value.push(playerCardInfo.value, computerCardInfo.value);
   }
@@ -76,7 +76,7 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
  * @param playerCard  玩家卡牌信息
  * @param computerCard  电脑卡牌信息
  */
-const checkedCard = (playerCard: CardItem, computerCard: CardItem) => {
+const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
   computerCardInfo.value = null
   playerCardInfo.value = null
 

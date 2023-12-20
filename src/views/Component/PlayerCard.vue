@@ -31,7 +31,7 @@ watch(
  * 卡牌点击
  * @param cardInfo 卡牌信息
  */
-const handleCardClick = (cardInfo: CardItem) => {
+const handleCardClick = (cardInfo: CardItem): void => {
   playerCardItems.value.map((v) => (v.isClick = false))
   cardInfo.isClick = true
 }
@@ -40,7 +40,7 @@ const handleCardClick = (cardInfo: CardItem) => {
  * 检查卡牌点击
  * @param cardInfo 卡牌信息
  */
-const cardCheckClick = (cardInfo: CardItem) => {
+const cardCheckClick = (cardInfo: CardItem): void => {
   emits('card-check', cardInfo)
 }
 

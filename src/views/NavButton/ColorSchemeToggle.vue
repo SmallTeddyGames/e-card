@@ -5,7 +5,7 @@ const colorMode = useColorMode()
 /**
  * 切换模式
  */
-const toggleMode = () => {
+const toggleMode = (): void => {
   colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
 }
 </script>

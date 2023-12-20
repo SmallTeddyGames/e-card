@@ -6,7 +6,7 @@ const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 /**
  * 切换游戏信息
  */
-const toggle = () => isShowGameInfo.value = !isShowGameInfo.value
+const toggle = (): boolean => isShowGameInfo.value = !isShowGameInfo.value
 </script>
 
 <template>

@@ -6,7 +6,7 @@ const bgImage = useStorage('bgImage', 1, localStorage)
 /**
  * 切换背景
  */
-const toggleBackImage = () => {
+const toggleBackImage = (): void => {
   if (bgImage.value >= 4) {
     bgImage.value = 1
   } else {

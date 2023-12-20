@@ -31,7 +31,7 @@ watch(
  * 卡牌点击
  * @param cardInfo 卡牌信息
  */
-const cardCheckClick = (cardInfo: CardItem) => {
+const cardCheckClick = (cardInfo: CardItem): void => {
   computedCardItems.value = computedCardItems.value.filter(
     (card) => card.sort !== cardInfo.sort
   )

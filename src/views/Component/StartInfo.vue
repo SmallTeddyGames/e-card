@@ -12,17 +12,17 @@ const info: Ref<any> = ref({
   playerRole: getRandomNumber(2) == 0 ? 'emperor' : 'slave',
   rounds: 1
 })
-const name = computed(() => {
-  return getName(info.value.playerRole)
-})
+// 角色名称
+const name = computed(() => getName(info.value.playerRole))
+
 // 随机抽取角色 并初始化轮次
 initRounds(Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave', 1)
 info.value = state.value;
-onMounted(() => {
-  reshow();
-})
-// 暴露出去重现方法
-const reshow = () => {
+
+/**
+ * 暴露出去重现方法
+ */
+const reshow = (): void => {
   show.value = true;
   if (info.value.rounds <= maxRounds.value && info.value.rounds > 1) {
     setTimeout(() => {
@@ -30,7 +30,14 @@ const reshow = () => {
     }, 2000);
   }
 }
-// 游戏菜单控制器
+
+onMounted(() => {
+  reshow();
+})
+
+/**
+ * 游戏菜单控制器
+ */
 const menuController = () => {
   startGame()
 }
@@ -38,7 +45,7 @@ const menuController = () => {
 /**
  * 游戏开始
  */
-const startGame = () => {
+const startGame = (): void => {
   showGameInfo.value = true
   setTimeout(() => {
     show.value = false;
@@ -52,7 +59,7 @@ const startGame = () => {
  * 开始按钮
  * @param rounds 轮次
  */
-const startLabel = (rounds: number) => {
+const startLabel = (rounds: number): string => {
   let label = '开始';
   if (rounds > 1 && rounds <= maxRounds.value) {
     label = '继续'

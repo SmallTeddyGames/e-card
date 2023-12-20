@@ -5,7 +5,7 @@ export * from "./game.util"
  * @param url 图片名称
  * @returns 
  */
-export const getAssetsFile = (url: string) => {
+export const getAssetsFile = (url: string): string => {
   return new URL(`../assets/${url}`, import.meta.url).href
 }
 
@@ -20,7 +20,7 @@ export const getRandomNumber = (max: number): number => {
  * @param map 已经拷贝的对象
  * @returns 
  */
-export const deepClone = (obj, map = new WeakMap()) => {
+export const deepClone = (obj: any, map = new WeakMap()): any => {
   // 如果是基本数据类型，则直接返回
   if (obj === null || typeof obj !== 'object') {
     return obj;

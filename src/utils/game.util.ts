@@ -1,5 +1,5 @@
 import { useGlobalState } from "@/store";
-import { CardItem, Group, Role } from "@/views/Type";
+import { CardItem, GroutEn, GroupCn, Role } from "@/views/Type";
 
 const state = useGlobalState()
 
@@ -8,8 +8,8 @@ const state = useGlobalState()
  * @param group 分组
  * @returns 
  */
-export const getName = (group: Group) => {
-    return group == "emperor" ? "国王" : "乞丐";
+export const getName = (group: GroutEn): GroupCn => {
+    return group == "emperor" ? "国王" : "奴隶";
 }
 
 /**
@@ -17,7 +17,7 @@ export const getName = (group: Group) => {
  * @param type 传入类型
  * @returns 
  */
-export const getSpecifyImg = (type: Role) => {
+export const getSpecifyImg = (type: Role): string => {
     return `${type}.jpg`; // 暂时
 }
 
@@ -28,7 +28,7 @@ export const getSpecifyImg = (type: Role) => {
  * @param group 分组
  * @returns 
  */
-export const createCard = (type: Role, sort: number, group: Group): CardItem => {
+export const createCard = (type: Role, sort: number, group: GroutEn): CardItem => {
     return { role: type, img: getSpecifyImg(type), isClick: false, sort, group };
 }
 
@@ -37,7 +37,7 @@ export const createCard = (type: Role, sort: number, group: Group): CardItem => 
  * @param group 分组
  * @returns 
  */
-export const initRoleItems = (group: Group) => {
+export const initRoleItems = (group: GroutEn): CardItem[] => {
     const items: CardItem[] = Array(4).fill(0).map((_, idx) => createCard('citizen', idx + 1, group));
     items.unshift(createCard(group, 0, group));
     return items;
@@ -47,23 +47,25 @@ export const initRoleItems = (group: Group) => {
  * @param group 分组
  * @returns 
  */
-export const getReverseRole = (group: Group) => group == "emperor" ? "slave" : "emperor"
+export const getReverseRole = (group: GroutEn): GroutEn => group == "emperor" ? "slave" : "emperor"
+
 /**
  * 初始化轮次 
  * @param playerRole 玩家角色
  * @param rounds 回合数
  */
-export const initRounds = (playerRole: Group, rounds: number) => {
+export const initRounds = (playerRole: GroutEn, rounds: number): void => {
     // 初始化角色
     state.value.playerRole = playerRole;
     state.value.rounds = rounds;
     state.value.playerCardItems = initRoleItems(playerRole);
     state.value.computerCardItems = initRoleItems(getReverseRole(playerRole));
 }
+
 /**
  * 进行下一轮
  */
-export const nextRounds = () => {
+export const nextRounds = (): void => {
     const nextRole = getReverseRole(state.value.playerRole);
     const nextRound = state.value.rounds + 1;
     initRounds(nextRole, nextRound);
