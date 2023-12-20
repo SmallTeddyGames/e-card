@@ -94,7 +94,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    if(state === 'init') {
+    if (state === 'init') {
       dropedCardItems.value = []
       gameInfoItems.value = []
     }
@@ -104,8 +104,8 @@ watch(
 
 <template>
   <StartInfo ref="showInfoRef" />
-  <div h-full w-screen grid="~" :class="[state.isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
-    <transition name="game-center" mode="out-in">
+  <transition>
+    <div h-full w-screen grid="~" :class="[state.isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
           <!-- 电脑手牌区域 -->
@@ -124,9 +124,7 @@ watch(
           <PlayerCard role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
         </div>
       </div>
-    </transition>
 
-    <transition name="game-info" mode="out-in">
       <div v-show="state.isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
         <div h-full w-full bg-gray:80 flex-center row-span-3>
           <!-- 电脑对局信息区域 -->
@@ -137,6 +135,7 @@ watch(
           <DropCard :cardItems="dropedCardItems" />
         </div>
       </div>
-    </transition>
-  </div>
+    </div>
+  </transition>
 </template>
+
