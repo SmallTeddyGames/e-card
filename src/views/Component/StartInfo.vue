@@ -85,7 +85,7 @@ watch(
       startGame()
     }
     if (state === 'pause') {
-      reshow()
+      show.value = true;
     }
   },
   { immediate: true }
