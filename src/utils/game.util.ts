@@ -13,15 +13,6 @@ export const getName = (group: GroupEn): GroupCn => {
 }
 
 /**
- * 获取指定类型图片资源
- * @param type 传入类型
- * @returns 
- */
-export const getSpecifyImg = (type: Role): string => {
-    return `${type}.jpg`; // 暂时
-}
-
-/**
  * 创建卡片
  * @param type 传入类型 
  * @param sort 序号
@@ -29,7 +20,7 @@ export const getSpecifyImg = (type: Role): string => {
  * @returns 
  */
 export const createCard = (type: Role, sort: number, group: GroupEn): CardItem => {
-    return { role: type, img: getSpecifyImg(type), isClick: false, sort, group };
+    return { role: type, img: `${type}.jpg`, isClick: false, sort, group };
 }
 
 /**
@@ -42,6 +33,7 @@ export const initRoleItems = (group: GroupEn): CardItem[] => {
     items.unshift(createCard(group, 0, group));
     return items;
 }
+
 /**
  * 获取对立角色
  * @param group 分组
@@ -55,11 +47,17 @@ export const getReverseRole = (group: GroupEn): GroupEn => group == "emperor" ? 
  * @param rounds 回合数
  */
 export const initRounds = (playerRole: GroupEn, rounds: number): void => {
-    // 初始化角色
-    state.value.playerRole = playerRole;
-    state.value.rounds = rounds;
-    state.value.playerCardItems = initRoleItems(playerRole);
-    state.value.computerCardItems = initRoleItems(getReverseRole(playerRole));
+    // 初始化
+    state.value = {
+        playerRole,
+        rounds,
+        gameState: "init",
+        isAiBattle: true,
+        playerCardItems: initRoleItems(playerRole),
+        computerCardItems: initRoleItems(getReverseRole(playerRole)),
+        bgImage: 1,
+        isShowGameInfo: true
+    }
 }
 
 /**
