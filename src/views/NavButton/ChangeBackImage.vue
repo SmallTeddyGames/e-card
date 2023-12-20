@@ -1,16 +1,16 @@
 <script lang="ts" setup>
-import { useStorage } from '@vueuse/core'
+import { useGlobalState } from '@/store'
 
-const bgImage = useStorage('bgImage', 1, localStorage)
+const state = useGlobalState()
 
 /**
  * 切换背景
  */
 const toggleBackImage = (): void => {
-  if (bgImage.value >= 4) {
-    bgImage.value = 1
+  if (state.value.bgImage >= 4) {
+    state.value.bgImage = 1
   } else {
-    bgImage.value++
+    state.value.bgImage++
   }
 }
 </script>

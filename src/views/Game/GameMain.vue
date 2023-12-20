@@ -5,12 +5,10 @@ import PlayerCard from '@/views/Component/PlayerCard.vue'
 import StartInfo from '@/views/Component/StartInfo.vue'
 import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
-import { useStorage } from '@vueuse/core'
-import type { CardItem, LogItem } from '@/views/Type'
+import type { CardItem, LogItem, GameStatus } from '@/views/Type'
 import { useGlobalState } from '@/store';
 import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
-const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
 const state = useGlobalState()
 // 游戏信息Ref
@@ -92,11 +90,20 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     showInfoRef.value.reshow();
   }
 }
+
+watch(
+  () => state.value.gameState,
+  (state: GameStatus) => {
+    if(state === 'init') {
+      dropedCardItems.value = []
+    }
+  }
+)
 </script>
 
 <template>
   <StartInfo ref="showInfoRef" />
-  <div h-full w-screen grid="~" :class="[isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
+  <div h-full w-screen grid="~" :class="[state.isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
     <transition name="game-center" mode="out-in">
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
@@ -119,7 +126,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     </transition>
 
     <transition name="game-info" mode="out-in">
-      <div v-show="isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
+      <div v-show="state.isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
         <div h-full w-full bg-gray:80 flex-center row-span-3>
           <!-- 电脑对局信息区域 -->
           <GameInformation :game-info-items="gameInfoItems" />

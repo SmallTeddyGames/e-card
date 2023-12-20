@@ -1,4 +1,5 @@
 <script setup>
+import ChangeGameStatus from '@/views/NavButton/ChangeGameStatus.vue'
 import GameInfoToggle from '@/views/NavButton/GameInfoToggle.vue'
 import ChangeBackImage from '@/views/NavButton/ChangeBackImage.vue'
 import FullScreenToggle from '@/views/NavButton/FullScreenToggle.vue'
@@ -10,6 +11,8 @@ import GitHubButton from '@/views/NavButton/GitHubButton.vue'
   <nav w-screen px4 py3 text-lg border="b base" flex="~ gap-1 items-center">
     <div title="Game">E-Card</div>
     <div flex-auto />
+    <!-- 游戏控制按钮 -->
+    <ChangeGameStatus />
     <!-- git按钮 -->
     <GitHubButton />
     <!-- todo: 游戏开始之前隐藏 -->
