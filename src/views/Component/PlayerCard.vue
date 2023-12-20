@@ -27,11 +27,19 @@ watch(
   { immediate: true }
 )
 
+/**
+ * 卡牌点击
+ * @param cardInfo 卡牌信息
+ */
 const handleCardClick = (cardInfo: CardItem) => {
   playerCardItems.value.map((v) => (v.isClick = false))
   cardInfo.isClick = true
 }
 
+/**
+ * 检查卡牌点击
+ * @param cardInfo 卡牌信息
+ */
 const cardCheckClick = (cardInfo: CardItem) => {
   emits('card-check', cardInfo)
 }

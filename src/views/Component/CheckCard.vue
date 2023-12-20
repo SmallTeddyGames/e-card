@@ -1,9 +1,8 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
-import { getAssetsFile } from '@/utils'
 import type { CardItem } from '../Type/cardType'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     cardInfo?: CardItem[] | null
   }>(),

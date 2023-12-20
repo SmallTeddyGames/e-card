@@ -2,7 +2,7 @@
 import type { CardItem } from '../Type/cardType'
 import { getAssetsFile } from '@/utils';
 
-const props = withDefaults(
+ withDefaults(
   defineProps<{
     cardInfo: CardItem
     isAnimation: boolean

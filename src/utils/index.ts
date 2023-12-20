@@ -1,5 +1,10 @@
 export * from "./game.util"
-// 获取assets静态资源
+
+/**
+ * 获取assets静态资源，路径为assets
+ * @param url 图片名称
+ * @returns 
+ */
 export const getAssetsFile = (url: string) => {
   return new URL(`../assets/${url}`, import.meta.url).href
 }
@@ -9,6 +14,12 @@ export const getRandomNumber = (max: number): number => {
   return (Math.floor(Math.random() * max) + 1) % max
 }
 
+/**
+ * 深拷贝
+ * @param obj 要拷贝的对象
+ * @param map 已经拷贝的对象
+ * @returns 
+ */
 export const deepClone = (obj, map = new WeakMap()) => {
   // 如果是基本数据类型，则直接返回
   if (obj === null || typeof obj !== 'object') {

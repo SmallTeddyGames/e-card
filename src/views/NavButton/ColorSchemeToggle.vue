@@ -2,6 +2,9 @@
 import { useColorMode } from '@vueuse/core'
 const colorMode = useColorMode()
 
+/**
+ * 切换模式
+ */
 const toggleMode = () => {
   colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
 }

@@ -14,11 +14,10 @@ import { getRandomNumber, deepClone, nextRounds } from '../../utils'
 const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
 // 全局信息变量
 const state = useGlobalState()
+// 游戏信息Ref
 const showInfoRef = ref<InstanceType<typeof StartInfo>>(null)
-const playerRole = computed(() => {
-  return state.value.playerRole
-})
-
+// 玩家角色
+const playerRole = computed(() => state.value.playerRole)
 // 玩家当前打出的卡片信息
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息

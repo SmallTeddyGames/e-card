@@ -2,7 +2,7 @@
 import { getAssetsFile, getRandomNumber } from '@/utils'
 import type { CardItem } from '../Type/cardType'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     cardItems?: CardItem[]
   }>(),

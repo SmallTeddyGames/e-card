@@ -2,7 +2,7 @@
 import Card from '../Component/Card.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
-import { getName, initRoleItems, initRounds } from '@/utils/game.util'
+import { getName, initRounds } from '@/utils/game.util'
 
 const state = useGlobalState()
 const showGameInfo = ref(false);
@@ -34,7 +34,10 @@ const reshow = () => {
 const menuController = () => {
   startGame()
 }
-//游戏开始
+
+/**
+ * 游戏开始
+ */
 const startGame = () => {
   showGameInfo.value = true
   setTimeout(() => {
@@ -44,6 +47,11 @@ const startGame = () => {
     }
   }, 2000);
 }
+
+/**
+ * 开始按钮
+ * @param rounds 轮次
+ */
 const startLabel = (rounds: number) => {
   let label = '开始';
   if (rounds > 1 && rounds <= maxRounds.value) {
@@ -51,6 +59,7 @@ const startLabel = (rounds: number) => {
   }
   return label;
 }
+
 defineExpose({
   reshow
 });

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
-import { getAssetsFile } from '@/utils'
 import type { CardItem } from '../Type/cardType'
 
 const props = withDefaults(
@@ -28,6 +27,10 @@ watch(
   { immediate: true }
 )
 
+/**
+ * 卡牌点击
+ * @param cardInfo 卡牌信息
+ */
 const cardCheckClick = (cardInfo: CardItem) => {
   computedCardItems.value = computedCardItems.value.filter(
     (card) => card.sort !== cardInfo.sort

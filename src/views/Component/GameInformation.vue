@@ -12,7 +12,9 @@ const props = withDefaults(
 
 const gameInfomationItems: LogItem[] = props.gameInfoItems
 
-// 使用reduce函数计算score的总和
+/**
+ * 使用reduce函数计算score的总和
+ */
 const gameFinalScore = gameInfomationItems.reduce((totalScore, currentItem) => {
   return totalScore + currentItem.score;
 }, 0);
