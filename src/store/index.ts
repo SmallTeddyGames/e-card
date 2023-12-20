@@ -8,9 +8,15 @@ export const useGlobalState = createGlobalState(
     isAiBattle: true,
     // 当前局此
     rounds: 0,
+    // 游戏状态
+    gameState: 'Pause',
     // 玩家当前持有卡牌
     playerCardItems: [],
     // 电脑当前持有卡牌
-    computerCardItems: []
-  }),
+    computerCardItems: [],
+    // 背景图片
+    bgImage: 1,
+    // 是否显示游戏信息
+    isShowGameInfo: true
+  })
 )

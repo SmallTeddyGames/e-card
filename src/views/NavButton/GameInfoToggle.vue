@@ -1,18 +1,21 @@
 <script lang="ts" setup>
-import { useStorage } from '@vueuse/core'
+import { useGlobalState } from '@/store'
 
-const isShowGameInfo = useStorage('showGameInfo', true, localStorage)
+const state = useGlobalState()
 
 /**
  * 切换游戏信息
  */
-const toggle = (): boolean => isShowGameInfo.value = !isShowGameInfo.value
+const toggle = (): void => {
+  state.value.isShowGameInfo = !state.value.isShowGameInfo
+}
+
 </script>
 
 <template>
   <button rounded p-2 hover="bg-active" @click="toggle">
     <div
-      :class="{ 'i-material-symbols:right-panel-close-rounded': isShowGameInfo, 'i-material-symbols:right-panel-open-rounded': !isShowGameInfo }"
+      :class="{ 'i-material-symbols:right-panel-close-rounded': state.isShowGameInfo, 'i-material-symbols:right-panel-open-rounded': !state.isShowGameInfo }"
       text-2xl />
   </button>
 </template>

@@ -1,5 +1,6 @@
 import { useGlobalState } from "@/store";
 import { CardItem, GroupEn, GroupCn, Role } from "@/views/Type";
+import { getAssetsFile } from "./index";
 
 const state = useGlobalState()
 
@@ -13,15 +14,6 @@ export const getName = (group: GroupEn): GroupCn => {
 }
 
 /**
- * 获取指定类型图片资源
- * @param type 传入类型
- * @returns 
- */
-export const getSpecifyImg = (type: Role): string => {
-    return `${type}.jpg`; // 暂时
-}
-
-/**
  * 创建卡片
  * @param type 传入类型 
  * @param sort 序号
@@ -29,7 +21,7 @@ export const getSpecifyImg = (type: Role): string => {
  * @returns 
  */
 export const createCard = (type: Role, sort: number, group: GroupEn): CardItem => {
-    return { role: type, img: getSpecifyImg(type), isClick: false, sort, group };
+    return { role: type, img: getAssetsFile(`${type}.jpg`), isClick: false, sort, group };
 }
 
 /**
@@ -42,6 +34,7 @@ export const initRoleItems = (group: GroupEn): CardItem[] => {
     items.unshift(createCard(group, 0, group));
     return items;
 }
+
 /**
  * 获取对立角色
  * @param group 分组

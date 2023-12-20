@@ -5,7 +5,7 @@ import { getAssetsFile } from '@/utils';
  withDefaults(
   defineProps<{
     cardInfo: CardItem
-    isAnimation: boolean
+    isAnimation?: boolean
   }>(),
   {
     cardInfo: () => null,
