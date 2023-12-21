@@ -28,13 +28,14 @@ const emits = defineEmits(['card-click'])
   </div>
 </template>
 
-<style>
+<style scoped>
 .card-animation {
   animation: card-rotate 3s infinite;
 }
 
 .card-back {
   transform: rotateY(180deg);
+  transition: all 1s;
 }
 
 @keyframes card-rotate {

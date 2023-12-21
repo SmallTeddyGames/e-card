@@ -76,20 +76,26 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
  * @param computerCard  电脑卡牌信息
  */
 const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
-  computerCardInfo.value = null
-  playerCardInfo.value = null
+  setTimeout(() => {
+    computerCardInfo.value.isBack = false
+    playerCardInfo.value.isBack = false
+  }, 1000)
 
-  if (playerCard.role === computerCard.role) {
-    // 平局
-    dropedCardItems.value.push(playerCard, computerCard);
-  } else {
-    const logItem = judgeRoundWinner(playerCard, computerCard)
-    gameInfoItems.value.push(logItem)
-    // 对局结束，进行下一局，记分
-    dropedCardItems.value = []
-    nextRounds();
-    showGameMenuRef.value.reshow();
-  }
+  setTimeout(() => {
+    computerCardInfo.value = null
+    playerCardInfo.value = null
+    if (playerCard.role === computerCard.role) {
+      // 平局
+      dropedCardItems.value.push(playerCard, computerCard);
+    } else {
+      const logItem = judgeRoundWinner(playerCard, computerCard)
+      gameInfoItems.value.push(logItem)
+      // 对局结束，进行下一局，记分
+      dropedCardItems.value = []
+      nextRounds();
+      showGameMenuRef.value.reshow();
+    }
+  }, 2000)
 }
 
 watch(
