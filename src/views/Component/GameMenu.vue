@@ -1,5 +1,6 @@
 <script lang='ts' setup>
 import Card from '@/views/Component/Card.vue'
+import GameExplain from '@/views/Component/GameExplain.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'
@@ -66,7 +67,7 @@ const restartGame = () => {
 }
 
 /**
- * 开始按钮
+ * 开始按钮文字
  * @param rounds 轮次
  */
 const startLabel = (): string => {
@@ -75,6 +76,25 @@ const startLabel = (): string => {
     label = '继续'
   }
   return label;
+}
+
+// 游戏说明
+const showGameExplain = ref(false)
+
+/**
+ * 显示游戏说明
+ */
+const openGameExplain = () => {
+  show.value = false
+  showGameExplain.value = true
+}
+
+/**
+ * 隐藏游戏说明
+ */
+const closeGameExplain = () => {
+  show.value = true
+  showGameExplain.value = false
 }
 
 watch(
@@ -106,9 +126,10 @@ defineExpose({
         角色 ： <span text-red>{{ name }}</span>
       </div>
     </div>
-    <div v-else flex-col flex-center gap-10>
+    <div v-else flex-col flex-center gap-5>
       <button @click="startGame">{{ startLabel() }}</button>
       <button @click="restartGame">重新开始</button>
+      <button @click="openGameExplain">游戏说明</button>
 
       <div flex-center gap-10>
         <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
@@ -116,6 +137,9 @@ defineExpose({
         <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
       </div>
     </div>
+  </div>
+  <div v-if="showGameExplain" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
+    <GameExplain @close="closeGameExplain" />
   </div>
 </template>
 
