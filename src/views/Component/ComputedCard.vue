@@ -50,7 +50,7 @@ defineExpose({
       cardItem.group,
       cardItem.role + index
     ]">
-      <Card :card-info="cardItem" />
+      <Card :card-info="cardItem" is-back />
     </div>
   </div>
 </template>
