@@ -1,4 +1,5 @@
 import { useGlobalState } from "@/store";
+import { getRandomNumber } from './index';
 import { CardItem, GroupEn, GroupCn, Role } from "@/views/Type";
 
 const state = useGlobalState()
@@ -19,8 +20,8 @@ export const getName = (group: GroupEn): GroupCn => {
  * @param group 分组
  * @returns 
  */
-export const createCard = (type: Role, sort: number, group: GroupEn): CardItem => {
-    return { role: type, img: `${type}.jpg`, isClick: false, sort, group };
+export const createCard = (role: Role, sort: number, group: GroupEn): CardItem => {
+    return { role: role, img: `${role}.jpg`, isClick: false, isBack: false, sort, group };
 }
 
 /**
@@ -28,9 +29,11 @@ export const createCard = (type: Role, sort: number, group: GroupEn): CardItem =
  * @param group 分组
  * @returns 
  */
-export const initRoleItems = (group: GroupEn): CardItem[] => {
-    const items: CardItem[] = Array(4).fill(0).map((_, idx) => createCard('citizen', idx + 1, group));
-    items.unshift(createCard(group, 0, group));
+export const initRoleItems = (group: GroupEn, isPlayer: boolean = true): CardItem[] => {
+    const items: CardItem[] = Array(5).fill(0).map((_, idx) => createCard('citizen', idx + 1, group));
+    const sort = getRandomNumber(5);
+    items[sort] = (createCard(group, sort + 1, group));
+    items.map(card => card.isBack = !isPlayer)
     return items;
 }
 
@@ -53,8 +56,8 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
         rounds,
         gameState: "init",
         isAiBattle: true,
-        playerCardItems: initRoleItems(playerRole),
-        computerCardItems: initRoleItems(getReverseRole(playerRole)),
+        playerCardItems: initRoleItems(playerRole, true),
+        computerCardItems: initRoleItems(getReverseRole(playerRole), false),
         bgImage: 1,
         isShowGameInfo: true
     }
@@ -68,6 +71,7 @@ export const nextRounds = (): void => {
     const nextRound = state.value.rounds + 1;
     state.value.playerRole = nextRole;
     state.value.rounds = nextRound;
-    state.value.playerCardItems = initRoleItems(nextRole)
-    state.value.computerCardItems = initRoleItems(getReverseRole(nextRole))
+    state.value.playerCardItems = initRoleItems(nextRole, true)
+    state.value.computerCardItems = initRoleItems(getReverseRole(nextRole), false)
 }
+

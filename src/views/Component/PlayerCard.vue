@@ -40,7 +40,10 @@ const handleCardClick = (cardInfo: CardItem): void => {
  * @param cardInfo 卡牌信息
  */
 const cardCheckClick = (cardInfo: CardItem): void => {
-  emits('card-check', cardInfo)
+  cardInfo.isBack = true
+  setTimeout(() => {
+    emits('card-check', cardInfo)
+  }, 1000)
 }
 
 defineExpose({
@@ -57,7 +60,7 @@ defineExpose({
         element.group,
         element.role + index
       ]">
-        <Card :cardInfo="element" @card-click="handleCardClick" />
+        <Card :cardInfo="element" :is-back="element.isBack" @card-click="handleCardClick" />
         <div v-if="element.isClick" text-center>
           <button @click="cardCheckClick(element)">check</button>
         </div>

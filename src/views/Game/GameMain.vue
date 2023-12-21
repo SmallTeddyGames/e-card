@@ -2,7 +2,7 @@
 import GameInformation from '@/views/Component/GameInformation.vue'
 import ComputedCard from '@/views/Component/ComputedCard.vue'
 import PlayerCard from '@/views/Component/PlayerCard.vue'
-import StartInfo from '@/views/Component/StartInfo.vue'
+import GameMenu from '@/views/Component/GameMenu.vue'
 import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import type { CardItem, LogItem, GameStatus } from '@/views/Type'
@@ -12,7 +12,7 @@ import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 // 全局信息变量
 const state = useGlobalState()
 // 游戏信息Ref
-const showInfoRef = ref<InstanceType<typeof StartInfo>>(null)
+const showGameMenuRef = ref<InstanceType<typeof GameMenu>>(null)
 // 玩家角色
 const playerRole = computed(() => state.value.playerRole)
 // 玩家当前打出的卡片信息
@@ -37,12 +37,13 @@ const playerCardCheck = (cardInfo: CardItem): void => {
   const copyPlayerCardInfo = deepClone(cardInfo)
   playerCardInfo.value = copyPlayerCardInfo
   state.value.playerCardItems = state.value.playerCardItems.filter(card => card.sort !== copyPlayerCardInfo.sort);
-  //todo 算法待定 电脑操作 
+  // 电脑操作（随机出牌）
   const sort = getRandomNumber(state.value.computerCardItems.length);
   const copyComputerCardInfo = deepClone(state.value.computerCardItems[sort])
   computerCardInfo.value = copyComputerCardInfo;
   state.value.computerCardItems = state.value.computerCardItems.filter(card => card.sort !== copyComputerCardInfo.sort)
 
+  // 延时1秒比对
   setTimeout(() => {
     checkedCard(copyPlayerCardInfo, copyComputerCardInfo)
   }, 1000)
@@ -75,20 +76,26 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
  * @param computerCard  电脑卡牌信息
  */
 const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
-  computerCardInfo.value = null
-  playerCardInfo.value = null
+  setTimeout(() => {
+    computerCardInfo.value.isBack = false
+    playerCardInfo.value.isBack = false
+  }, 1000)
 
-  if (playerCard.role === computerCard.role) {
-    // 平局
-    dropedCardItems.value.push(playerCard, computerCard);
-  } else {
-    const logItem = judgeRoundWinner(playerCard, computerCard)
-    gameInfoItems.value.push(logItem)
-    // 对局结束，进行下一局，记分
-    dropedCardItems.value = []
-    nextRounds();
-    showInfoRef.value.reshow();
-  }
+  setTimeout(() => {
+    computerCardInfo.value = null
+    playerCardInfo.value = null
+    if (playerCard.role === computerCard.role) {
+      // 平局
+      dropedCardItems.value.push(playerCard, computerCard);
+    } else {
+      const logItem = judgeRoundWinner(playerCard, computerCard)
+      gameInfoItems.value.push(logItem)
+      // 对局结束，进行下一局，记分
+      dropedCardItems.value = []
+      nextRounds();
+      showGameMenuRef.value.reshow();
+    }
+  }, 2000)
 }
 
 watch(
@@ -103,7 +110,7 @@ watch(
 </script>
 
 <template>
-  <StartInfo ref="showInfoRef" />
+  <GameMenu ref="showGameMenuRef" />
   <transition>
     <div h-full w-screen grid="~" :class="[state.isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
       <div grid="~ rows-4" col-span-3 h-full w-full>

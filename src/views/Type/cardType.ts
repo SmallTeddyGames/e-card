@@ -5,6 +5,7 @@ export type CardItem = {
   role: Role;
   img: string; //  'emperor.jpg' | 'citizen.jpg' | 'slave.jpg'|
   isClick?: boolean;
+  isBack?: boolean;
   sort?: number;
   group?: GroupEn;
 }
