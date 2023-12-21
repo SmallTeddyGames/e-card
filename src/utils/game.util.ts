@@ -1,4 +1,5 @@
 import { useGlobalState } from "@/store";
+import { getRandomNumber } from './index';
 import { CardItem, GroupEn, GroupCn, Role } from "@/views/Type";
 
 const state = useGlobalState()
@@ -29,8 +30,9 @@ export const createCard = (type: Role, sort: number, group: GroupEn): CardItem =
  * @returns 
  */
 export const initRoleItems = (group: GroupEn): CardItem[] => {
-    const items: CardItem[] = Array(4).fill(0).map((_, idx) => createCard('citizen', idx + 1, group));
-    items.unshift(createCard(group, 0, group));
+    const items: CardItem[] = Array(5).fill(0).map((_, idx) => createCard('citizen', idx + 1, group));
+    const sort = getRandomNumber(5);
+    items[sort] = (createCard(group, sort, group));
     return items;
 }
 
@@ -71,3 +73,4 @@ export const nextRounds = (): void => {
     state.value.playerCardItems = initRoleItems(nextRole)
     state.value.computerCardItems = initRoleItems(getReverseRole(nextRole))
 }
+
