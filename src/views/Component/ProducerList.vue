@@ -2,7 +2,13 @@
 import MessageInfo from './MessageInfo.vue';
 const emits = defineEmits(["close"]);
 const producerText = [
-  "SmallTeddy"
+  "SmallTeddy",
+  "wh131462",
+  "remember-study",
+  "cangbaoderen",
+  "Yang-mingLei",
+  "Medalc",
+  "qingjiuge"
 ];
 </script>
 

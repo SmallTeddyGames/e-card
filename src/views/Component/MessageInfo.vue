@@ -18,7 +18,7 @@ const emits = defineEmits(["close"]);
     <div p-4 box-border flex="~ col items-center gap-8" bg-Mask border-rd-12px style="min-width: 600px">
       <h3>{{ title }}</h3>
       <div flex="~ col gap-2">
-        <p font-size-7 v-for="text in infoList" :key="text">
+        <p font-size-7 v-for="text in infoList" :key="text" :class="{ 'text-center': title === '制作人员' }">
           {{ text }}
         </p>
       </div>
