@@ -1,6 +1,7 @@
 <script lang='ts' setup>
 import Card from '@/views/Component/Card.vue'
 import GameExplain from '@/views/Component/GameExplain.vue'
+import ProducerList from '@/views/Component/ProducerList.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'
@@ -76,16 +77,18 @@ const restartGame = () => {
 const startLabel = computed(() => {
   let label;
   switch (state.value.gameState) {
-    case 'pause': label = '继续'; break
+    case 'pause': label = '游戏继续'; break
     case 'win': label = '您赢了！'; break
     case 'lose': label = '您输了！'; break
-    default: label = '开始';
+    default: label = '游戏开始';
   }
   return label;
 })
 
 // 游戏说明
 const showGameExplain = ref(false)
+// 游戏制作人名单
+const showGameProducer = ref(false)
 
 /**
  * 显示游戏说明
@@ -101,6 +104,22 @@ const openGameExplain = () => {
 const closeGameExplain = () => {
   show.value = true
   showGameExplain.value = false
+}
+
+/**
+ * 显示游戏制作人名单
+ */
+const openGameProducer = () => {
+  show.value = false
+  showGameProducer.value = true
+}
+
+/**
+ * 隐藏游戏制作人名单
+ */
+const closeProducerList = () => {
+  show.value = true
+  showGameProducer.value = false
 }
 
 watch(
@@ -136,6 +155,7 @@ defineExpose({
       <button @click="startGame">{{ startLabel }}</button>
       <button @click="restartGame">重新开始</button>
       <button @click="openGameExplain">游戏说明</button>
+      <button @click="openGameProducer">制作人员</button>
 
       <div flex-center gap-10>
         <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
@@ -146,6 +166,9 @@ defineExpose({
   </div>
   <div v-if="showGameExplain" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
     <GameExplain @close="closeGameExplain" />
+  </div>
+  <div v-if="showGameProducer" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
+    <ProducerList @close="closeProducerList" />
   </div>
 </template>
 

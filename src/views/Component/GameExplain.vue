@@ -22,24 +22,15 @@ const explainText = [
           {{ text }}
         </p>
       </div>
-      <button
-        m-l-a
-        p-2
-        font-size-8
-        border-rd
-        border-none
-        t-a-2
-        cursor-pointer
-        l-s-1
-        flex="~ row items-center"
-        @click="emits('close')"
-      >
+      <button m-l-a p-2 font-size-8 border-rd border-none t-a-2 cursor-pointer l-s-1 flex="~ row items-center"
+        @click="emits('close')">
         <div class="i-material-symbols:arrow-back-rounded icon"></div>
         <span>Back</span>
       </button>
     </div>
   </div>
 </template>
+
 <style scoped>
 button:hover {
   box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
