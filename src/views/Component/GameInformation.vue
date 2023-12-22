@@ -1,27 +1,23 @@
 <script lang="ts" setup>
-import type { LogItem } from '@/views/Type'
 import { useGlobalState } from '@/store';
 
 // 全局信息变量
 const state = useGlobalState()
 
 /**
- * 玩家总分
+ * 获取游戏总分
+ * @key 'playerScore' | 'computerScore' 
  */
-const playerFinalScore = computed(() => {
+const getScoreSum = (key: 'playerScore' | 'computerScore') => {
   return state.value.gameLogItems.reduce((totalScore, currentItem): number => {
-    return totalScore + currentItem.playerScore;
+    return totalScore + currentItem[key];
   }, 0);
-})
+}
 
-/**
- * 电脑总分
- */
-const computerFinalScore = computed(() => {
-  return state.value.gameLogItems.reduce((totalScore, currentItem): number => {
-    return totalScore + currentItem.computerScore;
-  }, 0);
-})
+// 玩家总分
+const playerFinalScore = computed(() => getScoreSum('playerScore'))
+// 电脑总分
+const computerFinalScore = computed(() => getScoreSum('computerScore'))
 
 watch(
   () => playerFinalScore.value,
@@ -57,7 +53,8 @@ watch(
       <td>玩家</td>
       <td>电脑</td>
     </tr>
-    <tr v-for="item in state.gameLogItems" :key="`${item.role}-${item.sort}`" :class="item.playerScore ? 'bg-green' : 'bg-red'">
+    <tr v-for="item in state.gameLogItems" :key="`${item.role}-${item.sort}`"
+      :class="item.playerScore ? 'bg-green:50' : 'bg-red:50'">
       <td>{{ item.round }}</td>
       <td>{{ item.role }}</td>
       <td>{{ item.result }}</td>
