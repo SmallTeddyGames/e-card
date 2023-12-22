@@ -9,7 +9,7 @@ const state = useGlobalState()
  * 玩家总分
  */
 const playerFinalScore = computed(() => {
-  return state.value.gameInfoItems.reduce((totalScore, currentItem): number => {
+  return state.value.gameLogItems.reduce((totalScore, currentItem): number => {
     return totalScore + currentItem.playerScore;
   }, 0);
 })
@@ -18,7 +18,7 @@ const playerFinalScore = computed(() => {
  * 电脑总分
  */
 const computerFinalScore = computed(() => {
-  return state.value.gameInfoItems.reduce((totalScore, currentItem): number => {
+  return state.value.gameLogItems.reduce((totalScore, currentItem): number => {
     return totalScore + currentItem.computerScore;
   }, 0);
 })
@@ -57,7 +57,7 @@ watch(
       <td>玩家</td>
       <td>电脑</td>
     </tr>
-    <tr v-for="item in state.gameInfoItems" :class="item.playerScore ? 'bg-green' : 'bg-red'">
+    <tr v-for="item in state.gameLogItems" :class="item.playerScore ? 'bg-green' : 'bg-red'">
       <td>{{ item.round }}</td>
       <td>{{ item.role }}</td>
       <td>{{ item.result }}</td>

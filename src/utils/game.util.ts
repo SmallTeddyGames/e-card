@@ -60,7 +60,7 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
         computerCardItems: initRoleItems(getReverseRole(playerRole), false),
         bgImage: 1,
         isShowGameInfo: true,
-        gameInfoItems: [],
+        gameLogItems: [],
         dropedCardItems: []
     }
 }

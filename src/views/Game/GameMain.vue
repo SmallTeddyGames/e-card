@@ -86,7 +86,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
       state.value.dropedCardItems.push(playerCard, computerCard);
     } else {
       const logItem = judgeRoundWinner(playerCard, computerCard)
-      state.value.gameInfoItems.push(logItem)
+      state.value.gameLogItems.push(logItem)
       // 对局结束，进行下一局，记分
       nextRounds();
       showGameMenuRef.value.reshow();
@@ -99,7 +99,7 @@ watch(
   (gameState: GameStatus) => {
     if (['init', 'win', 'lose'].includes(gameState)) {
       state.value.dropedCardItems = []
-      state.value.gameInfoItems = []
+      state.value.gameLogItems = []
     }
   }
 )
