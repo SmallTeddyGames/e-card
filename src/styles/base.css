@@ -5,6 +5,14 @@ body {
   --uno: bg-base font-sans;
 }
 
+html {
+  font-size: 14px;
+}
+
+body {
+  font-size: 16px;
+}
+
 .dark {
   color-scheme: dark;
 }
