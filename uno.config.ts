@@ -6,19 +6,20 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-} from 'unocss'
+} from "unocss";
 
 export default defineConfig({
   shortcuts: {
-    'border-base': 'border-gray-200 dark:border-gray-500',
-    'bg-active': 'bg-gray:10',
-    'flex-center': 'flex items-center justify-center',
-    'card-size': 'w-120px h-164px'
+    "border-base": "border-gray-200 dark:border-gray-500",
+    "bg-active": "bg-gray:10",
+    "flex-center": "flex items-center justify-center",
+    "card-size": "w-120px h-164px",
+    "bg-color": "bg-gray-100 dark:bg-gray-900",
   },
   theme: {
     colors: {
       primary: {
-        DEFAULT: '#00DC82',
+        DEFAULT: "#00DC82",
       },
     },
   },
@@ -27,15 +28,13 @@ export default defineConfig({
     presetIcons(),
     presetAttributify(),
     presetWebFonts({
-      provider: 'bunny',
+      provider: "bunny",
       fonts: {
-        sans: 'DM Sans',
-        mono: 'DM Mono',
+        sans: "DM Sans",
+        mono: "DM Mono",
       },
     }),
     presetTypography(),
   ],
-  transformers: [
-    transformerDirectives(),
-  ],
-})
+  transformers: [transformerDirectives()],
+});
