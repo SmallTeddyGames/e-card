@@ -43,6 +43,7 @@ export default defineConfig({
       fonts: {
         sans: "DM Sans",
         mono: "DM Mono",
+        ping: "PingFangMedium"
       },
     }),
     presetTypography(),
