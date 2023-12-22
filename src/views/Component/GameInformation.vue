@@ -57,7 +57,7 @@ watch(
       <td>玩家</td>
       <td>电脑</td>
     </tr>
-    <tr v-for="item in state.gameLogItems" :class="item.playerScore ? 'bg-green' : 'bg-red'">
+    <tr v-for="item in state.gameLogItems" :key="`${item.role}-${item.sort}`" :class="item.playerScore ? 'bg-green' : 'bg-red'">
       <td>{{ item.round }}</td>
       <td>{{ item.role }}</td>
       <td>{{ item.result }}</td>

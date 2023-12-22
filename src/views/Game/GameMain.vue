@@ -112,7 +112,7 @@ watch(
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
           <!-- 电脑手牌区域 -->
-          <ComputedCard role="slave" :cardItems="state.computerCardItems" />
+          <ComputedCard />
         </div>
         <div bg-gray:50 flex-center>
           <!-- 电脑检查区域 -->
@@ -124,7 +124,7 @@ watch(
         </div>
         <div w-full bg-gray:50 flex-center>
           <!-- 玩家手牌区域 -->
-          <PlayerCard role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
+          <PlayerCard @card-check="playerCardCheck" />
         </div>
       </div>
 

@@ -1,39 +1,10 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
+import { useGlobalState } from '@/store';
 import type { CardItem } from '@/views/Type'
-const props = withDefaults(
-  defineProps<{
-    role: String
-    cardItems: CardItem[]
-  }>(),
-  {
-    role: () => 'emperor',
-    cardItems: () => []
-  }
-)
 
-const emits = defineEmits({
-  'card-check': (cardInfo: CardItem) => true
-})
-
-const playerCardItems = ref()
-
-watch(
-  () => props.cardItems,
-  (val) => {
-    playerCardItems.value = val
-  },
-  { immediate: true }
-)
-
-/**
- * 卡牌点击
- * @param cardInfo 卡牌信息
- */
-const handleCardClick = (cardInfo: CardItem): void => {
-  playerCardItems.value.map((v) => (v.isClick = false))
-  cardInfo.isClick = true
-}
+const state = useGlobalState()
+const emits = defineEmits(['card-check'])
 
 /**
  * 检查卡牌点击
@@ -52,19 +23,10 @@ defineExpose({
 </script>
 
 <template>
-  <draggable :list="cardItems" tag="div" :group="{ name: role, pull: true, put: false, revertClone: true }"
-    :component-data="{ grid: `~ cols-5 gap-5` }" item-key="sort" :sort="true">
-    <template #item="{ element, index }">
-      <div card-size relative cursor-pointer transition-all-500 :class="[
-        element.isClick ? 'top--20px' : 'top-0',
-        element.group,
-        element.role + index
-      ]">
-        <Card :cardInfo="element" :is-back="element.isBack" @card-click="handleCardClick" />
-        <div v-if="element.isClick" text-center>
-          <button @click="cardCheckClick(element)">check</button>
-        </div>
-      </div>
-    </template>
-  </draggable>
+  <div grid="~ cols-5 gap-5">
+    <div card-size relative cursor-pointer transition-all-500 hover:top--20px v-for="cardItem in state.playerCardItems"
+      :key="cardItem.sort" :class="[cardItem.isClick ? 'top--20px' : 'top-0']">
+      <Card :card-info="cardItem" :is-back="cardItem.isBack" @card-click="cardCheckClick" />
+    </div>
+  </div>
 </template>
