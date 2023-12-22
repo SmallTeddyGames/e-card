@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import MessageInfo from './MessageInfo.vue';
 const emits = defineEmits(["close"]);
 const explainText = [
   "游戏共分为两种角色，皇帝和奴隶，每个角色拥有5张牌",
@@ -14,26 +15,6 @@ const explainText = [
 </script>
 
 <template>
-  <div box-border w-full h-full flex-center>
-    <div p-4 box-border flex="~ col items-center gap-8" bg-Mask border-rd>
-      <h3>游戏说明</h3>
-      <div flex="~ col gap-2">
-        <p font-size-7 v-for="text in explainText" :key="text">
-          {{ text }}
-        </p>
-      </div>
-      <button m-l-a p-2 font-size-8 border-rd border-none t-a-2 cursor-pointer l-s-1 flex="~ row items-center"
-        @click="emits('close')">
-        <div class="i-material-symbols:arrow-back-rounded icon"></div>
-        <span>Back</span>
-      </button>
-    </div>
-  </div>
+  <MessageInfo title="游戏说明" :info-list="explainText" @close="emits('close')" />
 </template>
 
-<style scoped>
-button:hover {
-  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
-  transform: translateY(-2px);
-}
-</style>
