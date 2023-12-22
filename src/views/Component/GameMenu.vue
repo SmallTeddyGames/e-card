@@ -1,6 +1,7 @@
 <script lang='ts' setup>
 import Card from '@/views/Component/Card.vue'
 import GameExplain from '@/views/Component/GameExplain.vue'
+import ProducerList from '@/views/Component/ProducerList.vue'
 import { getRandomNumber } from '@/utils'
 import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'
@@ -44,6 +45,9 @@ const menuController = () => {
  * 游戏开始
  */
 const startGame = (): void => {
+  if (state.value.gameState === 'win' || state.value.gameState === 'lose') {
+    return;
+  }
   showGameInfo.value = true
   state.value.gameState = 'start'
   setTimeout(() => {
@@ -70,16 +74,21 @@ const restartGame = () => {
  * 开始按钮文字
  * @param rounds 轮次
  */
-const startLabel = (): string => {
-  let label = '开始';
-  if (state.value.gameState === 'pause') {
-    label = '继续'
+const startLabel = computed(() => {
+  let label;
+  switch (state.value.gameState) {
+    case 'pause': label = '游戏继续'; break
+    case 'win': label = '您赢了！'; break
+    case 'lose': label = '您输了！'; break
+    default: label = '游戏开始';
   }
   return label;
-}
+})
 
 // 游戏说明
 const showGameExplain = ref(false)
+// 游戏制作人名单
+const showGameProducer = ref(false)
 
 /**
  * 显示游戏说明
@@ -97,15 +106,31 @@ const closeGameExplain = () => {
   showGameExplain.value = false
 }
 
+/**
+ * 显示游戏制作人名单
+ */
+const openGameProducer = () => {
+  show.value = false
+  showGameProducer.value = true
+}
+
+/**
+ * 隐藏游戏制作人名单
+ */
+const closeProducerList = () => {
+  show.value = true
+  showGameProducer.value = false
+}
+
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    showGameInfo.value = state === 'start';
     if (state === 'start') {
       startGame()
     }
-    if (state === 'pause') {
+    if (state === 'pause' || state === 'win' || state === 'lose') {
       show.value = true;
+      showGameInfo.value = false
     }
   },
   { immediate: true }
@@ -127,9 +152,10 @@ defineExpose({
       </div>
     </div>
     <div v-else flex-col flex-center gap-5>
-      <button @click="startGame">{{ startLabel() }}</button>
-      <button @click="restartGame">重新开始</button>
+      <button @click="startGame">{{ startLabel }}</button>
+      <button v-if="state.gameState !== 'init'" @click="restartGame">重新开始</button>
       <button @click="openGameExplain">游戏说明</button>
+      <button @click="openGameProducer">制作人员</button>
 
       <div flex-center gap-10>
         <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
@@ -140,6 +166,9 @@ defineExpose({
   </div>
   <div v-if="showGameExplain" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
     <GameExplain @close="closeGameExplain" />
+  </div>
+  <div v-if="showGameProducer" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
+    <ProducerList @close="closeProducerList" />
   </div>
 </template>
 
