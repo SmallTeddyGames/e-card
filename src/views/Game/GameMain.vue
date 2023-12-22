@@ -101,7 +101,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    if (state === 'init') {
+    if (state === 'init' || state === 'over') {
       dropedCardItems.value = []
       gameInfoItems.value = []
     }

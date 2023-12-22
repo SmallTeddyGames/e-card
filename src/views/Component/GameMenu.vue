@@ -100,12 +100,12 @@ const closeGameExplain = () => {
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    showGameInfo.value = state === 'start';
     if (state === 'start') {
       startGame()
     }
-    if (state === 'pause') {
+    if (state === 'pause' || state === 'over') {
       show.value = true;
+      showGameInfo.value = false
     }
   },
   { immediate: true }
