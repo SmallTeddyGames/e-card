@@ -44,6 +44,9 @@ const menuController = () => {
  * 游戏开始
  */
 const startGame = (): void => {
+  if (state.value.gameState === 'win' || state.value.gameState === 'lose') {
+    return;
+  }
   showGameInfo.value = true
   state.value.gameState = 'start'
   setTimeout(() => {
@@ -70,13 +73,16 @@ const restartGame = () => {
  * 开始按钮文字
  * @param rounds 轮次
  */
-const startLabel = (): string => {
-  let label = '开始';
-  if (state.value.gameState === 'pause') {
-    label = '继续'
+const startLabel = computed(() => {
+  let label;
+  switch (state.value.gameState) {
+    case 'pause': label = '继续'; break
+    case 'win': label = '您赢了！'; break
+    case 'lose': label = '您输了！'; break
+    default: label = '开始';
   }
   return label;
-}
+})
 
 // 游戏说明
 const showGameExplain = ref(false)
@@ -100,12 +106,12 @@ const closeGameExplain = () => {
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    showGameInfo.value = state === 'start';
     if (state === 'start') {
       startGame()
     }
-    if (state === 'pause') {
+    if (state === 'pause' || state === 'win' || state === 'lose') {
       show.value = true;
+      showGameInfo.value = false
     }
   },
   { immediate: true }
@@ -127,7 +133,7 @@ defineExpose({
       </div>
     </div>
     <div v-else flex-col flex-center gap-5>
-      <button @click="startGame">{{ startLabel() }}</button>
+      <button @click="startGame">{{ startLabel }}</button>
       <button @click="restartGame">重新开始</button>
       <button @click="openGameExplain">游戏说明</button>
 
