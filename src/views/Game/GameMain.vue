@@ -27,7 +27,7 @@ const computerCardInfo: Ref<CardItem> | null = ref()
  */
 const playerCardCheck = (cardInfo: CardItem): void => {
   if (playerCardInfo.value) {
-   state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
+    state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
   }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
@@ -98,6 +98,7 @@ watch(
   () => state.value.gameState,
   (gameState: GameStatus) => {
     if (['init', 'win', 'lose'].includes(gameState)) {
+      state.value.rounds = 0
       state.value.dropedCardItems = []
       state.value.gameLogItems = []
     }
