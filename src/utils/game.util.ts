@@ -59,7 +59,9 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
         playerCardItems: initRoleItems(playerRole, true),
         computerCardItems: initRoleItems(getReverseRole(playerRole), false),
         bgImage: 1,
-        isShowGameInfo: true
+        isShowGameInfo: true,
+        gameLogItems: [],
+        dropedCardItems: []
     }
 }
 
@@ -71,7 +73,8 @@ export const nextRounds = (): void => {
     const nextRound = state.value.rounds + 1;
     state.value.playerRole = nextRole;
     state.value.rounds = nextRound;
-    state.value.playerCardItems = initRoleItems(nextRole, true)
-    state.value.computerCardItems = initRoleItems(getReverseRole(nextRole), false)
+    state.value.playerCardItems = initRoleItems(nextRole, true);
+    state.value.computerCardItems = initRoleItems(getReverseRole(nextRole), false);
+    state.value.dropedCardItems = [];
 }
 
