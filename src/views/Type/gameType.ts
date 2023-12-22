@@ -1,1 +1,1 @@
-export type GameStatus = 'init' |'start' | 'pause' | 'over'
+export type GameStatus = 'init' |'start' | 'pause' | 'win' | 'lose'

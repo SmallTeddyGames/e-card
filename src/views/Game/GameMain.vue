@@ -65,7 +65,8 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
     round: state.value.rounds,
     role: playerRole.value,
     result: result,
-    score: result === 'win' ? 1 : 0,
+    playerScore: result === 'win' ? 1 : 0,
+    computerScore: result === 'win' ? 0 : 1,
   };
   return logItem;
 }
@@ -101,7 +102,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
 watch(
   () => state.value.gameState,
   (state: GameStatus) => {
-    if (state === 'init' || state === 'over') {
+    if (state === 'init' || state === 'win' || state === 'lose') {
       dropedCardItems.value = []
       gameInfoItems.value = []
     }
