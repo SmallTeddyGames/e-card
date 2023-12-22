@@ -153,7 +153,7 @@ defineExpose({
     </div>
     <div v-else flex-col flex-center gap-5>
       <button @click="startGame">{{ startLabel }}</button>
-      <button @click="restartGame">重新开始</button>
+      <button v-if="state.gameState !== 'init'" @click="restartGame">重新开始</button>
       <button @click="openGameExplain">游戏说明</button>
       <button @click="openGameProducer">制作人员</button>
 
