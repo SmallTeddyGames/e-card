@@ -16,7 +16,11 @@ export const useGlobalState = createGlobalState(
     computerCardItems: [],
     // 背景图片
     bgImage: 1,
-    // 是否显示游戏信息
-    isShowGameInfo: true
+    // 是否显示游戏日志
+    isShowGameInfo: true,
+    // 游戏日志
+    gameInfoItems: [],
+    // 丢弃的卡牌
+    dropedCardItems: []
   })
 )

@@ -124,11 +124,11 @@ const closeProducerList = () => {
 
 watch(
   () => state.value.gameState,
-  (state: GameStatus) => {
-    if (state === 'start') {
+  (gameState: GameStatus) => {
+    if (gameState === 'start') {
       startGame()
     }
-    if (state === 'pause' || state === 'win' || state === 'lose') {
+    if (['pause', 'win', 'lose'].includes(gameState)) {
       show.value = true;
       showGameInfo.value = false
     }

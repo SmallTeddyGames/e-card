@@ -1,21 +1,13 @@
 <script lang="ts" setup>
 import { getAssetsFile, getRandomNumber } from '@/utils'
-import type { CardItem } from '@/views/Type'
+import { useGlobalState } from '@/store'
 
-withDefaults(
-  defineProps<{
-    cardItems?: CardItem[]
-  }>(),
-  {
-    cardItems: () => []
-  }
-)
-
+const state = useGlobalState()
 </script>
 
 <template>
-  <div v-if="cardItems.length > 0" flex-center relative card-size>
-    <draggable :list="cardItems" :group="'drop'" item-key="sort">
+  <div v-if="state.dropedCardItems.length > 0" flex-center relative card-size>
+    <draggable :list="state.dropedCardItems" :group="'drop'" item-key="sort">
       <template #item="{ element: cardInfo, index }">
         <img card-size cursor-pointer absolute left-0 top-0 class="rotate"
           :style="`--rotation-random: ${getRandomNumber(5 * index)}deg`" :alt="cardInfo.role"
