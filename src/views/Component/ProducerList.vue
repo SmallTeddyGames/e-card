@@ -10,7 +10,7 @@ const producerText = [
     <div w-600px p-4 box-border flex="~ col items-center gap-8" bg-Mask border-rd>
       <h3>制作人员</h3>
       <div flex="~ col gap-2">
-        <p font-size-7 v-for="text in producerText">
+        <p font-size-7 v-for="text in producerText" :key="text">
           {{ text }}
         </p>
       </div>

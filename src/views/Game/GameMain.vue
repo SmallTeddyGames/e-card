@@ -19,10 +19,6 @@ const playerRole = computed(() => state.value.playerRole)
 const playerCardInfo: Ref<CardItem> | null = ref()
 // 电脑当前打出的卡片信息
 const computerCardInfo: Ref<CardItem> | null = ref()
-// 玩家弃牌区域数据
-const dropedCardItems: Ref<CardItem[]> = ref([])
-// 游戏日志
-const gameInfoItems: Ref<LogItem[]> = ref([])
 
 /**
  * 进行检查
@@ -31,7 +27,7 @@ const gameInfoItems: Ref<LogItem[]> = ref([])
  */
 const playerCardCheck = (cardInfo: CardItem): void => {
   if (playerCardInfo.value) {
-    dropedCardItems.value.push(playerCardInfo.value, computerCardInfo.value);
+   state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
   }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
@@ -87,12 +83,11 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     playerCardInfo.value = null
     if (playerCard.role === computerCard.role) {
       // 平局
-      dropedCardItems.value.push(playerCard, computerCard);
+      state.value.dropedCardItems.push(playerCard, computerCard);
     } else {
       const logItem = judgeRoundWinner(playerCard, computerCard)
-      gameInfoItems.value.push(logItem)
+      state.value.gameLogItems.push(logItem)
       // 对局结束，进行下一局，记分
-      dropedCardItems.value = []
       nextRounds();
       showGameMenuRef.value.reshow();
     }
@@ -101,10 +96,10 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
 
 watch(
   () => state.value.gameState,
-  (state: GameStatus) => {
-    if (state === 'init' || state === 'win' || state === 'lose') {
-      dropedCardItems.value = []
-      gameInfoItems.value = []
+  (gameState: GameStatus) => {
+    if (['init', 'win', 'lose'].includes(gameState)) {
+      state.value.dropedCardItems = []
+      state.value.gameLogItems = []
     }
   }
 )
@@ -117,7 +112,7 @@ watch(
       <div grid="~ rows-4" col-span-3 h-full w-full>
         <div w-full bg-gray:50 flex-center>
           <!-- 电脑手牌区域 -->
-          <ComputedCard role="slave" :cardItems="state.computerCardItems" />
+          <ComputedCard />
         </div>
         <div bg-gray:50 flex-center>
           <!-- 电脑检查区域 -->
@@ -129,18 +124,18 @@ watch(
         </div>
         <div w-full bg-gray:50 flex-center>
           <!-- 玩家手牌区域 -->
-          <PlayerCard role="emperor" :cardItems="state.playerCardItems" @card-check="playerCardCheck" />
+          <PlayerCard @card-check="playerCardCheck" />
         </div>
       </div>
 
       <div v-show="state.isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
         <div h-full w-full bg-gray:80 flex-center row-span-3>
           <!-- 电脑对局信息区域 -->
-          <GameInformation :game-info-items="gameInfoItems" />
+          <GameInformation />
         </div>
         <div w-full bg-gray:80 flex-center row-span-1>
           <!-- 电脑弃牌区域 -->
-          <DropCard :cardItems="dropedCardItems" />
+          <DropCard />
         </div>
       </div>
     </div>
