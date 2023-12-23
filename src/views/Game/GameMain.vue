@@ -31,7 +31,7 @@ const playerCardCheck = (cardInfo: CardItem): void => {
     return;
   }
   if (playerCardInfo.value) {
-    state.value.droppedCardItems.push(playerCardInfo.value, computerCardInfo.value);
+    state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
   }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
@@ -87,7 +87,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     playerCardInfo.value = null
     if (playerCard.role === computerCard.role) {
       // 平局
-      state.value.droppedCardItems.push(playerCard, computerCard);
+      state.value.dropedCardItems.push(playerCard, computerCard);
     } else {
       const logItem = judgeRoundWinner(playerCard, computerCard)
       state.value.gameLogItems.push(logItem)
@@ -103,7 +103,7 @@ watch(
   (gameState: GameStatus) => {
     if (['init', 'win', 'lose'].includes(gameState)) {
       state.value.rounds = 0
-      state.value.droppedCardItems = []
+      state.value.dropedCardItems = []
       state.value.gameLogItems = []
     }
   }
