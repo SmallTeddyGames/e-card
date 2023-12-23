@@ -7,7 +7,7 @@ import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import type { CardItem, LogItem, GameStatus } from '@/views/Type'
 import { useGlobalState } from '@/store';
-import { getRandomNumber, deepClone, nextRounds } from '@/utils'
+import { getRandomNumber, deepClone, nextRounds, clearAllThrottle } from '@/utils'
 
 // 全局信息变量
 const state = useGlobalState()
@@ -26,8 +26,12 @@ const computerCardInfo: Ref<CardItem> | null = ref()
  * @param cardInfo 卡牌信息
  */
 const playerCardCheck = (cardInfo: CardItem): void => {
+  // 正在展示信息 就拒绝检查
+  if(showGameMenuRef.value.show){
+    return;
+  }
   if (playerCardInfo.value) {
-    state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
+    state.value.droppedCardItems.push(playerCardInfo.value, computerCardInfo.value);
   }
   // 玩家操作
   const copyPlayerCardInfo = deepClone(cardInfo)
@@ -83,7 +87,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
     playerCardInfo.value = null
     if (playerCard.role === computerCard.role) {
       // 平局
-      state.value.dropedCardItems.push(playerCard, computerCard);
+      state.value.droppedCardItems.push(playerCard, computerCard);
     } else {
       const logItem = judgeRoundWinner(playerCard, computerCard)
       state.value.gameLogItems.push(logItem)
@@ -99,7 +103,7 @@ watch(
   (gameState: GameStatus) => {
     if (['init', 'win', 'lose'].includes(gameState)) {
       state.value.rounds = 0
-      state.value.dropedCardItems = []
+      state.value.droppedCardItems = []
       state.value.gameLogItems = []
     }
   }

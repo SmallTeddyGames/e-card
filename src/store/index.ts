@@ -21,6 +21,6 @@ export const useGlobalState = createGlobalState(
     // 游戏日志
     gameLogItems: [],
     // 丢弃的卡牌
-    dropedCardItems: []
+    droppedCardItems: []
   })
 )
