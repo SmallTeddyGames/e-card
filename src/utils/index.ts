@@ -45,4 +45,33 @@ export const deepClone = (obj, map = new WeakMap()) => {
 
   return clone;
 }
+/**
+ * 防抖函数
+ */
+let debounceTimer;
+export const debounce = (fn: Function, delay: number = 500) => {
+  if (debounceTimer) clearInterval(debounceTimer)
+  debounceTimer = window.setTimeout(() => {
+    fn()
+  }, delay);
+}
 
+/**
+ * 节流函数 点击之后一段时间不会再触发
+ * @param fn
+ * @param still 持续间隔时间
+ */
+let throttleTimer;
+export const throttle = (fn:Function, still = 300) => {
+    if (!throttleTimer) {
+        fn();
+        throttleTimer = setTimeout(() => {
+            if (throttleTimer) clearTimeout(throttleTimer)
+            throttleTimer = null;
+        }, still);
+    }
+}
+// 强制清除节流
+export const clearAllThrottle = ()=>{
+  if(throttleTimer)clearTimeout(throttleTimer);
+}
