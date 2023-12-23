@@ -137,7 +137,8 @@ watch(
 )
 
 defineExpose({
-  reshow
+  reshow,
+  show
 });
 </script>
 

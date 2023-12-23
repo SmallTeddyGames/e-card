@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
 import { useGlobalState } from '@/store';
+import { debounce, throttle } from '@/utils';
 import type { CardItem } from '@/views/Type'
 
 const state = useGlobalState()
@@ -11,10 +12,13 @@ const emits = defineEmits(['card-check'])
  * @param cardInfo 卡牌信息
  */
 const cardCheckClick = (cardInfo: CardItem): void => {
-  cardInfo.isBack = true
-  setTimeout(() => {
-    emits('card-check', cardInfo)
-  }, 1000)
+  // 三秒的节流 防止多次点击
+  throttle(() => {
+    cardInfo.isBack = true
+    setTimeout(() => {
+      emits('card-check', cardInfo)
+    }, 1000)
+  }, 3000)
 }
 
 defineExpose({
