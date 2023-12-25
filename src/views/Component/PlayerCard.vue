@@ -18,7 +18,7 @@ const cardCheckClick = (cardInfo: CardItem): void => {
     setTimeout(() => {
       emits('card-check', cardInfo)
     }, 1000)
-  }, 3000)
+  }, 4500)
 }
 
 defineExpose({

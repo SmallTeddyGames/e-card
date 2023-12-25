@@ -7,7 +7,7 @@ import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import type { CardItem, LogItem, GameStatus } from '@/views/Type'
 import { useGlobalState } from '@/store';
-import { getRandomNumber, deepClone, nextRounds, clearAllThrottle } from '@/utils'
+import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
 // 全局信息变量
 const state = useGlobalState()
@@ -27,7 +27,7 @@ const computerCardInfo: Ref<CardItem> | null = ref()
  */
 const playerCardCheck = (cardInfo: CardItem): void => {
   // 正在展示信息 就拒绝检查
-  if(showGameMenuRef.value.show){
+  if (showGameMenuRef.value.show) {
     return;
   }
   if (playerCardInfo.value) {
@@ -102,7 +102,7 @@ watch(
   () => state.value.gameState,
   (gameState: GameStatus) => {
     if (['init', 'win', 'lose'].includes(gameState)) {
-      state.value.rounds = 0
+      state.value.rounds = 1
       state.value.dropedCardItems = []
       state.value.gameLogItems = []
     }
