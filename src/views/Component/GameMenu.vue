@@ -29,6 +29,9 @@ const reshow = (): void => {
   show.value = true;
   if (info.value.rounds <= maxRounds && info.value.rounds > 1) {
     setTimeout(() => {
+      if (['win', 'lose'].includes(state.value.gameState)) {
+        return show.value = true;
+      }
       show.value = false;
     }, 2000);
   }
@@ -45,7 +48,7 @@ const menuController = () => {
  * 游戏开始
  */
 const startGame = (): void => {
-  if (state.value.gameState === 'win' || state.value.gameState === 'lose') {
+  if (['win', 'lose'].includes(state.value.gameState)) {
     return;
   }
   showGameInfo.value = true
