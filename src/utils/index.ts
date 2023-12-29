@@ -45,6 +45,7 @@ export const deepClone = (obj, map = new WeakMap()) => {
 
   return clone;
 }
+
 /**
  * 防抖函数
  */
@@ -71,7 +72,10 @@ export const throttle = (fn:Function, still = 300) => {
         }, still);
     }
 }
-// 强制清除节流
+
+/**
+ * 强制清除节流
+ */
 export const clearAllThrottle = ()=>{
   if(throttleTimer)clearTimeout(throttleTimer);
 }
