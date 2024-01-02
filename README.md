@@ -42,7 +42,7 @@ e-card
 │  ├─ styles # 样式
 │  │  └─ base.css
 │  ├─ utils # 工具
-├─ ├─ ├─ game.util.ts # 游戏工具
+│  ├─ ├─ game.util.ts # 游戏工具
 │  │  └─ index.ts
 │  ├─ views # 页面
 │  │  ├─ Component # 组件
