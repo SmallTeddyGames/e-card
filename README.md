@@ -4,11 +4,8 @@
 ## develop tools
 
 icon： [https://icones.js.org/collection/all](https://icones.js.org/collection/all)
-
 vueuse： [https://vueuse.org/functions.html](https://vueuse.org/functions.html)
-
 unocss： [https://unocss.dev/interactive/](https://unocss.dev/interactive/)
-
 grid： [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/)
 
 ## project tree
@@ -103,7 +100,7 @@ e-card
 - [x] 菜单增加游戏规则和制作人名单按钮，并增加相对应内容
 - [ ] `web` 端适配
 
-## 游戏界面
+## game screen
 
 ![menu](/gameImg/menu.png)
 ![explain](/gameImg/explain.png)
