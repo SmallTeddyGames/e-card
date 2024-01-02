@@ -1,36 +1,18 @@
-<img src="./gameImg/menu.png" title="menu">
 
-<img src="./gameImg/explain.png" title="explain">
-
-<img src="./gameImg/role.png" title="role">
-
-<img src="./gameImg/gameinfo.png" title="gameinfo">
-
-<img src="./gameImg/choose.png" title="choose">
-
-<img src="./gameImg/changeBackground.png" title="changeBackground">
-
-<img src="./gameImg/drop.png" title="drop">
-
-<img src="./gameImg/final.png" title="final">
-
-<img src="./gameImg/win.png" title="win">
-
-<img src="./gameImg/lose.png" title="lose">
-
-<img src="./gameImg/producer.png" title="producer">
+# e-card
 
 ## develop tools
 
-icon： <a href="https://icones.js.org/collection/all" _blank>https://icones.js.org/collection/all</a>
+icon： [https://icones.js.org/collection/all](https://icones.js.org/collection/all)
 
-vueuse： <a href="https://vueuse.org/functions.html" _blank>https://vueuse.org/functions.html</a>
+vueuse： [https://vueuse.org/functions.html](https://vueuse.org/functions.html)
 
-unocss： <a href="https://unocss.dev/interactive/" _blank>https://unocss.dev/interactive/</a>
+unocss： [https://unocss.dev/interactive/](https://unocss.dev/interactive/)
 
-grid： <a href="https://cssgrid-generator.netlify.app/" _blank>https://cssgrid-generator.netlify.app/</a>
+grid： [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/)
 
 ## project tree
+
 ``` bash
 e-card
 ├─ .git # git
@@ -120,3 +102,17 @@ e-card
 - [x] 游戏结束，显示对局信息，并可重新开始游戏
 - [x] 菜单增加游戏规则和制作人名单按钮，并增加相对应内容
 - [ ] `web` 端适配
+
+## 游戏界面
+
+![menu](/gameImg/menu.png)
+![explain](/gameImg/explain.png)
+![role](/gameImg/role.png)
+![gameinfo](/gameImg/gameinfo.png)
+![choose](/gameImg/choose.png)
+![changeBackground](/gameImg/changeBackground.png)
+![drop](/gameImg/drop.png)
+![final](/gameImg/final.png)
+![win](/gameImg/win.png)
+![lose](/gameImg/lose.png)
+![producer](/gameImg/producer.png)
