@@ -65,6 +65,7 @@ const judgeRoundWinner = (playerCard: CardItem, computerCard: CardItem): LogItem
     round: state.value.rounds,
     role: playerRole.value,
     result: result,
+    sort: playerCard.sort,
     playerScore: result === 'win' ? 1 : 0,
     computerScore: result === 'win' ? 0 : 1,
   };
