@@ -9,7 +9,7 @@ export const useGlobalState: () => Ref<GameStateType> = createGlobalState(
     // 人机对战
     isAiBattle: true,
     // 游戏难度
-    difficulty: 'middle', // easy, middle, hard
+    difficulty: 'middle',
     // 当前局此
     rounds: 0,
     // 游戏状态

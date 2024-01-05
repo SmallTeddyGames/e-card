@@ -1,8 +1,8 @@
 import { useGlobalState } from "@/store";
 import { getRandomNumber } from './index';
-import { CardItem, GroupEn, GroupCn, Role } from "@/views/Type";
+import { CardItem, GroupEn, GroupCn, Role, GameStateType } from "@/views/Type";
 
-const state = useGlobalState()
+const state: { value: GameStateType } = useGlobalState()
 
 /**
  * 获取翻译名字
