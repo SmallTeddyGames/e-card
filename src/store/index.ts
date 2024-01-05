@@ -1,11 +1,15 @@
 import { createGlobalState, useStorage } from '@vueuse/core'
+import { Ref } from 'vue'
+import { GameStateType } from '@/views/Type'
 
-export const useGlobalState = createGlobalState(
+export const useGlobalState: () => Ref<GameStateType> = createGlobalState(
   () => useStorage('global-state', {
     // 最开始未确定玩家角色
     playerRole: null,
     // 人机对战
     isAiBattle: true,
+    // 游戏难度
+    difficulty: 'middle', // easy, middle, hard
     // 当前局此
     rounds: 0,
     // 游戏状态

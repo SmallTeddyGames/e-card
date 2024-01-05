@@ -3,6 +3,7 @@ import { GroupEn, GroupCn } from './groupType'
 import { LogItem } from './logType'
 import { Role } from './roleType'
 import { GameStatus } from './gameType'
+import { GameStateType } from './stateType'
 
 export type {
   CardItem,
@@ -10,5 +11,6 @@ export type {
   GroupCn,
   LogItem,
   Role,
-  GameStatus
+  GameStatus,
+  GameStateType
 }

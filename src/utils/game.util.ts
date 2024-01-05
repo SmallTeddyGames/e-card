@@ -55,6 +55,7 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
         playerRole,
         rounds,
         gameState: "init",
+        difficulty: 'middle',
         isAiBattle: true,
         playerCardItems: initRoleItems(playerRole, true),
         computerCardItems: initRoleItems(getReverseRole(playerRole), false),
