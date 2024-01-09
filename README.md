@@ -1,15 +1,14 @@
 
-# e-card
+# 仿照《赌博默示录》的 E-Card小游戏
 
 ## develop tools
 
-icon： [https://icones.js.org/collection/all](https://icones.js.org/collection/all)
-
-vueuse： [https://vueuse.org/functions.html](https://vueuse.org/functions.html)
-
-unocss： [https://unocss.dev/interactive/](https://unocss.dev/interactive/)
-
-grid： [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/)
+| 工具 | 说明 | 官网 |
+| --- | --- | --- |
+| icon | 图标 | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
+| vueuse | 工具函数 | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
+| unocss | 原子化css | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
+| grid | 网格布局 | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
 
 ## project tree
 
@@ -106,13 +105,23 @@ e-card
 ## game screen
 
 ![menu](/gameImg/menu.png)
+
 ![explain](/gameImg/explain.png)
+
 ![role](/gameImg/role.png)
-![gameinfo](/gameImg/gameinfo.png)
+
+![gameInfo](/gameImg/gameinfo.png)
+
 ![choose](/gameImg/choose.png)
-![changeBackground](/gameImg/changeBackground.png)
+
+![changeBackGround](/gameImg/changeBackground.png)
+
 ![drop](/gameImg/drop.png)
+
 ![final](/gameImg/final.png)
+
 ![win](/gameImg/win.png)
+
 ![lose](/gameImg/lose.png)
+
 ![producer](/gameImg/producer.png)
