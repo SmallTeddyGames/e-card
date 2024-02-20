@@ -1,16 +1,16 @@
 
-# An E-Card mini-game imitating "Gambling Apocalypse"
+# 仿照《赌博默示录》的 E-Card小游戏
 
-[Chinese Doc](./docs/README_CN.md) **English Doc** [Japanese Doc](./docs/README_JP.md) [Korean Doc](./docs/README_KR.md)
+**中文文档** [英文文档](../README.md) [日文文档](./README_JP.md) [韩文文档](./README_KR.md)
 
-## develop tools
+## 开发工具
 
-| Tools  | Instructions    | Official website |
-|--------|-----------------| - |
-| icon   | icon            | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
-| vueuse | tools function  | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
-| unocss | atomization css | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
-| grid   | grid layout     | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
+| 工具 | 说明    | 官网 |
+| --- |-------| --- |
+| icon | 图标    | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
+| vueuse | 工具函数  | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
+| unocss | 原子化样式 | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
+| grid | 网格布局  | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
 
 ## project tree
 
@@ -85,26 +85,26 @@ e-card
 └─ vite.config.ts # 开发配置
 ```
 
-## todo list
+## 待办列表
 
-- [x] Layout and basic function button development
-- [x] Hand card area component development
-- [x] Check area component development
-- [x] Game information component development
-- [x] Game start component, randomly select `1` from King and Slave to start the player's role, then roles rotate, with a total of `21` rounds
-- [x] Discard area component development, with dashed lines and text display for no cards, and cards are stacked and displayed at random angles from `0° - 30°` when there are cards
-- [x] After selecting a card from the hand, the `check` button is displayed
-- [x] After clicking the `check` button, the card is removed from the hand and added to the check area
-- [x] Cards implement `3D` effects, flip after `check` to display in the check area, flip to the front for comparison after `2` seconds, and then move to the discard area after comparison
-- [ ] Animation effects for cards moving from the hand area to the check area, and from the check area to the discard area across components
-- [x] If the King card or Slave card is played, the game ends
-- [x] Game information is settled, and the next round of the game begins
-- [ ] After the player has played `5` rounds, the computer will analyze the player's card-playing strategy based on the data from the previous `5` rounds and each subsequent round to decide its own card-playing strategy
-- [x] Game ends, display game information, and allow for a new game to start
-- [x] Menu adds a game rules and credits button, with corresponding content
-- [ ] `web` end adaptation
+- [x] 布局和基础功能按钮开发
+- [x] 手牌区域组件开发
+- [x] 检查区域组件开发
+- [x] 对局信息组件开发
+- [x] 对局开始组件，开始随机从国王和奴隶中随机取 `1` 个作为玩家的开始角色，之后角色采用轮换制，共 `21` 局
+- [x] 弃牌区域组件开发，无牌虚线+文字显示，有牌按照 `0° - 30°` 随机角度旋转堆叠显示
+- [x] 手牌选中卡牌后， 显示 `check` 按钮
+- [x] 点击 check 按钮后，卡牌中删除该卡牌，检查区域增加该卡牌
+- [x] 卡牌实现 `3D` 效果，`check` 后翻转在检查区域显示，过 `2` 秒后检查区域卡牌翻转至正面比对，比对后移至弃牌区域
+- [ ] 卡牌从手牌到检查区域，从检查区域到弃牌区域跨组件动画效果
+- [x] 如果国王牌或者奴隶牌打出，则比赛结束
+- [x] 进行对局信息结算，进行下一局游戏
+- [ ] 玩家玩过 `5` 局之后，电脑会根据前 `5` 局的数据，和之后每 `1` 局的数据，对玩家进行出牌分析，来决定自己每次出牌的策略
+- [x] 游戏结束，显示对局信息，并可重新开始游戏
+- [x] 菜单增加游戏规则和制作人名单按钮，并增加相对应内容
+- [ ] `web` 端适配
 
-## game preview
+## 游戏预览
 
 ![menu](/gameImg/menu.png)
 

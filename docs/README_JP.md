@@ -1,18 +1,18 @@
 
-# An E-Card mini-game imitating "Gambling Apocalypse"
+# 「賭博黙示録」を模したEカードミニゲーム
 
-[Chinese Doc](./docs/README_CN.md) **English Doc** [Japanese Doc](./docs/README_JP.md) [Korean Doc](./docs/README_KR.md)
+[中国語文書](./README_CN.md) [英語文書](../README.md) **日本語文書** [韓語文書](./README_KR.md)
 
-## develop tools
+## ツールを開発する
 
-| Tools  | Instructions    | Official website |
-|--------|-----------------| - |
-| icon   | icon            | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
-| vueuse | tools function  | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
-| unocss | atomization css | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
-| grid   | grid layout     | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
+| ツール | 説明する      | 公式ウェブサイト |
+| --- |-----------| --- |
+| icon | アイコン      | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
+| vueuse | 効用関数      | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
+| unocss | 霧化スタイル    | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
+| grid | グリッドレイアウト | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
 
-## project tree
+## プロジェクトツリー
 
 ``` bash
 e-card
@@ -85,26 +85,26 @@ e-card
 └─ vite.config.ts # 开发配置
 ```
 
-## todo list
+## すべてのリスト
 
-- [x] Layout and basic function button development
-- [x] Hand card area component development
-- [x] Check area component development
-- [x] Game information component development
-- [x] Game start component, randomly select `1` from King and Slave to start the player's role, then roles rotate, with a total of `21` rounds
-- [x] Discard area component development, with dashed lines and text display for no cards, and cards are stacked and displayed at random angles from `0° - 30°` when there are cards
-- [x] After selecting a card from the hand, the `check` button is displayed
-- [x] After clicking the `check` button, the card is removed from the hand and added to the check area
-- [x] Cards implement `3D` effects, flip after `check` to display in the check area, flip to the front for comparison after `2` seconds, and then move to the discard area after comparison
-- [ ] Animation effects for cards moving from the hand area to the check area, and from the check area to the discard area across components
-- [x] If the King card or Slave card is played, the game ends
-- [x] Game information is settled, and the next round of the game begins
-- [ ] After the player has played `5` rounds, the computer will analyze the player's card-playing strategy based on the data from the previous `5` rounds and each subsequent round to decide its own card-playing strategy
-- [x] Game ends, display game information, and allow for a new game to start
-- [x] Menu adds a game rules and credits button, with corresponding content
-- [ ] `web` end adaptation
+- [x] レイアウトと基本機能ボタンの開発
+- [x] 手札エリアコンポーネントの開発
+- [x] チェックエリアコンポーネントの開発
+- [x] 対局情報コンポーネントの開発
+- [x] 対局開始コンポーネント、最初の役割は「王」または「奴隷」からランダムに1つ選択し、その後は21局で役割がローテーションします。
+- [x] 捨て札エリアコンポーネントの開発、札がない場合は点線とテキストを表示し、札がある場合は0°から30°のランダムな角度で積み重ねて表示します。
+- [x] 手札からカードを選択すると、`check`ボタンが表示されます。
+- [x] `check`ボタンをクリックすると、カードは手札から削除され、チェックエリアに追加されます。
+- [x] カードは`3D`効果を実装し、`check`後にチェックエリアに表示されるように反転します。2秒後にカードは正面に反転して比較し、その後捨て札エリアに移動します。
+- [ ] 手札エリアからチェックエリア、チェックエリアから捨て札エリアへのアニメーション効果
+- [x] 王のカードまたは奴隷のカードが出たら、ゲームが終了します。
+- [x] 対局情報を決算し、次のラウンドを開始します。
+- [ ] プレイヤーが5ラウンドプレイした後、コンピュータは前の5ラウンドのデータを基に、その後の各ラウンドのデータを使用してプレイヤーの出札戦略を分析し、自分の出札戦略を決定します。
+- [x] ゲームが終了し、対局情報を表示し、新しいゲームを開始できます。
+- [x] メニューにはゲームルールと制作者リストボタンが追加され、それに対応する内容があります。
+- [ ] `Web`端の適応
 
-## game preview
+## ゲームのプレビュー
 
 ![menu](/gameImg/menu.png)
 
