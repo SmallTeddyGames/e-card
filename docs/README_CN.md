@@ -1,7 +1,7 @@
 
 # 仿照《赌博默示录》的 E-Card小游戏
 
-**中文文档** [英文文档](../README.md) [日文文档](./README_JP.md) [韩文文档](./README_KR.md)
+**中文文档** | [英文文档](../README.md) | [日文文档](./README_JP.md) | [韩文文档](./README_KR.md)
 
 ## 开发工具
 

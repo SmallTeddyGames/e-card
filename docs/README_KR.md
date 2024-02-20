@@ -1,7 +1,7 @@
 
 # '도박의 종말'을 모방한 E-Card 미니게임
 
-[중국어 문서](./README_CN.md) [영문 문서](../README.md) [일본어 문서](./README_JP.md) **한국어 문서**
+[중국어 문서](./README_CN.md) | [영문 문서](../README.md) | [일본어 문서](./README_JP.md) | **한국어 문서**
 
 ## 개발 도구
 

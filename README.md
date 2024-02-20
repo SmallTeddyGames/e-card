@@ -1,7 +1,7 @@
 
 # An E-Card mini-game imitating "Gambling Apocalypse"
 
-[Chinese Doc](./docs/README_CN.md) **English Doc** [Japanese Doc](./docs/README_JP.md) [Korean Doc](./docs/README_KR.md)
+[Chinese Doc](./docs/README_CN.md) | **English Doc** | [Japanese Doc](./docs/README_JP.md) | [Korean Doc](./docs/README_KR.md)
 
 ## develop tools
 
