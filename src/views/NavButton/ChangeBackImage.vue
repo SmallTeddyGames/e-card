@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useGlobalState } from '@/store'
-
 const state = useGlobalState()
 
 /**

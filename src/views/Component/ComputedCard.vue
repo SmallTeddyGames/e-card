@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
-import { useGlobalState } from '@/store';
 
 const state = useGlobalState()
 </script>

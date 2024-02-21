@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { useGlobalState } from '@/store';
-
 // 全局信息变量
 const state = useGlobalState()
 

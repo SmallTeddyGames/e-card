@@ -2,11 +2,8 @@ import EN from './en'
 import CN from './cn'
 import JP from './jp'
 import KR from './kr'
-import { createI18n } from 'vue-i18n'
-import { useGlobalState } from '@/store'
 
 const state = useGlobalState()
-
 const message = {
     cn: CN,
     en: EN,

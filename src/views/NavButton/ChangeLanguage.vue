@@ -1,7 +1,4 @@
 <script lang='ts' setup>
-import { useI18n } from "vue-i18n";
-import { useGlobalState } from '@/store'
-
 const { locale } = useI18n();
 const state = useGlobalState()
 

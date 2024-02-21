@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import Card from './Card.vue'
-import { useGlobalState } from '@/store';
-import { debounce, throttle } from '@/utils';
+import { throttle } from '@/utils';
 import type { CardItem } from '@/views/Type'
 
 const state = useGlobalState()

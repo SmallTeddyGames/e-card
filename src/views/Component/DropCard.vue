@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { getAssetsFile, getRandomNumber } from '@/utils'
-import { useGlobalState } from '@/store'
 
 const state = useGlobalState()
 </script>

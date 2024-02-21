@@ -3,7 +3,6 @@ import Card from '@/views/Component/Card.vue'
 import GameExplain from '@/views/Component/GameExplain.vue'
 import ProducerList from '@/views/Component/ProducerList.vue'
 import { getRandomNumber } from '@/utils'
-import { useGlobalState } from '@/store'
 import { getName, initRounds } from '@/utils/game.util'
 import { GroupEn, GameStatus } from '@/views/Type'
 

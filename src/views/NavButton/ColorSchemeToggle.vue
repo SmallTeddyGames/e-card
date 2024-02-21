@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { useColorMode } from '@vueuse/core'
 const colorMode = useColorMode()
 
 /**

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import GameMain from '@/views/Game/GameMain.vue'
-import { useGlobalState } from '@/store'
 import { getAssetsFile } from '@/utils'
 
 const state = useGlobalState()

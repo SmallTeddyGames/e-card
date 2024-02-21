@@ -16,11 +16,38 @@ export default defineConfig({
 
       // global imports to register
       imports: [
-        // 插件预设支持导入的api
+        // vue auto import
         'vue',
-        'vue-router',
-        // 自定义导入的api
-      ],
+        // vue-router auto import
+        {
+            'vue-router': [
+                'createRouter',
+                'createWebHistory'
+            ]
+        },
+        // @vueuse/core auto import
+        {
+            '@vueuse/core': [
+                'createGlobalState',
+                'useStorage',
+                'useColorMode',
+                'useFullscreen'
+            ]
+        },
+        // @/store auto import
+        {
+            '@/store': [
+                'useGlobalState'
+            ]
+        },
+        // i18n
+        {
+            'vue-i18n': [
+                'useI18n',
+                'createI18n'
+            ]
+        }
+    ]
     }),
   ],
   resolve: {

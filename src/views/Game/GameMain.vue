@@ -6,7 +6,6 @@ import GameMenu from '@/views/Component/GameMenu.vue'
 import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import type { CardItem, LogItem, GameStatus } from '@/views/Type'
-import { useGlobalState } from '@/store';
 import { getRandomNumber, deepClone, nextRounds } from '@/utils'
 
 // 全局信息变量
