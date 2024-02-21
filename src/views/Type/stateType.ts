@@ -6,6 +6,8 @@ import { LogItem } from "./logType";
 export type GameStateType = {
   // 最开始未确定玩家角色
   playerRole: GroupEn;
+  // 语言设置
+  language: 'cn' | 'en' | 'jp' | 'kr';
   // 人机对战
   isAiBattle: boolean;
   // 游戏难度

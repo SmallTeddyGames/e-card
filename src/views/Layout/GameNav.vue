@@ -1,5 +1,6 @@
 <script setup>
 import ChangeGameStatus from '@/views/NavButton/ChangeGameStatus.vue'
+import ChangeLanguage from '../NavButton/ChangeLanguage.vue'
 import GameInfoToggle from '@/views/NavButton/GameInfoToggle.vue'
 import ChangeBackImage from '@/views/NavButton/ChangeBackImage.vue'
 import FullScreenToggle from '@/views/NavButton/FullScreenToggle.vue'
@@ -13,6 +14,8 @@ import GitHubButton from '@/views/NavButton/GitHubButton.vue'
     <div flex-auto />
     <!-- 游戏控制按钮 -->
     <ChangeGameStatus />
+    <!-- 语言切换按钮 -->
+    <ChangeLanguage />
     <!-- git按钮 -->
     <GitHubButton />
     <!-- 游戏信息控制按钮 -->

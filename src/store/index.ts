@@ -6,6 +6,8 @@ export const useGlobalState: () => Ref<GameStateType> = createGlobalState(
   () => useStorage('global-state', {
     // 最开始未确定玩家角色
     playerRole: null,
+    // 语言设置
+    language: 'cn',
     // 人机对战
     isAiBattle: true,
     // 游戏难度

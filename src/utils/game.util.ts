@@ -54,6 +54,7 @@ export const initRounds = (playerRole: GroupEn, rounds: number): void => {
     state.value = {
         playerRole,
         rounds,
+        language: 'cn',
         gameState: "init",
         difficulty: 'middle',
         isAiBattle: true,
