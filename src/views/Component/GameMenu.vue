@@ -158,7 +158,7 @@ defineExpose({
     <div v-else flex-col flex-center gap-5>
       <button @click="startGame">{{ startLabel }}</button>
       <button v-if="state.gameState !== 'init'" @click="restartGame">{{ t('menu.reStart') }}</button>
-      <button @click="openGameExplain">{{ t('menu.description') }}</button>
+      <button @click="openGameExplain">{{ t('menu.explain') }}</button>
       <button @click="openGameProducer">{{ t('menu.producer') }}</button>
 
       <div flex-center gap-10>
