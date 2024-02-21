@@ -149,17 +149,17 @@ defineExpose({
   <div v-if="show" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
     <div v-if="showGameInfo" flex="~ col items-center gap-10">
       <div w-160px h-56px flex-center rd-8px gap-5>
-        第 <span text-green> {{ info?.rounds }} </span> 局
+        {{ $t('game.no') }} <span text-green> {{ info?.rounds }} </span> {{ $t('game.round') }}
       </div>
       <div w-240px h-56px flex-center rd-8px>
-        角色 ： <span text-red>{{ name }}</span>
+        {{ $t('game.role') }} ： <span text-red>{{ name }}</span>
       </div>
     </div>
     <div v-else flex-col flex-center gap-5>
       <button @click="startGame">{{ startLabel }}</button>
-      <button v-if="state.gameState !== 'init'" @click="restartGame">{{ $t('menu.restart') }}</button>
-      <button @click="openGameExplain">{{ $t('menu.description') }}</button>
-      <button @click="openGameProducer">{{ $t('menu.producer') }}</button>
+      <button v-if="state.gameState !== 'init'" @click="restartGame">{{ t('menu.reStart') }}</button>
+      <button @click="openGameExplain">{{ t('menu.description') }}</button>
+      <button @click="openGameProducer">{{ t('menu.producer') }}</button>
 
       <div flex-center gap-10>
         <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />

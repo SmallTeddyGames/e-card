@@ -7,5 +7,11 @@ export default {
     'reStart': 'ケジュール再開',
     'description': 'ケジュール説明',
     'producer': 'ケジュール制作者',
+  },
+  'game': {
+    'no': 'いいえ。',
+    'round': '局',
+    'role': '役割',
+    'checkArea': 'チェックエリア'
   }
 }

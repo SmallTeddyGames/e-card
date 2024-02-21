@@ -7,5 +7,11 @@ export default {
         'reStart': 'ReStart Game',
         'description': 'Game Description',
         'producer': 'Producer List',
+    },
+    'game': {
+        'no': 'No',
+        'round': 'Round',
+        'role': 'Role',
+        'checkArea': 'Check Area'
     }
 }

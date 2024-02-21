@@ -2,6 +2,8 @@
 import Card from './Card.vue'
 import type { CardItem } from '@/views/Type'
 
+const { t } = useI18n()
+
 withDefaults(
   defineProps<{
     cardInfo?: CardItem[] | null
@@ -17,6 +19,6 @@ withDefaults(
     <Card :card-info="cardInfo[0]" :is-back="cardInfo[0].isBack" />
   </div>
   <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
-    检<br />查<br />区<br />域
+    {{ t('game.checkArea') }}
   </div>
 </template>
