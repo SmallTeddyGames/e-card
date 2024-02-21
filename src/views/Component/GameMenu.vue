@@ -6,6 +6,7 @@ import { getRandomNumber } from '@/utils'
 import { getName, initRounds } from '@/utils/game.util'
 import { GroupEn, GameStatus } from '@/views/Type'
 
+const { t } = useI18n()
 const state = useGlobalState()
 const showGameInfo = ref(false);
 const show = ref(true);
@@ -79,10 +80,10 @@ const restartGame = () => {
 const startLabel = computed(() => {
   let label;
   switch (state.value.gameState) {
-    case 'pause': label = '游戏继续'; break
-    case 'win': label = '您赢了！'; break
-    case 'lose': label = '您输了！'; break
-    default: label = '游戏开始';
+    case 'pause': label = t('menu.continue'); break
+    case 'win': label = t('menu.win'); break
+    case 'lose': label = t('menu.lose'); break
+    default: label = t('menu.start');
   }
   return label;
 })
@@ -156,8 +157,8 @@ defineExpose({
     </div>
     <div v-else flex-col flex-center gap-5>
       <button @click="startGame">{{ startLabel }}</button>
-      <button v-if="state.gameState !== 'init'" @click="restartGame">重新开始</button>
-      <button @click="openGameExplain">游戏说明</button>
+      <button v-if="state.gameState !== 'init'" @click="restartGame">{{ $t('menu.restart') }}</button>
+      <button @click="openGameExplain">{{ $t('menu.description') }}</button>
       <button @click="openGameProducer">{{ $t('menu.producer') }}</button>
 
       <div flex-center gap-10>
