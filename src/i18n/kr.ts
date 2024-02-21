@@ -9,9 +9,20 @@ export default {
     'producer': '기산자',
   },
   'game': {
+    'emperor': '국사',
+    'slave': '사항',
     'no': '안녕',
     'round': '게임',
     'role': '사항',
-    'checkArea': '선택 영역'
+    'checkArea': '선택 영역',
+    'dropArea': '추가 영역'
+  },
+  'info': {
+    'round': '게임',
+    'role': '사항',
+    'result': '비슷',
+    'player': '플랫티',
+    'computer': '비슷자',
+    'score': '점수',
   }
 }

@@ -9,9 +9,20 @@ export default {
         'producer': 'Producer List',
     },
     'game': {
+        'emperor': 'Emperor',
+        'slave': 'Slave',
         'no': 'No',
         'round': 'Round',
         'role': 'Role',
-        'checkArea': 'Check Area'
+        'checkArea': 'Check Area',
+        'dropArea': 'Drop Area'
+    },
+    'info': {
+        'round': 'Round',
+        'role': 'Role',
+        'result': 'Result',
+        'player': 'Player',
+        'computer': 'Computer',
+        'score': 'Score',
     }
 }

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { getAssetsFile, getRandomNumber } from '@/utils'
 
+const { t } = useI18n()
 const state = useGlobalState()
 </script>
 
@@ -13,7 +14,7 @@ const state = useGlobalState()
     </div>
   </div>
   <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
-    弃<br />牌<br />区<br />域
+    {{ t('game.dropArea') }}
   </div>
 </template>
 

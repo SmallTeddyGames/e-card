@@ -1,17 +1,8 @@
 import { useGlobalState } from "@/store";
 import { getRandomNumber } from './index';
-import { CardItem, GroupEn, GroupCn, Role, GameStateType } from "@/views/Type";
+import { CardItem, GroupEn, Role, GameStateType } from "@/views/Type";
 
 const state: { value: GameStateType } = useGlobalState()
-
-/**
- * 获取翻译名字
- * @param group 分组
- * @returns 
- */
-export const getName = (group: GroupEn): GroupCn => {
-    return group == "emperor" ? "国王" : "奴隶";
-}
 
 /**
  * 创建卡片

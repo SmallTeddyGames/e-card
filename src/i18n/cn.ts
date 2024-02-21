@@ -9,9 +9,20 @@ export default {
         'producer': '制作人员',
     },
     'game': {
+        'emperor': '国王',
+        'slave': '奴隶',
         'no': '第',
         'round': '局',
         'role': '角色',
-        'checkArea': '检查区域'
+        'checkArea': '检查区域',
+        'dropArea': '弃牌区域'
+    },
+    'info': {
+        'round': '局数',
+        'role': '角色',
+        'result': '结果',
+        'player': '玩家',
+        'computer': '电脑',
+        'score': '比分',
     }
 }

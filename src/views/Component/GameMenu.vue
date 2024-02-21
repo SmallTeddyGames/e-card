@@ -3,7 +3,7 @@ import Card from '@/views/Component/Card.vue'
 import GameExplain from '@/views/Component/GameExplain.vue'
 import ProducerList from '@/views/Component/ProducerList.vue'
 import { getRandomNumber } from '@/utils'
-import { getName, initRounds } from '@/utils/game.util'
+import { initRounds } from '@/utils/game.util'
 import { GroupEn, GameStatus } from '@/views/Type'
 
 const { t } = useI18n()
@@ -16,7 +16,7 @@ const info: Ref<{ playerRole: GroupEn; rounds: number }> = ref({
   rounds: 1
 })
 // 角色名称
-const name = computed(() => getName(info.value.playerRole))
+const name = computed(() => info.value.playerRole)
 
 // 随机抽取角色 并初始化轮次
 initRounds(Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave', 1)
@@ -148,11 +148,11 @@ defineExpose({
 <template>
   <div v-if="show" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
     <div v-if="showGameInfo" flex="~ col items-center gap-10">
-      <div w-160px h-56px flex-center rd-8px gap-5>
+      <div w-500px h-56px flex-center rd-8px gap-5>
         {{ $t('game.no') }} <span text-green> {{ info?.rounds }} </span> {{ $t('game.round') }}
       </div>
-      <div w-240px h-56px flex-center rd-8px>
-        {{ $t('game.role') }} ： <span text-red>{{ name }}</span>
+      <div w-500px h-56px flex-center rd-8px>
+        {{ $t('game.role') }} ： <span text-red>{{ t(`game.${name}`) }}</span>
       </div>
     </div>
     <div v-else flex-col flex-center gap-5>

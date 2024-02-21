@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-// 全局信息变量
+const { t } = useI18n()
 const state = useGlobalState()
 
 /**
@@ -45,11 +45,11 @@ watch(
 <template>
   <table>
     <tr>
-      <td>局数</td>
-      <td>角色</td>
-      <td>结果</td>
-      <td>玩家</td>
-      <td>电脑</td>
+      <td>{{ t('info.round') }}</td>
+      <td>{{ t('info.role') }}</td>
+      <td>{{ t('info.result') }}</td>
+      <td>{{ t('info.player') }}</td>
+      <td>{{ t('info.computer') }}</td>
     </tr>
     <tr v-for="item in state.gameLogItems" :key="`${item.role}-${item.sort}`"
       :class="item.playerScore ? 'bg-green:50' : 'bg-red:50'">
@@ -60,7 +60,7 @@ watch(
       <td>{{ item.computerScore }}</td>
     </tr>
     <tr>
-      <td>总比分</td>
+      <td>{{ t('info.score') }}</td>
       <td></td>
       <td></td>
       <td>{{ playerFinalScore }}</td>
