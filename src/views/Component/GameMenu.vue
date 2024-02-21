@@ -159,7 +159,7 @@ defineExpose({
       <button @click="startGame">{{ startLabel }}</button>
       <button v-if="state.gameState !== 'init'" @click="restartGame">重新开始</button>
       <button @click="openGameExplain">游戏说明</button>
-      <button @click="openGameProducer">制作人员</button>
+      <button @click="openGameProducer">{{ $t('menu.producer') }}</button>
 
       <div flex-center gap-10>
         <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
