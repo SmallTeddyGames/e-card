@@ -102,6 +102,7 @@ e-card
 - [ ] After the player has played `5` rounds, the computer will analyze the player's card-playing strategy based on the data from the previous `5` rounds and each subsequent round to decide its own card-playing strategy
 - [x] Game ends, display game information, and allow for a new game to start
 - [x] Menu adds a game rules and credits button, with corresponding content
+- [x] Support for multiple languages
 - [ ] `web` end adaptation
 
 ## game preview
