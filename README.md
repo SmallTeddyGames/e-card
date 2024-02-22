@@ -16,19 +16,19 @@
 
 ``` bash
 e-card
-├─ .git # git
-├─ .gitignore # git ignore
-├─ README.md # readme
-├─ auto-imports.d.ts # auto-import配置
-├─ eslint.config.ts # eslint配置
-├─ index.html # index
-├─ package.json # package配置
-├─ pnpm-lock.yaml # package lock配置
-├─ public # public
-│  └─ vite.svg # icon
-├─ src # src
-│  ├─ App.vue # main
-│  ├─ assets # 资源
+├─ .git
+├─ .gitignore
+├─ README.md
+├─ auto-imports.d.ts
+├─ eslint.config.ts
+├─ index.html
+├─ package.json
+├─ pnpm-lock.yaml
+├─ public
+│  └─ vite.svg
+├─ src
+│  ├─ App.vue
+│  ├─ assets
 │  │  ├─ bg-1.jpg
 │  │  ├─ bg-2.jpg
 │  │  ├─ bg-3.jpg
@@ -38,51 +38,51 @@ e-card
 │  │  ├─ emperor.jpg
 │  │  ├─ slave.jpg
 │  ├─ main.ts
-│  ├─ router # 路由
+│  ├─ router
 │  │  └─ index.ts
-│  ├─ styles # 样式
+│  ├─ styles
 │  │  └─ base.css
-│  ├─ utils # 工具
-│  ├─ ├─ game.util.ts # 游戏工具
+│  ├─ utils
+│  ├─ ├─ game.util.ts
 │  │  └─ index.ts
-│  ├─ views # 页面
-│  │  ├─ Component # 组件
-│  │  │  ├─ Card.vue # 卡牌组件
-│  │  │  ├─ CheckCard.vue # 检查区域组件
-│  │  │  ├─ ComputedCard.vue # 电脑手牌组件
-│  │  │  ├─ DropCard.vue # 弃牌区域组件
-│  │  │  ├─ GameInformation.vue # 游戏信息组件
-│  │  │  ├─ GameMenu.vue # 开始信息组件
-│  │  │  ├─ MessageInfo.vue # 消息信息组件
-│  │  │  ├─ PlayerCard.vue # 玩家手牌组件
-│  │  │  └─ ProducerList.vue # 制作人名单组件
-│  │  ├─ Game # 游戏
-│  │  │  ├─ GameMain.vue # 游戏主页面
-│  │  │  └─ Home.vue # home
-│  │  ├─ Layout # 布局
-│  │  │  ├─ GameContent.vue # 中心
-│  │  │  └─ GameNav.vue # 导航
-│  │  ├─ NavButton # 导航功能按钮
-│  │  │  ├─ ChangeBackImage.vue # 切换背景
-│  │  │  ├─ ChangeGameStatus.vue # 切换游戏状态
-│  │  │  ├─ ColorSchemeToggle.vue # 切换主题
-│  │  │  ├─ FullScreenToggle.vue # 切换全屏
-│  │  │  ├─ GameInfoToggle.vue # 切换游戏信息
-│  │  │  └─ GitHubButton.vue # 打开github
-│  │  ├─ Others # 其他
-│  │  │  └─ 404.vue # 404页面
-│  │  └─ Type # 类型
-│  │  │  ├─ cardType.ts # 卡牌类型
-│  │  │  ├─ gameType.ts # 游戏类型
-│  │  │  ├─ groupType.ts # 分组类型
+│  ├─ views
+│  │  ├─ Component
+│  │  │  ├─ Card.vue
+│  │  │  ├─ CheckCard.vue
+│  │  │  ├─ ComputedCard.vue
+│  │  │  ├─ DropCard.vue
+│  │  │  ├─ GameInformation.vue
+│  │  │  ├─ GameMenu.vue
+│  │  │  ├─ MessageInfo.vue
+│  │  │  ├─ PlayerCard.vue
+│  │  │  └─ ProducerList.vue
+│  │  ├─ Game
+│  │  │  ├─ GameMain.vue
+│  │  │  └─ Home.vue
+│  │  ├─ Layout
+│  │  │  ├─ GameContent.vue
+│  │  │  └─ GameNav.vue
+│  │  ├─ NavButton
+│  │  │  ├─ ChangeBackImage.vue
+│  │  │  ├─ ChangeGameStatus.vue
+│  │  │  ├─ ColorSchemeToggle.vue
+│  │  │  ├─ FullScreenToggle.vue
+│  │  │  ├─ GameInfoToggle.vue
+│  │  │  └─ GitHubButton.vue
+│  │  ├─ Others
+│  │  │  └─ 404.vue
+│  │  └─ Type
+│  │  │  ├─ cardType.ts
+│  │  │  ├─ gameType.ts
+│  │  │  ├─ groupType.ts
 │  │  │  ├─ index.ts
-│  │  │  ├─ logType.ts # 日志类型
-│  │     └─  roleType.ts # 角色类型
-│  └─ vite-env.d.ts # 环境变量
-├─ tsconfig.json # 基础配置
-├─ tsconfig.node.json # 服务端配置
-├─ uno.config.ts # unocss配置
-└─ vite.config.ts # 开发配置
+│  │  │  ├─ logType.ts
+│  │     └─  roleType.ts
+│  └─ vite-env.d.ts
+├─ tsconfig.json
+├─ tsconfig.node.json
+├─ uno.config.ts
+└─ vite.config.ts
 ```
 
 ## todo list
@@ -104,6 +104,8 @@ e-card
 - [x] Menu adds a game rules and credits button, with corresponding content
 - [x] Support for multiple languages
 - [ ] `web` end adaptation
+- [ ] Add appropriate background music and playing music
+- [ ] You can choose the game difficulty, the default is medium
 
 ## game preview
 

@@ -19,16 +19,16 @@ e-card
 ├─ .git # git
 ├─ .gitignore # git ignore
 ├─ README.md # readme
-├─ auto-imports.d.ts # auto-import配置
-├─ eslint.config.ts # eslint配置
+├─ auto-imports.d.ts # auto-import구성
+├─ eslint.config.ts # eslint구성
 ├─ index.html # index
-├─ package.json # package配置
-├─ pnpm-lock.yaml # package lock配置
+├─ package.json # package구성
+├─ pnpm-lock.yaml # package lock구성
 ├─ public # public
 │  └─ vite.svg # icon
 ├─ src # src
 │  ├─ App.vue # main
-│  ├─ assets # 资源
+│  ├─ assets # 자원
 │  │  ├─ bg-1.jpg
 │  │  ├─ bg-2.jpg
 │  │  ├─ bg-3.jpg
@@ -38,51 +38,51 @@ e-card
 │  │  ├─ emperor.jpg
 │  │  ├─ slave.jpg
 │  ├─ main.ts
-│  ├─ router # 路由
+│  ├─ router # 라우팅
 │  │  └─ index.ts
-│  ├─ styles # 样式
+│  ├─ styles # 스타일
 │  │  └─ base.css
-│  ├─ utils # 工具
-│  ├─ ├─ game.util.ts # 游戏工具
+│  ├─ utils # 도구
+│  ├─ ├─ game.util.ts # 게임 도구
 │  │  └─ index.ts
-│  ├─ views # 页面
-│  │  ├─ Component # 组件
-│  │  │  ├─ Card.vue # 卡牌组件
-│  │  │  ├─ CheckCard.vue # 检查区域组件
-│  │  │  ├─ ComputedCard.vue # 电脑手牌组件
-│  │  │  ├─ DropCard.vue # 弃牌区域组件
-│  │  │  ├─ GameInformation.vue # 游戏信息组件
-│  │  │  ├─ GameMenu.vue # 开始信息组件
-│  │  │  ├─ MessageInfo.vue # 消息信息组件
-│  │  │  ├─ PlayerCard.vue # 玩家手牌组件
-│  │  │  └─ ProducerList.vue # 制作人名单组件
-│  │  ├─ Game # 游戏
-│  │  │  ├─ GameMain.vue # 游戏主页面
+│  ├─ views # 페이지
+│  │  ├─ Component # 구성 요소
+│  │  │  ├─ Card.vue # 카드 구성요소
+│  │  │  ├─ CheckCard.vue # 영역 구성요소 확인
+│  │  │  ├─ ComputedCard.vue # 컴퓨터 손 부품
+│  │  │  ├─ DropCard.vue # 구역 구성요소 폐기
+│  │  │  ├─ GameInformation.vue # 게임정보 구성요소
+│  │  │  ├─ GameMenu.vue # 시작 정보 구성 요소
+│  │  │  ├─ MessageInfo.vue # 메시지 정보 구성요소
+│  │  │  ├─ PlayerCard.vue # 플레이어 손 구성 요소
+│  │  │  └─ ProducerList.vue # 크레딧 구성요소
+│  │  ├─ Game # 게임
+│  │  │  ├─ GameMain.vue # 게임 메인 페이지
 │  │  │  └─ Home.vue # home
-│  │  ├─ Layout # 布局
-│  │  │  ├─ GameContent.vue # 中心
-│  │  │  └─ GameNav.vue # 导航
-│  │  ├─ NavButton # 导航功能按钮
-│  │  │  ├─ ChangeBackImage.vue # 切换背景
-│  │  │  ├─ ChangeGameStatus.vue # 切换游戏状态
-│  │  │  ├─ ColorSchemeToggle.vue # 切换主题
-│  │  │  ├─ FullScreenToggle.vue # 切换全屏
-│  │  │  ├─ GameInfoToggle.vue # 切换游戏信息
-│  │  │  └─ GitHubButton.vue # 打开github
-│  │  ├─ Others # 其他
-│  │  │  └─ 404.vue # 404页面
-│  │  └─ Type # 类型
-│  │  │  ├─ cardType.ts # 卡牌类型
-│  │  │  ├─ gameType.ts # 游戏类型
-│  │  │  ├─ groupType.ts # 分组类型
+│  │  ├─ Layout # 공들여 나열한 것
+│  │  │  ├─ GameContent.vue # 센터
+│  │  │  └─ GameNav.vue # 항해
+│  │  ├─ NavButton # 탐색 기능 버튼
+│  │  │  ├─ ChangeBackImage.vue # 배경 전환
+│  │  │  ├─ ChangeGameStatus.vue # 게임 상태 전환
+│  │  │  ├─ ColorSchemeToggle.vue # 테마 전환
+│  │  │  ├─ FullScreenToggle.vue # 전체 화면 전환
+│  │  │  ├─ GameInfoToggle.vue # 게임 정보 전환
+│  │  │  └─ GitHubButton.vue # 열려 있는github
+│  │  ├─ Others # 다른
+│  │  │  └─ 404.vue # 404페이지
+│  │  └─ Type # 유형
+│  │  │  ├─ cardType.ts # 카드 종류
+│  │  │  ├─ gameType.ts # 게임 타입
+│  │  │  ├─ groupType.ts # 그룹화 유형
 │  │  │  ├─ index.ts
-│  │  │  ├─ logType.ts # 日志类型
-│  │     └─  roleType.ts # 角色类型
-│  └─ vite-env.d.ts # 环境变量
-├─ tsconfig.json # 基础配置
-├─ tsconfig.node.json # 服务端配置
-├─ uno.config.ts # unocss配置
-└─ vite.config.ts # 开发配置
+│  │  │  ├─ logType.ts # 로그 유형
+│  │     └─  roleType.ts # 역할 유형
+│  └─ vite-env.d.ts # 환경 변수
+├─ tsconfig.json # 베이스구성
+├─ tsconfig.node.json # 섬기는 사람구성
+├─ uno.config.ts # unocss구성
+└─ vite.config.ts # 开发구성
 ```
 
 ## 할 일 목록
@@ -104,6 +104,8 @@ e-card
 - [x] 메뉴에 게임 규칙 및 제작자 명단 버튼을 추가하고 해당 내용을 추가합니다.
 - [x] 여러 언어 지원
 - [ ] `web` 엔드 어댑트
+- [ ] 적절한 배경 음악 추가 및 음악 재생
+- [ ] 게임 난이도를 선택할 수 있으며 기본값은 중간입니다.
 
 ## 게임 미리보기
 
