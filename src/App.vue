@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+import Home from '@/views/Game/Home.vue'
+</script>
+
 <template>
-  <router-view />
+  <Home />
 </template>

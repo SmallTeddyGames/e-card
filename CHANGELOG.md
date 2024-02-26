@@ -1,19 +1,33 @@
-# CHANGELOG.md
+## 2022-10-03
 
-## 1.0.0 Release
+[v2.1.0](https://github.com/electron-vite/electron-vite-vue/pull/267)
 
-### Features
+- `vite-electron-plugin` is Fast, and WYSIWYG. 🌱
+- last-commit: db2e830 v2.1.0: use `vite-electron-plugin` instead `vite-plugin-electron`
 
-- 布局和基础功能按钮开发
-- 手牌区域组件开发
-- 检查区域组件开发
-- 对局信息组件开发
-- 对局开始组件，开始随机从国王和奴隶中随机取 `1` 个作为玩家的开始角色，之后角色采用轮换制，共 `21` 局
-- 弃牌区域组件开发，无牌虚线+文字显示，有牌按照 `0° - 30°` 随机角度旋转堆叠显示
-- 手牌选中卡牌后， 显示 `check` 按钮
-- 点击 check 按钮后，卡牌中删除该卡牌，检查区域增加该卡牌
-- 卡牌实现 `3D` 效果，`check` 后翻转在检查区域显示，过 `2` 秒后检查区域卡牌翻转至正面比对，比对后移至弃牌区域
-- 如果国王牌或者奴隶牌打出，则比赛结束
-- 进行对局信息结算，进行下一局游戏
-- 游戏结束，显示对局信息，并可重新开始游戏
-- 菜单增加游戏规则和制作人名单按钮，并增加相对应内容
+## 2022-06-04
+
+[v2.0.0](https://github.com/electron-vite/electron-vite-vue/pull/156)
+
+- 🖖 Based on the `vue-ts` template created by `npm create vite`, integrate `vite-plugin-electron`
+- ⚡️ More simplify, is in line with Vite project structure
+- last-commit: a15028a (HEAD -> main) feat: hoist `process.env`
+
+## 2022-01-30
+
+[v1.0.0](https://github.com/electron-vite/electron-vite-vue/releases/tag/v1.0.0)
+
+- ⚡️ Main、Renderer、preload, all built with vite
+
+## 2022-01-27
+- Refactor the scripts part.
+- Remove `configs` directory.
+
+## 2021-11-11
+- Refactor the project. Use vite.config.ts build `Main-process`, `Preload-script` and `Renderer-process` alternative rollup.
+- Scenic `Vue>=3.2.13`, `@vue/compiler-sfc` is no longer necessary.
+- If you prefer Rollup, Use rollup branch.
+
+```bash
+Error: @vitejs/plugin-vue requires vue (>=3.2.13) or @vue/compiler-sfc to be present in the dependency tree.
+```

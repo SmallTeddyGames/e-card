@@ -2,17 +2,26 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "preserve",
-    "lib": ["ESNext", "DOM"],
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
     "useDefineForClassFields": true,
     "baseUrl": "./",
     "module": "ESNext",
     "moduleResolution": "Node",
     "paths": {
-      "~": ["./"],
-      "@/*": ["src/*"]
+      "~": [
+        "./"
+      ],
+      "@/*": [
+        "src/*"
+      ]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "allowJs": true,
     "strict": false,
     "noEmit": true,
@@ -20,14 +29,15 @@
     "isolatedModules": true,
     "skipLibCheck": true
   },
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "include": [
     "src/**/*.ts",
     "src/**/*.d.ts",
-    "src/**/*.tsx",
     "src/**/*.vue",
-    "src/**/*.lrc",
-    "src/**/*.mp3",
-    "auto-imports.d.ts"
+    "./auto-imports.d.ts"
   ]
 }

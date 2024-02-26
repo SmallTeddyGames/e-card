@@ -9,7 +9,7 @@ import GitHubButton from '@/views/NavButton/GitHubButton.vue'
 </script>
 
 <template>
-  <nav w-screen px4 py3 text-lg border="b base" flex="~ gap-1 items-center">
+  <nav w-screen px4 text-lg border="b base" flex="~ gap-1 items-center">
     <div title="Game">E-Card</div>
     <div flex-auto />
     <!-- 游戏控制按钮 -->
