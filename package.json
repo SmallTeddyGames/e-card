@@ -1,6 +1,6 @@
 {
   "name": "e-card-electron",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "dist-electron/main/index.js",
   "description": "a demo for app with electron vite vue3 element-plus",
   "author": "SmallTeddy",
