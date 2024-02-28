@@ -20,9 +20,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build-electron": "vue-tsc --noEmit && vite build && electron-builder",
-    "preview": "vite preview",
-    "deploy": "npm run build-web && gh-pages -d dist"
+    "build-electron": "vue-tsc --noEmit && vite build && electron-builder"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.1.1",
