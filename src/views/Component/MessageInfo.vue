@@ -15,16 +15,21 @@ const emits = defineEmits(["close"]);
 
 <template>
   <div box-border w-full h-full flex-center>
-    <div p-4 box-border flex="~ col items-center gap-8" bg-Mask border-rd-12px style="min-width: 600px; max-width: 1200px;">
-      <h3>{{ title }}</h3>
-      <div flex="~ col gap-2">
-        <p font-size-7 v-for="text in infoList" :key="text" :class="{ 'text-center': title === '制作人员' }">
+    <div p-6 box-border flex="~ col items-center gap-6" rounded-2xl
+      style="min-width: 600px; max-width: 1200px; background: rgba(15,15,40,0.95); border: 2px solid rgba(255,215,0,0.3); box-shadow: 0 0 40px rgba(255,215,0,0.15);">
+      <h3 class="gold-text text-3xl font-black">{{ title }}</h3>
+      <div flex="~ col gap-3" class="max-h-60vh overflow-y-auto w-full">
+        <p font-size-5 text-white-80 v-for="(text, idx) in infoList" :key="idx"
+          :class="{ 'text-center': title === '制作人员' || title === 'Producer List' || title === 'ケジュール制作者' || title === '기산자' }"
+          class="leading-relaxed">
           {{ text }}
         </p>
       </div>
-      <button m-l-a p-2 font-size-8 border-rd border-none t-a-2 cursor-pointer l-s-1 flex="~ row items-center"
+      <button m-l-a p-3 font-size-7 border-rd-8px border-none t-a-2 cursor-pointer l-s-1 flex="~ row items-center gap-2"
+        class="gold-text font-bold hover:scale-105 transition-all duration-300"
+        style="background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.3);"
         @click="emits('close')">
-        <div class="i-material-symbols:arrow-back-rounded icon"></div>
+        <div class="i-material-symbols:arrow-back-rounded icon text-xl"></div>
         <span>Back</span>
       </button>
     </div>
@@ -33,7 +38,7 @@ const emits = defineEmits(["close"]);
 
 <style scoped>
 button:hover {
-  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
   transform: translateY(-2px);
 }
 </style>

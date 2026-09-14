@@ -2,15 +2,29 @@
 import Card from '@/views/Component/Card.vue'
 import GameExplain from '@/views/Component/GameExplain.vue'
 import ProducerList from '@/views/Component/ProducerList.vue'
-import { getRandomNumber } from '@/utils'
+import { getRandomNumber, playSound } from '@/utils'
 import { initRounds } from '@/utils/game.util'
-import { GroupEn, GameStatus } from '@/views/Type'
+import { GroupEn, GameStatus, Difficulty } from '@/views/Type'
 
 const { t } = useI18n()
 const state = useGlobalState()
 const showGameInfo = ref(false);
 const show = ref(true);
 const maxRounds = 21
+
+// 难度选项
+const difficulties: Array<{ key: Difficulty; label: string; color: string; icon: string }> = [
+  { key: 'easy', label: 'easy', color: 'from-green-500 to-green-700', icon: '🌱' },
+  { key: 'middle', label: 'middle', color: 'from-blue-500 to-blue-700', icon: '⚔️' },
+  { key: 'hard', label: 'hard', color: 'from-orange-500 to-red-600', icon: '🔥' },
+  { key: 'hell', label: 'hell', color: 'from-purple-600 to-red-800', icon: '💀' },
+]
+
+// 押注选项
+const betOptions = [50, 100, 200, 500]
+const selectedDifficulty = ref<Difficulty>('middle')
+const selectedBet = ref(100)
+
 const info: Ref<{ playerRole: GroupEn; rounds: number }> = ref({
   playerRole: getRandomNumber(2) == 0 ? 'emperor' : 'slave',
   rounds: 1
@@ -19,7 +33,13 @@ const info: Ref<{ playerRole: GroupEn; rounds: number }> = ref({
 const name = computed(() => info.value.playerRole)
 
 // 随机抽取角色 并初始化轮次
-initRounds(Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave', 1)
+initRounds(
+  Math.floor((Math.random() * 10 * 20) % 2) == 0 ? 'emperor' : 'slave',
+  1,
+  selectedDifficulty.value,
+  selectedBet.value,
+  state.value.initialBeans || 1000
+)
 info.value = state.value;
 
 /**
@@ -38,21 +58,17 @@ const reshow = (): void => {
 }
 
 /**
- * 游戏菜单控制器
- */
-const menuController = () => {
-  startGame()
-}
-
-/**
  * 游戏开始
  */
 const startGame = (): void => {
   if (['win', 'lose'].includes(state.value.gameState)) {
     return;
   }
+  playSound('deal', 0.3)
   showGameInfo.value = true
   state.value.gameState = 'start'
+  state.value.difficulty = selectedDifficulty.value
+  state.value.betAmount = selectedBet.value
   setTimeout(() => {
     show.value = false;
     if (info.value.rounds > maxRounds) {
@@ -69,13 +85,20 @@ const restartGame = () => {
   show.value = true;
   state.value.rounds = 1;
   state.value.gameState = 'init';
-  initRounds(info.value.playerRole, info.value.rounds);
+  state.value.totalWins = 0;
+  state.value.totalLosses = 0;
+  initRounds(
+    info.value.playerRole,
+    info.value.rounds,
+    selectedDifficulty.value,
+    selectedBet.value,
+    state.value.initialBeans || 1000
+  );
   info.value = state.value;
 }
 
 /**
  * 开始按钮文字
- * @param rounds 轮次
  */
 const startLabel = computed(() => {
   let label;
@@ -93,36 +116,36 @@ const showGameExplain = ref(false)
 // 游戏制作人名单
 const showGameProducer = ref(false)
 
-/**
- * 显示游戏说明
- */
 const openGameExplain = () => {
   show.value = false
   showGameExplain.value = true
 }
 
-/**
- * 隐藏游戏说明
- */
 const closeGameExplain = () => {
   show.value = true
   showGameExplain.value = false
 }
 
-/**
- * 显示游戏制作人名单
- */
 const openGameProducer = () => {
   show.value = false
   showGameProducer.value = true
 }
 
-/**
- * 隐藏游戏制作人名单
- */
 const closeProducerList = () => {
   show.value = true
   showGameProducer.value = false
+}
+
+// 选择难度
+const selectDifficulty = (diff: Difficulty) => {
+  selectedDifficulty.value = diff
+  playSound('click', 0.2)
+}
+
+// 选择押注
+const selectBet = (bet: number) => {
+  selectedBet.value = bet
+  playSound('click', 0.2)
 }
 
 watch(
@@ -146,33 +169,151 @@ defineExpose({
 </script>
 
 <template>
-  <div v-if="show" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
-    <div v-if="showGameInfo" flex="~ col items-center gap-10">
-      <div w-500px h-56px flex-center rd-8px gap-5>
-        {{ $t('game.no') }} <span text-green> {{ info?.rounds }} </span> {{ $t('game.round') }}
-      </div>
-      <div w-500px h-56px flex-center rd-8px>
-        {{ $t('game.role') }} ： <span text-red>{{ t(`game.${name}`) }}</span>
-      </div>
+  <!-- 主菜单 -->
+  <div v-if="show" class="flex flex-col items-center justify-center h-full w-screen relative"
+    style="background: radial-gradient(ellipse at center, rgba(26,26,62,0.9) 0%, rgba(0,0,0,0.95) 100%);">
+    <!-- 背景装饰 -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div v-for="i in 15" :key="i" class="absolute rounded-full animate-float"
+        :style="{
+          width: `${Math.random() * 8 + 3}px`,
+          height: `${Math.random() * 8 + 3}px`,
+          left: `${Math.random() * 100}%`,
+          top: `${Math.random() * 100}%`,
+          background: 'rgba(255,215,0,0.4)',
+          animationDelay: `${Math.random() * 3}s`,
+          animationDuration: `${Math.random() * 3 + 2}s`
+        }"
+      ></div>
     </div>
-    <div v-else flex-col flex-center gap-5>
-      <button @click="startGame">{{ startLabel }}</button>
-      <button v-if="state.gameState !== 'init'" @click="restartGame">{{ t('menu.reStart') }}</button>
-      <button @click="openGameExplain">{{ t('menu.explain') }}</button>
-      <button @click="openGameProducer">{{ t('menu.producer') }}</button>
 
-      <div flex-center gap-10>
-        <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
-        <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation />
-        <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
+    <!-- 对局信息展示 -->
+    <div v-if="showGameInfo" class="flex flex-col items-center gap-8 animate-scale-in z-10">
+      <div class="px-8 py-4 rounded-2xl text-2xl font-bold"
+        style="background: rgba(0,0,0,0.6); border: 2px solid rgba(255,215,0,0.3);">
+        {{ $t('game.no') }} <span class="gold-text">{{ info?.rounds }}</span> {{ $t('game.round') }}
+      </div>
+      <div class="px-8 py-4 rounded-2xl text-2xl font-bold"
+        style="background: rgba(0,0,0,0.6); border: 2px solid rgba(255,215,0,0.3);">
+        {{ $t('game.role') }}：<span class="text-red-400">{{ t(`game.${name}`) }}</span>
+      </div>
+      <div class="text-white-60 text-sm animate-pulse">{{ t('game.prepare') }}</div>
+    </div>
+
+    <!-- 主菜单界面 -->
+    <div v-else class="flex flex-col items-center gap-6 z-10 max-w-90vw">
+      <!-- 游戏标题 -->
+      <div class="text-center mb-2">
+        <h1 class="text-6xl font-black gold-text mb-2" style="text-shadow: 0 0 30px rgba(255,215,0,0.5);">
+          E-CARD
+        </h1>
+        <p class="text-white-60 text-sm">{{ t('menu.subtitle') }}</p>
+      </div>
+
+      <!-- 难度选择 -->
+      <div class="w-full max-w-500px">
+        <div class="text-white-80 text-sm font-bold mb-2 text-center">{{ t('menu.difficulty') }}</div>
+        <div class="grid grid-cols-4 gap-2">
+          <button
+            v-for="diff in difficulties"
+            :key="diff.key"
+            class="py-3 px-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            :class="[
+              selectedDifficulty === diff.key
+                ? `bg-gradient-to-b ${diff.color} ring-2 ring-gold scale-105`
+                : 'bg-black-40 hover:bg-black-60'
+            ]"
+            @click="selectDifficulty(diff.key)"
+          >
+            <div class="text-xl mb-1">{{ diff.icon }}</div>
+            <div>{{ t(`difficulty.${diff.label}`) }}</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 押注选择 -->
+      <div class="w-full max-w-500px">
+        <div class="text-white-80 text-sm font-bold mb-2 text-center flex items-center justify-center gap-2">
+          <span>🫘</span>
+          <span>{{ t('menu.betAmount') }}</span>
+          <span class="gold-text font-black text-lg">{{ selectedBet }}</span>
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          <button
+            v-for="bet in betOptions"
+            :key="bet"
+            class="py-3 px-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            :class="[
+              selectedBet === bet
+                ? 'bg-gradient-to-b from-gold to-amber-700 text-black ring-2 ring-gold scale-105'
+                : 'bg-black-40 hover:bg-black-60'
+            ]"
+            @click="selectBet(bet)"
+          >
+            {{ bet }}
+          </button>
+        </div>
+      </div>
+
+      <!-- 操作按钮 -->
+      <div class="flex flex-col gap-3 w-full max-w-300px mt-2">
+        <button
+          class="py-4 rounded-xl font-bold text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
+          style="background: linear-gradient(135deg, #FFD700, #B8860B);"
+          @click="startGame"
+        >
+          {{ startLabel }}
+        </button>
+        <button
+          v-if="state.gameState !== 'init'"
+          class="py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+          style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
+          @click="restartGame"
+        >
+          {{ t('menu.reStart') }}
+        </button>
+        <div class="flex gap-3">
+          <button
+            class="flex-1 py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
+            @click="openGameExplain"
+          >
+            {{ t('menu.explain') }}
+          </button>
+          <button
+            class="flex-1 py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+            style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
+            @click="openGameProducer"
+          >
+            {{ t('menu.producer') }}
+          </button>
+        </div>
+      </div>
+
+      <!-- 卡牌展示 -->
+      <div class="flex items-center gap-6 mt-4">
+        <div class="animate-float" style="animation-delay: 0s;">
+          <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
+        </div>
+        <div class="animate-float" style="animation-delay: 0.5s;">
+          <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation />
+        </div>
+        <div class="animate-float" style="animation-delay: 1s;">
+          <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
+        </div>
       </div>
     </div>
   </div>
-  <div v-if="showGameExplain" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
+
+  <!-- 游戏说明 -->
+  <div v-if="showGameExplain" class="flex flex-col items-center justify-center h-full w-screen relative"
+    style="background: radial-gradient(ellipse at center, rgba(26,26,62,0.9) 0%, rgba(0,0,0,0.95) 100%);">
     <GameExplain @close="closeGameExplain" />
   </div>
-  <div v-if="showGameProducer" flex-center flex-col h-full w-screen relative font-size-40px bg-gray:50>
+
+  <!-- 制作人名单 -->
+  <div v-if="showGameProducer" class="flex flex-col items-center justify-center h-full w-screen relative"
+    style="background: radial-gradient(ellipse at center, rgba(26,26,62,0.9) 0%, rgba(0,0,0,0.95) 100%);">
     <ProducerList @close="closeProducerList" />
   </div>
 </template>
-

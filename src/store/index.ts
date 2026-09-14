@@ -27,6 +27,24 @@ export const useGlobalState: () => Ref<GameStateType> = createGlobalState(
     // 游戏日志
     gameLogItems: [],
     // 丢弃的卡牌
-    dropedCardItems: []
+    dropedCardItems: [],
+    // 玩家游戏豆
+    playerBeans: 1000,
+    // 电脑游戏豆
+    computerBeans: 1000,
+    // 本局押注数量
+    betAmount: 100,
+    // 初始游戏豆
+    initialBeans: 1000,
+    // 玩家出牌历史记录（用于AI分析）
+    playerPlayHistory: [],
+    // 电脑出牌历史记录
+    computerPlayHistory: [],
+    // 总赢局数
+    totalWins: 0,
+    // 总输局数
+    totalLosses: 0,
+    // 是否音效开启
+    soundEnabled: true
   })
 )

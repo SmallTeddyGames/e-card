@@ -1,6 +1,6 @@
 import { useGlobalState } from "@/store";
 import { getRandomNumber } from './index';
-import { CardItem, GroupEn, Role, GameStateType } from "@/views/Type";
+import { CardItem, GroupEn, Role, GameStateType, Difficulty } from "@/views/Type";
 
 const state: { value: GameStateType } = useGlobalState()
 
@@ -39,22 +39,40 @@ export const getReverseRole = (group: GroupEn): GroupEn => group == "emperor" ? 
  * 初始化轮次 
  * @param playerRole 玩家角色
  * @param rounds 回合数
+ * @param difficulty 难度
+ * @param betAmount 押注数量
+ * @param initialBeans 初始游戏豆
  */
-export const initRounds = (playerRole: GroupEn, rounds: number): void => {
+export const initRounds = (
+    playerRole: GroupEn,
+    rounds: number,
+    difficulty: Difficulty = 'middle',
+    betAmount: number = 100,
+    initialBeans: number = 1000
+): void => {
     // 初始化
     state.value = {
         playerRole,
         rounds,
-        language: 'cn',
+        language: state.value.language,
         gameState: "init",
-        difficulty: 'middle',
+        difficulty,
         isAiBattle: true,
         playerCardItems: initRoleItems(playerRole, true),
         computerCardItems: initRoleItems(getReverseRole(playerRole), false),
-        bgImage: 1,
+        bgImage: state.value.bgImage,
         isShowGameInfo: true,
         gameLogItems: [],
-        dropedCardItems: []
+        dropedCardItems: [],
+        playerBeans: initialBeans,
+        computerBeans: initialBeans,
+        betAmount,
+        initialBeans,
+        playerPlayHistory: [],
+        computerPlayHistory: [],
+        totalWins: state.value.totalWins || 0,
+        totalLosses: state.value.totalLosses || 0,
+        soundEnabled: state.value.soundEnabled
     }
 }
 
@@ -71,3 +89,43 @@ export const nextRounds = (): void => {
     state.value.dropedCardItems = [];
 }
 
+/**
+ * 结算豆子
+ * @param result 'win' | 'lose' | 'draw'
+ */
+export const settleBeans = (result: 'win' | 'lose' | 'draw'): number => {
+    const bet = state.value.betAmount;
+    let change = 0;
+    if (result === 'win') {
+        change = bet;
+        state.value.playerBeans += bet;
+        state.value.computerBeans -= bet;
+    } else if (result === 'lose') {
+        change = -bet;
+        state.value.playerBeans -= bet;
+        state.value.computerBeans += bet;
+    }
+    return change;
+}
+
+/**
+ * 检查游戏是否因豆子耗尽而结束
+ * @returns 'player-bankrupt' | 'computer-bankrupt' | null
+ */
+export const checkBankruptcy = (): 'player-bankrupt' | 'computer-bankrupt' | null => {
+    if (state.value.playerBeans <= 0) {
+        return 'player-bankrupt';
+    }
+    if (state.value.computerBeans <= 0) {
+        return 'computer-bankrupt';
+    }
+    return null;
+}
+
+/**
+ * 重置豆子到初始值（重新开始游戏时）
+ */
+export const resetBeans = (): void => {
+    state.value.playerBeans = state.value.initialBeans;
+    state.value.computerBeans = state.value.initialBeans;
+}

@@ -6,14 +6,31 @@ const state = useGlobalState()
 </script>
 
 <template>
-  <div v-if="state.dropedCardItems.length > 0" flex-center relative card-size>
-    <div v-for="(cardInfo, index) in state.dropedCardItems" :key="cardInfo.sort">
-      <img card-size cursor-pointer absolute left-0 top-0 class="rotate"
-        :style="`--rotation-random: ${getRandomNumber(5 * index)}deg`" :alt="cardInfo.role"
-        :src="getAssetsFile(cardInfo.img)" />
+  <div v-if="state.dropedCardItems.length > 0" class="flex-center relative card-size">
+    <div
+      v-for="(cardInfo, index) in state.dropedCardItems"
+      :key="`${cardInfo.sort}-${index}`"
+      class="card-size cursor-pointer absolute left-0 top-0 rounded-lg shadow-lg animate-card-deal"
+      :style="{
+        transform: `rotate(${(index % 2 === 0 ? 1 : -1) * getRandomNumber(30)}deg)`,
+        zIndex: index,
+        animationDelay: `${index * 0.05}s`
+      }"
+    >
+      <img
+        card-size
+        class="rounded-lg"
+        :alt="cardInfo.role"
+        :src="getAssetsFile(cardInfo.img)"
+      />
+    </div>
+    <!-- 牌堆数量提示 -->
+    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-white-80 text-xs font-bold bg-black-50 px-2 py-1 rounded-full">
+      {{ state.dropedCardItems.length }}
     </div>
   </div>
-  <div v-else card-size cursor-pointer border="1px #fff dashed" flex-center>
+  <div v-else card-size cursor-pointer border="2px #fff dashed" flex-center rounded-xl
+    class="text-white-60 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-gold">
     {{ t('game.dropArea') }}
   </div>
 </template>

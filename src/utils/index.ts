@@ -1,4 +1,6 @@
 export * from "./game.util"
+export * from "./ai.util"
+export * from "./sound.util"
 
 /**
  * 获取assets静态资源，路径为assets

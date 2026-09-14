@@ -5,8 +5,13 @@ const state = useGlobalState()
 </script>
 
 <template>
-  <div grid="~ cols-5 gap-5">
-    <div card-size relative cursor-pointer transition-all-500 v-for="cardItem in state.computerCardItems" :key="cardItem.sort">
+  <div class="grid grid-cols-5 gap-3">
+    <div
+      v-for="(cardItem, index) in state.computerCardItems"
+      :key="cardItem.sort"
+      class="card-size relative cursor-pointer transition-all duration-300 hover:translate-y-3 animate-card-deal"
+      :style="{ animationDelay: `${index * 0.1}s` }"
+    >
       <Card :card-info="cardItem" is-back />
     </div>
   </div>
