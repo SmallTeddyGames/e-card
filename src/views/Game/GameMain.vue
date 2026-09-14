@@ -7,7 +7,7 @@ import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import SettlePanel from '@/views/Component/SettlePanel.vue';
 import type { CardItem, LogItem, GameStatus } from '@/views/Type'
-import { getRandomNumber, deepClone, nextRounds, aiChooseCard, recordPlayerPlay, recordComputerPlay, getAiThinkDelay, settleBeans, checkBankruptcy, playSound, initRounds } from '@/utils'
+import { deepClone, nextRounds, aiChooseCard, recordPlayerPlay, recordComputerPlay, getAiThinkDelay, settleBeans, checkBankruptcy, playSound, initRounds } from '@/utils'
 
 // 全局信息变量
 const state = useGlobalState()

@@ -23,16 +23,20 @@
 - [x] After selecting a card from the hand, the `check` button is displayed
 - [x] After clicking the `check` button, the card is removed from the hand and added to the check area
 - [x] Cards implement `3D` effects, flip after `check` to display in the check area, flip to the front for comparison after `2` seconds, and then move to the discard area after comparison
-- [ ] Animation effects for cards moving from the hand area to the check area, and from the check area to the discard area across components
+- [x] Animation effects for cards moving from the hand area to the check area, and from the check area to the discard area across components
 - [x] If the King card or Slave card is played, the game ends
 - [x] Game information is settled, and the next round of the game begins
-- [ ] After the player has played `5` rounds, the computer will analyze the player's card-playing strategy based on the data from the previous `5` rounds and each subsequent round to decide its own card-playing strategy
+- [x] After the player has played `5` rounds, the computer will analyze the player's card-playing strategy based on the data from the previous `5` rounds and each subsequent round to decide its own card-playing strategy
 - [x] Game ends, display game information, and allow for a new game to start
 - [x] Menu adds a game rules and credits button, with corresponding content
 - [x] Support for multiple languages
-- [ ] `web` end adaptation
-- [ ] Add appropriate background music and playing music
-- [ ] You can choose the game difficulty, the default is medium
+- [x] `web` end adaptation
+- [x] Add appropriate background music and playing music
+- [x] You can choose the game difficulty, the default is medium (Easy / Medium / Hard / Hell)
+- [x] Game beans (chips) system - bet amount selection at game start, bankruptcy ends the game early
+- [x] Enhanced AI - computer analyzes current situation and player's card-playing habits based on difficulty
+- [x] Optimize animations and battle impact effects
+- [x] Beautiful settlement interface with beans, scores, and stats
 
 ## game preview
 

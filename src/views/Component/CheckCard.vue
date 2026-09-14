@@ -4,7 +4,7 @@ import type { CardItem } from '@/views/Type'
 
 const { t } = useI18n()
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     cardInfo?: CardItem[] | null
     isRevealed?: boolean
