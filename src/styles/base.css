@@ -40,6 +40,67 @@ body {
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+/* 暗模式 - 径向渐变背景（主菜单/说明/制作人页面） */
+.dark [style*="radial-gradient(ellipse at center"] {
+  background: radial-gradient(ellipse at center, #2c2c2e 0%, #1d1d1f 100%) !important;
+}
+
+/* 暗模式 - 白色系线性渐变背景（结算面板等） */
+.dark [style*="linear-gradient"][style*="rgba(255,255,255"],
+.dark [style*="linear-gradient"][style*="rgba(245,245,247"] {
+  background: linear-gradient(135deg, rgba(44, 44, 46, 0.98) 0%, rgba(29, 29, 31, 0.98) 100%) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 暗模式 - #f5f5f7 浅灰背景 */
+.dark [style*="rgba(245,245,247"] {
+  background-color: rgba(44, 44, 46, 0.95) !important;
+}
+
+/* 暗模式 - 游戏背景图添加暗色遮罩 */
+.dark [style*="backgroundImage"] {
+  position: relative;
+}
+
+.dark [style*="backgroundImage"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark [style*="backgroundImage"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 暗模式 - 灰色背景区域（游戏主界面的 bg-gray:50 / bg-gray:100） */
+.dark .bg-gray\\:50,
+.dark .bg-gray\\:100 {
+  background-color: rgba(44, 44, 46, 0.6) !important;
+}
+
+/* 暗模式 - 游戏日志行背景 */
+.dark .bg-green-50 {
+  background-color: rgba(52, 199, 89, 0.15) !important;
+}
+
+.dark .bg-red-50 {
+  background-color: rgba(255, 59, 48, 0.15) !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: rgba(142, 142, 147, 0.15) !important;
+}
+
+/* 暗模式 - 边框颜色 */
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
 /* 暗模式 - 文字颜色 */
 .dark .text-gray-700,
 .dark .text-gray-800,

@@ -170,7 +170,7 @@ defineExpose({
 
 <template>
   <!-- 主菜单 -->
-  <div v-if="show" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="show" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <!-- 背景装饰 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -308,13 +308,13 @@ defineExpose({
   </div>
 
   <!-- 游戏说明 -->
-  <div v-if="showGameExplain" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="showGameExplain" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <GameExplain @close="closeGameExplain" />
   </div>
 
   <!-- 制作人名单 -->
-  <div v-if="showGameProducer" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="showGameProducer" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <ProducerList @close="closeProducerList" />
   </div>
