@@ -52,7 +52,7 @@ watch(
 <template>
   <div class="w-full h-full p-4 overflow-hidden flex flex-col gap-3">
     <!-- 顶部信息栏 -->
-    <div class="flex items-center justify-between px-3 py-2 rounded-xl"
+    <div class="flex items-center justify-between px-3 py-2 rounded-md"
       style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
       <div class="flex items-center gap-2">
         <span class="text-blue-500 text-sm font-bold">⚔️ {{ difficultyName }}</span>
@@ -64,7 +64,7 @@ watch(
     </div>
 
     <!-- 比分面板 -->
-    <div class="flex items-center justify-between px-4 py-3 rounded-xl"
+    <div class="flex items-center justify-between px-4 py-3 rounded-md"
       style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
       <div class="text-center">
         <div class="text-blue-500 text-xs">{{ t('info.player') }}</div>
@@ -78,7 +78,7 @@ watch(
     </div>
 
     <!-- 对局日志 -->
-    <div class="flex-1 overflow-y-auto rounded-xl"
+    <div class="flex-1 overflow-y-auto rounded-md"
       style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.06);">
       <table class="w-full text-sm">
         <thead>

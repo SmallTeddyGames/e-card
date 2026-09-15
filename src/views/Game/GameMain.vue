@@ -261,7 +261,7 @@ watch(
 </script>
 
 <template>
-  <div :class="['h-full w-full', screenShake && 'animate-screen-shake']">
+  <div :class="['h-full w-full relative', screenShake && 'animate-screen-shake']">
     <GameMenu ref="showGameMenuRef" />
     <SettlePanel
       :visible="showSettle"
@@ -270,9 +270,9 @@ watch(
     />
     <transition>
       <!-- 手机端竖屏：纵向单列布局 -->
-      <div h-full w-screen grid="~" :class="state.isShowGameInfo ? 'grid-cols-1 md:grid-cols-5' : 'grid-cols-1'">
+      <div h-full w-full grid="~" :class="state.isShowGameInfo ? 'grid-cols-1 md:grid-cols-5' : 'grid-cols-1'">
         <!-- 主游戏区域 -->
-        <div grid="~ rows-4" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full>
+        <div grid="~ rows-[repeat(4,minmax(0,1fr))]" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full>
           <div w-full bg-gray:50 flex-center>
             <!-- 电脑手牌区域 -->
             <ComputedCard />
@@ -304,7 +304,7 @@ watch(
         </div>
 
         <!-- 信息+弃牌区域：手机端隐藏，桌面端显示 -->
-        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-4" col-span-2 h-full w-full>
+        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-[repeat(4,minmax(0,1fr))]" col-span-2 h-full w-full>
           <div h-full w-full bg-gray:100 flex-center row-span-3>
             <!-- 电脑对局信息区域 -->
             <GameInformation />

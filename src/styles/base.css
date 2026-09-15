@@ -1,11 +1,19 @@
 html,
 body {
-  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   --uno: bg-base font-ping;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
   background-color: #f5f5f7;
   color: #1d1d1f;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
 }
 
 html {
@@ -44,9 +52,9 @@ body {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 16px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-face-back {
@@ -270,22 +278,14 @@ body {
   animation: number-pop 0.4s ease-out;
 }
 
-/* 滚动条美化 */
+/* 隐藏所有滚动条但保留滚动功能 */
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.35);
+  display: none;
+  width: 0;
+  height: 0;
 }

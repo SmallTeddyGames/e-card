@@ -15,7 +15,7 @@ const emits = defineEmits(["close"]);
 
 <template>
   <div box-border w-full h-full flex-center p-4>
-    <div p-4 sm:p-6 box-border flex="~ col items-center gap-4 sm:gap-6" rounded-2xl
+    <div p-4 sm:p-6 box-border flex="~ col items-center gap-4 sm:gap-6" rounded-lg
       class="w-full max-w-90vw sm:max-w-600px"
       style="background: rgba(255,255,255,0.98); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.12);">
       <h3 class="gold-text text-2xl sm:text-3xl font-black">{{ title }}</h3>

@@ -31,11 +31,11 @@ withDefaults(
     </div>
     <!-- 胜利光效 -->
     <div v-if="isWinner" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-      <div class="w-160px h-220px rounded-xl animate-win-glow"></div>
+      <div class="w-160px h-220px rounded-sm animate-win-glow"></div>
     </div>
     <!-- 失败抖动 -->
     <div v-if="isLoser" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-      <div class="w-160px h-220px rounded-xl animate-lose-shake"
+      <div class="w-160px h-220px rounded-sm animate-lose-shake"
         style="background: radial-gradient(circle, rgba(255,59,48,0.3) 0%, rgba(255,59,48,0) 70%);"></div>
     </div>
     <Card
@@ -46,7 +46,7 @@ withDefaults(
       :is-loser="isLoser"
     />
   </div>
-  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-xl
+  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-sm
     class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
     {{ t('game.checkArea') }}
   </div>

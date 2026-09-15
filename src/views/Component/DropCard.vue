@@ -10,7 +10,7 @@ const state = useGlobalState()
     <div
       v-for="(cardInfo, index) in state.dropedCardItems"
       :key="`${cardInfo.sort}-${index}`"
-      class="card-size cursor-pointer absolute left-0 top-0 rounded-lg shadow-lg animate-card-deal"
+      class="card-size cursor-pointer absolute left-0 top-0 rounded-sm shadow-lg animate-card-deal"
       :style="{
         transform: `rotate(${(index % 2 === 0 ? 1 : -1) * getRandomNumber(30)}deg)`,
         zIndex: index,
@@ -19,7 +19,7 @@ const state = useGlobalState()
     >
       <img
         card-size
-        class="rounded-lg"
+        class="rounded-sm"
         :alt="cardInfo.role"
         :src="getAssetsFile(cardInfo.img)"
       />
@@ -29,7 +29,7 @@ const state = useGlobalState()
       {{ state.dropedCardItems.length }}
     </div>
   </div>
-  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-xl
+  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-sm
     class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
     {{ t('game.dropArea') }}
   </div>

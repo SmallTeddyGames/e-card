@@ -52,8 +52,8 @@ const sizeClass = computed(() => {
         class="card-face"
         :style="{ backgroundImage: `url(${getAssetsFile(cardInfo.img)})`, backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
-        <div v-if="isWinner" class="absolute inset-0 bg-green-500-30 rounded-xl"></div>
-        <div v-if="isLoser" class="absolute inset-0 bg-red-500-30 rounded-xl"></div>
+        <div v-if="isWinner" class="absolute inset-0 bg-green-500-30 rounded-sm"></div>
+        <div v-if="isLoser" class="absolute inset-0 bg-red-500-30 rounded-sm"></div>
       </div>
       <!-- 背面 -->
       <div

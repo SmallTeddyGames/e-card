@@ -59,7 +59,7 @@ const bankruptReason = computed(() => {
       </div>
 
       <!-- 主结算面板 -->
-      <div class="relative w-600px max-w-90vw rounded-3xl overflow-hidden animate-bounce-in"
+      <div class="relative w-600px max-w-90vw rounded-lg overflow-hidden animate-bounce-in"
         style="background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(245,245,247,0.98) 100%); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
         <!-- 顶部装饰条 -->
         <div class="h-2" style="background: linear-gradient(90deg, #0071e3, #2997ff, #0071e3);"></div>
@@ -68,7 +68,7 @@ const bankruptReason = computed(() => {
           <!-- 结果标题 -->
           <div class="text-center mb-6 sm:mb-8">
             <div
-              class="text-4xl sm:text-6xl font-black mb-4 animate-pulse-gold inline-block px-4 sm:px-8 py-2 rounded-2xl"
+              class="text-4xl sm:text-6xl font-black mb-4 animate-pulse-gold inline-block px-4 sm:px-8 py-2 rounded-md"
               :class="gameResult === 'win' ? 'gold-text' : 'text-red-500'"
               :style="gameResult === 'lose' ? { textShadow: '0 2px 20px rgba(255,100,100,0.3)' } : {}"
             >
@@ -108,7 +108,7 @@ const bankruptReason = computed(() => {
           </div>
 
           <!-- 游戏豆结算 -->
-          <div class="rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6"
+          <div class="rounded-md p-4 sm:p-6 mb-4 sm:mb-6"
             style="background: rgba(0,113,227,0.06); border: 1px solid rgba(0,113,227,0.15);">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2 sm:gap-3">
@@ -130,15 +130,15 @@ const bankruptReason = computed(() => {
 
           <!-- 对局统计 -->
           <div class="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
-            <div class="text-center p-2 sm:p-4 rounded-xl" style="background: rgba(52,199,89,0.08); border: 1px solid rgba(52,199,89,0.15);">
+            <div class="text-center p-2 sm:p-4 rounded-md" style="background: rgba(52,199,89,0.08); border: 1px solid rgba(52,199,89,0.15);">
               <div class="text-green-500 text-xl sm:text-3xl font-black">{{ state.totalWins }}</div>
               <div class="text-gray-500 text-xs sm:text-sm mt-1">{{ t('settle.totalWins') }}</div>
             </div>
-            <div class="text-center p-2 sm:p-4 rounded-xl" style="background: rgba(255,59,48,0.08); border: 1px solid rgba(255,59,48,0.15);">
+            <div class="text-center p-2 sm:p-4 rounded-md" style="background: rgba(255,59,48,0.08); border: 1px solid rgba(255,59,48,0.15);">
               <div class="text-red-500 text-xl sm:text-3xl font-black">{{ state.totalLosses }}</div>
               <div class="text-gray-500 text-xs sm:text-sm mt-1">{{ t('settle.totalLosses') }}</div>
             </div>
-            <div class="text-center p-2 sm:p-4 rounded-xl" style="background: rgba(0,113,227,0.08); border: 1px solid rgba(0,113,227,0.15);">
+            <div class="text-center p-2 sm:p-4 rounded-md" style="background: rgba(0,113,227,0.08); border: 1px solid rgba(0,113,227,0.15);">
               <div class="gold-text text-xl sm:text-3xl font-black">{{ state.rounds - 1 }}</div>
               <div class="text-gray-500 text-xs sm:text-sm mt-1">{{ t('settle.roundsPlayed') }}</div>
             </div>
@@ -147,14 +147,14 @@ const bankruptReason = computed(() => {
           <!-- 操作按钮 -->
           <div class="flex gap-2 sm:gap-4">
             <button
-              class="flex-1 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-gray-700 transition-all duration-300 hover:scale-105 active:scale-95"
+              class="flex-1 py-3 sm:py-4 rounded-md font-bold text-base sm:text-lg text-gray-700 transition-all duration-300 hover:scale-105 active:scale-95"
               style="background: rgba(255,255,255,0.9); border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 2px 8px rgba(0,0,0,0.06);"
               @click="emits('back')"
             >
               {{ t('settle.backToMenu') }}
             </button>
             <button
-              class="flex-1 py-3 sm:py-4 rounded-xl font-bold text-base sm:text-lg text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
+              class="flex-1 py-3 sm:py-4 rounded-md font-bold text-base sm:text-lg text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
               style="background: linear-gradient(135deg, #0071e3, #0051a8);"
               @click="emits('restart')"
             >

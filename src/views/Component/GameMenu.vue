@@ -170,7 +170,7 @@ defineExpose({
 
 <template>
   <!-- 主菜单 -->
-  <div v-if="show" class="flex flex-col items-center justify-center h-full w-screen relative"
+  <div v-if="show" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <!-- 背景装饰 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -189,11 +189,11 @@ defineExpose({
 
     <!-- 对局信息展示 -->
     <div v-if="showGameInfo" class="flex flex-col items-center gap-4 sm:gap-8 animate-scale-in z-10 px-4">
-      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-2xl text-base sm:text-2xl font-bold"
+      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-md text-base sm:text-2xl font-bold"
         style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.06); color: #1d1d1f;">
         {{ $t('game.no') }} <span class="gold-text">{{ info?.rounds }}</span> {{ $t('game.round') }}
       </div>
-      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-2xl text-base sm:text-2xl font-bold"
+      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-md text-base sm:text-2xl font-bold"
         style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.06); color: #1d1d1f;">
         {{ $t('game.role') }}：<span class="text-blue-500">{{ t(`game.${name}`) }}</span>
       </div>
@@ -201,7 +201,7 @@ defineExpose({
     </div>
 
     <!-- 主菜单界面 -->
-    <div v-else class="flex flex-col items-center gap-4 sm:gap-6 z-10 max-w-90vw px-4">
+    <div v-else class="flex flex-col items-center gap-3 sm:gap-6 z-10 max-w-90vw px-4">
       <!-- 游戏标题 -->
       <div class="text-center mb-2">
         <h1 class="text-4xl sm:text-6xl font-black gold-text mb-2" style="text-shadow: 0 2px 20px rgba(0,113,227,0.2);">
@@ -217,7 +217,7 @@ defineExpose({
           <button
             v-for="diff in difficulties"
             :key="diff.key"
-            class="py-2 sm:py-3 px-1 sm:px-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-2 sm:py-3 px-1 sm:px-2 rounded-md font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedDifficulty === diff.key
                 ? `bg-gradient-to-b ${diff.color} ring-2 ring-blue-400 scale-105 text-white`
@@ -243,7 +243,7 @@ defineExpose({
           <button
             v-for="bet in betOptions"
             :key="bet"
-            class="py-2 sm:py-3 px-1 sm:px-2 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-2 sm:py-3 px-1 sm:px-2 rounded-md font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedBet === bet
                 ? 'bg-gradient-to-b from-blue-500 to-blue-700 text-white ring-2 ring-blue-400 scale-105'
@@ -260,7 +260,7 @@ defineExpose({
       <!-- 操作按钮 -->
       <div class="flex flex-col gap-2 sm:gap-3 w-full max-w-300px mt-2">
         <button
-          class="py-3 sm:py-4 rounded-xl font-bold text-base sm:text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
+          class="py-3 sm:py-4 rounded-md font-bold text-base sm:text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
           style="background: linear-gradient(135deg, #0071e3, #0051a8);"
           @click="startGame"
         >
@@ -268,7 +268,7 @@ defineExpose({
         </button>
         <button
           v-if="state.gameState !== 'init'"
-          class="py-2 sm:py-3 rounded-xl font-bold text-gray-700 text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
+          class="py-2 sm:py-3 rounded-md font-bold text-gray-700 text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
           style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
           @click="restartGame"
         >
@@ -276,14 +276,14 @@ defineExpose({
         </button>
         <div class="flex gap-2 sm:gap-3">
           <button
-            class="flex-1 py-2 sm:py-3 rounded-xl font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-2 sm:py-3 rounded-md font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
             @click="openGameExplain"
           >
             {{ t('menu.explain') }}
           </button>
           <button
-            class="flex-1 py-2 sm:py-3 rounded-xl font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-2 sm:py-3 rounded-md font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
             @click="openGameProducer"
           >
@@ -308,13 +308,13 @@ defineExpose({
   </div>
 
   <!-- 游戏说明 -->
-  <div v-if="showGameExplain" class="flex flex-col items-center justify-center h-full w-screen relative"
+  <div v-if="showGameExplain" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <GameExplain @close="closeGameExplain" />
   </div>
 
   <!-- 制作人名单 -->
-  <div v-if="showGameProducer" class="flex flex-col items-center justify-center h-full w-screen relative"
+  <div v-if="showGameProducer" class="flex flex-col items-center justify-start pt-8 pb-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <ProducerList @close="closeProducerList" />
   </div>
