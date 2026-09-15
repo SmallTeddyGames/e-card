@@ -148,22 +148,6 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 | unocss | 原子化样式 | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
 | grid | 网格布局 | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
 
-## 本地开发
-
-```bash
-# 安装依赖
-pnpm install
-
-# 启动开发服务器
-pnpm dev
-
-# 构建生产版本
-pnpm build
-
-# 预览生产构建
-pnpm preview
-```
-
 ## 部署
 
 项目使用 GitHub Pages 部署，访问地址：[https://smallteddygames.github.io/e-card/](https://smallteddygames.github.io/e-card/)
