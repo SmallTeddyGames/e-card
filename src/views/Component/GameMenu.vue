@@ -188,36 +188,36 @@ defineExpose({
     </div>
 
     <!-- 对局信息展示 -->
-    <div v-if="showGameInfo" class="flex flex-col items-center gap-8 animate-scale-in z-10">
-      <div class="px-8 py-4 rounded-2xl text-2xl font-bold"
+    <div v-if="showGameInfo" class="flex flex-col items-center gap-4 sm:gap-8 animate-scale-in z-10 px-4">
+      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-2xl text-base sm:text-2xl font-bold"
         style="background: rgba(0,0,0,0.6); border: 2px solid rgba(255,215,0,0.3);">
         {{ $t('game.no') }} <span class="gold-text">{{ info?.rounds }}</span> {{ $t('game.round') }}
       </div>
-      <div class="px-8 py-4 rounded-2xl text-2xl font-bold"
+      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-2xl text-base sm:text-2xl font-bold"
         style="background: rgba(0,0,0,0.6); border: 2px solid rgba(255,215,0,0.3);">
         {{ $t('game.role') }}：<span class="text-red-400">{{ t(`game.${name}`) }}</span>
       </div>
-      <div class="text-white-60 text-sm animate-pulse">{{ t('game.prepare') }}</div>
+      <div class="text-white-60 text-xs sm:text-sm animate-pulse">{{ t('game.prepare') }}</div>
     </div>
 
     <!-- 主菜单界面 -->
-    <div v-else class="flex flex-col items-center gap-6 z-10 max-w-90vw">
+    <div v-else class="flex flex-col items-center gap-4 sm:gap-6 z-10 max-w-90vw px-4">
       <!-- 游戏标题 -->
       <div class="text-center mb-2">
-        <h1 class="text-6xl font-black gold-text mb-2" style="text-shadow: 0 0 30px rgba(255,215,0,0.5);">
+        <h1 class="text-4xl sm:text-6xl font-black gold-text mb-2" style="text-shadow: 0 0 30px rgba(255,215,0,0.5);">
           E-CARD
         </h1>
-        <p class="text-white-60 text-sm">{{ t('menu.subtitle') }}</p>
+        <p class="text-white-60 text-xs sm:text-sm">{{ t('menu.subtitle') }}</p>
       </div>
 
       <!-- 难度选择 -->
       <div class="w-full max-w-500px">
-        <div class="text-white-80 text-sm font-bold mb-2 text-center">{{ t('menu.difficulty') }}</div>
-        <div class="grid grid-cols-4 gap-2">
+        <div class="text-white-80 text-xs sm:text-sm font-bold mb-2 text-center">{{ t('menu.difficulty') }}</div>
+        <div class="grid grid-cols-4 gap-1 sm:gap-2">
           <button
             v-for="diff in difficulties"
             :key="diff.key"
-            class="py-3 px-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-2 sm:py-3 px-1 sm:px-2 rounded-xl font-bold text-white text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedDifficulty === diff.key
                 ? `bg-gradient-to-b ${diff.color} ring-2 ring-gold scale-105`
@@ -225,7 +225,7 @@ defineExpose({
             ]"
             @click="selectDifficulty(diff.key)"
           >
-            <div class="text-xl mb-1">{{ diff.icon }}</div>
+            <div class="text-base sm:text-xl mb-1">{{ diff.icon }}</div>
             <div>{{ t(`difficulty.${diff.label}`) }}</div>
           </button>
         </div>
@@ -233,16 +233,16 @@ defineExpose({
 
       <!-- 押注选择 -->
       <div class="w-full max-w-500px">
-        <div class="text-white-80 text-sm font-bold mb-2 text-center flex items-center justify-center gap-2">
+        <div class="text-white-80 text-xs sm:text-sm font-bold mb-2 text-center flex items-center justify-center gap-2">
           <span>🫘</span>
           <span>{{ t('menu.betAmount') }}</span>
-          <span class="gold-text font-black text-lg">{{ selectedBet }}</span>
+          <span class="gold-text font-black text-base sm:text-lg">{{ selectedBet }}</span>
         </div>
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid grid-cols-4 gap-1 sm:gap-2">
           <button
             v-for="bet in betOptions"
             :key="bet"
-            class="py-3 px-2 rounded-xl font-bold text-white text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-2 sm:py-3 px-1 sm:px-2 rounded-xl font-bold text-white text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedBet === bet
                 ? 'bg-gradient-to-b from-gold to-amber-700 text-black ring-2 ring-gold scale-105'
@@ -256,9 +256,9 @@ defineExpose({
       </div>
 
       <!-- 操作按钮 -->
-      <div class="flex flex-col gap-3 w-full max-w-300px mt-2">
+      <div class="flex flex-col gap-2 sm:gap-3 w-full max-w-300px mt-2">
         <button
-          class="py-4 rounded-xl font-bold text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
+          class="py-3 sm:py-4 rounded-xl font-bold text-base sm:text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
           style="background: linear-gradient(135deg, #FFD700, #B8860B);"
           @click="startGame"
         >
@@ -266,22 +266,22 @@ defineExpose({
         </button>
         <button
           v-if="state.gameState !== 'init'"
-          class="py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+          class="py-2 sm:py-3 rounded-xl font-bold text-white text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
           style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
           @click="restartGame"
         >
           {{ t('menu.reStart') }}
         </button>
-        <div class="flex gap-3">
+        <div class="flex gap-2 sm:gap-3">
           <button
-            class="flex-1 py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-2 sm:py-3 rounded-xl font-bold text-white text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
             @click="openGameExplain"
           >
             {{ t('menu.explain') }}
           </button>
           <button
-            class="flex-1 py-3 rounded-xl font-bold text-white transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-2 sm:py-3 rounded-xl font-bold text-white text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);"
             @click="openGameProducer"
           >
@@ -291,15 +291,15 @@ defineExpose({
       </div>
 
       <!-- 卡牌展示 -->
-      <div class="flex items-center gap-6 mt-4">
+      <div class="flex items-center gap-2 sm:gap-6 mt-2 sm:mt-4">
         <div class="animate-float" style="animation-delay: 0s;">
-          <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation />
+          <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation size="sm" />
         </div>
         <div class="animate-float" style="animation-delay: 0.5s;">
-          <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation />
+          <Card :card-info="{ role: 'citizen', img: 'citizen.jpg' }" is-animation size="sm" />
         </div>
         <div class="animate-float" style="animation-delay: 1s;">
-          <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation />
+          <Card :card-info="{ role: 'slave', img: 'slave.jpg' }" is-animation size="sm" />
         </div>
       </div>
     </div>

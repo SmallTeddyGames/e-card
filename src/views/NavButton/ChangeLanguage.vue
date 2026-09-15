@@ -27,8 +27,8 @@ const toggleLanguage = () => {
 </script>
 
 <template>
-  <button rounded p2 title="GitHub" hover="bg-active" @click="toggleLanguage">
-    <div i-carbon-translate text-2xl />
+  <button rounded p1 sm:p2 title="GitHub" hover="bg-active" @click="toggleLanguage">
+    <div i-carbon-translate text-xl sm:text-2xl />
   </button>
 </template>
 

@@ -27,9 +27,9 @@ const emits = defineEmits(['card-click'])
 
 const sizeClass = computed(() => {
   switch (props.size) {
-    case 'sm': return 'w-80px h-112px'
-    case 'lg': return 'w-160px h-220px'
-    default: return 'w-120px h-164px'
+    case 'sm': return 'w-60px h-84px sm:w-80px sm:h-112px'
+    case 'lg': return 'w-100px h-140px sm:w-160px sm:h-220px'
+    default: return 'w-80px h-110px sm:w-120px sm:h-164px'
   }
 })
 </script>

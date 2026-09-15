@@ -70,12 +70,6 @@
 
 失败结算面板，与胜利结算对称展示，记录本局所有对局详情。
 
-### 制作人员
-
-![制作人员](./gameImg/producer.png)
-
-项目贡献者列表。
-
 ## 游戏玩法
 
 ### 基本规则
@@ -131,19 +125,6 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 - **破产判定**：豆子归零即视为破产，游戏结束
 - **胜利条件**：使对方破产即可获得最终胜利
 
-## 技术栈
-
-| 技术 | 说明 |
-| --- | --- |
-| Vue 3 | 渐进式 JavaScript 框架，组合式 API |
-| TypeScript | 类型安全的 JavaScript 超集 |
-| Vite | 下一代前端构建工具 |
-| UnoCSS | 即时按需原子化 CSS 引擎 |
-| VueUse | Vue 组合式工具函数库 |
-| Vue Router | 官方路由管理器 |
-| Vue I18n | 国际化多语言插件 |
-| Iconify | 图标库（通过 carbon 图标集） |
-
 ## 功能特性
 
 - 四种 AI 难度等级，智能分析玩家出牌习惯
@@ -156,7 +137,7 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 - 音效系统（发牌、抽牌、洗牌音效）
 - 游戏对局日志记录
 - 状态持久化（localStorage）
-- 响应式布局，支持移动端
+- 响应式布局，支持移动端竖屏
 
 ## 开发工具
 
@@ -166,25 +147,6 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 | vueuse | 工具函数 | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
 | unocss | 原子化样式 | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
 | grid | 网格布局 | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
-
-## 项目结构
-
-```
-src/
-├── assets/          # 静态资源（背景图、卡牌图、音效）
-├── i18n/            # 多语言配置（中/英/日/韩）
-├── router/          # 路由配置
-├── store/           # 全局状态管理（VueUse + persisted）
-├── styles/          # 全局样式
-├── utils/           # 工具函数（AI 决策、游戏逻辑、音效）
-└── views/
-    ├── Component/   # 游戏组件（卡牌、菜单、结算面板等）
-    ├── Game/        # 游戏主页面
-    ├── Layout/      # 布局组件
-    ├── NavButton/   # 导航按钮组件
-    ├── Others/      # 其他页面（404）
-    └── Type/        # TypeScript 类型定义
-```
 
 ## 本地开发
 
@@ -209,3 +171,17 @@ pnpm preview
 ## License
 
 [MIT](./LICENSE)
+
+## 制作人员
+
+![制作人员](./gameImg/producer.png)
+
+感谢以下贡献者参与本项目开发：
+
+- SmallTeddy
+- wh131462
+- remember-study
+- cangbaoderen
+- Yang-mingLei
+- Medalc
+- qingjiuge

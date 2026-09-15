@@ -12,7 +12,7 @@ export default defineConfig({
     "border-base": "border-gray-200 dark:border-gray-500",
     "bg-active": "bg-gray:10",
     "flex-center": "flex items-center justify-center",
-    "card-size": "w-120px h-164px",
+    "card-size": "w-80px h-110px sm:w-120px sm:h-164px",
     "bg-Mask": "bg-white-80 dark:bg-black-30",
     "game-card": "relative rounded-xl shadow-lg overflow-hidden transition-all duration-300",
     "game-btn": "px-6 py-3 rounded-xl font-bold text-white transition-all duration-300 cursor-pointer border-0 hover:scale-105 active:scale-95",

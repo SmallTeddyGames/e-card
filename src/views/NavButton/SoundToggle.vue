@@ -8,9 +8,9 @@ const toggle = () => {
 </script>
 
 <template>
-  <button rounded p-2 hover="bg-active" @click="toggle" :title="state.soundEnabled ? 'Sound On' : 'Sound Off'">
+  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggle" :title="state.soundEnabled ? 'Sound On' : 'Sound Off'">
     <div
       :class="state.soundEnabled ? 'i-material-symbols:volume-up-rounded' : 'i-material-symbols:volume-off-rounded'"
-      text-2xl />
+      text-xl sm:text-2xl />
   </button>
 </template>

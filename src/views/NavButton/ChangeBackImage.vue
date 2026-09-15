@@ -14,7 +14,7 @@ const toggleBackImage = (): void => {
 </script>
 
 <template>
-  <button rounded p-2 hover="bg-active" @click="toggleBackImage">
-    <div i-humbleicons:exchange-vertical text-2xl />
+  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggleBackImage">
+    <div i-humbleicons:exchange-vertical text-xl sm:text-2xl />
   </button>
 </template>

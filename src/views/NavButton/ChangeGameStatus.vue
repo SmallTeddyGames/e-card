@@ -7,9 +7,9 @@ const pauseClick = (): void => {
 </script>
 
 <template>
-  <button rounded p-2 hover="bg-active" @click="pauseClick">
+  <button rounded p-1 sm:p-2 hover="bg-active" @click="pauseClick">
     <div
       :class="{ 'i-material-symbols:play-circle-rounded': state.gameState === 'pause', 'i-material-symbols:pause-circle': state.gameState === 'start' }"
-      text-2xl />
+      text-xl sm:text-2xl />
   </button>
 </template>

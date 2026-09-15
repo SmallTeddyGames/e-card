@@ -10,7 +10,7 @@ const toggleMode = (): void => {
 </script>
 
 <template>
-  <button rounded p-2 hover="bg-active" @click="toggleMode">
-    <div i-ph-sun-dim-duotone dark:i-ph-moon-stars-duotone text-2xl />
+  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggleMode">
+    <div i-ph-sun-dim-duotone dark:i-ph-moon-stars-duotone text-xl sm:text-2xl />
   </button>
 </template>

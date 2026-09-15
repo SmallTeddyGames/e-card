@@ -269,8 +269,10 @@ watch(
       @back="handleBack"
     />
     <transition>
-      <div h-full w-screen grid="~" :class="[state.isShowGameInfo ? 'grid-cols-5' : 'grid-cols-1']">
-        <div grid="~ rows-4" col-span-3 h-full w-full>
+      <!-- 手机端竖屏：纵向单列布局 -->
+      <div h-full w-screen grid="~" :class="state.isShowGameInfo ? 'grid-cols-1 md:grid-cols-5' : 'grid-cols-1'">
+        <!-- 主游戏区域 -->
+        <div grid="~ rows-4" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full>
           <div w-full bg-gray:50 flex-center>
             <!-- 电脑手牌区域 -->
             <ComputedCard />
@@ -301,7 +303,8 @@ watch(
           </div>
         </div>
 
-        <div v-show="state.isShowGameInfo" grid="~ rows-4" col-span-2 h-full w-full>
+        <!-- 信息+弃牌区域：手机端隐藏，桌面端显示 -->
+        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-4" col-span-2 h-full w-full>
           <div h-full w-full bg-gray:80 flex-center row-span-3>
             <!-- 电脑对局信息区域 -->
             <GameInformation />
