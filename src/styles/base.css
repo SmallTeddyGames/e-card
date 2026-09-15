@@ -77,8 +77,8 @@ body {
 }
 
 /* 暗模式 - 灰色背景区域（游戏主界面的 bg-gray:50 / bg-gray:100） */
-.dark .bg-gray\\:50,
-.dark .bg-gray\\:100 {
+.dark .bg-gray\:50,
+.dark .bg-gray\:100 {
   background-color: rgba(44, 44, 46, 0.6) !important;
 }
 
