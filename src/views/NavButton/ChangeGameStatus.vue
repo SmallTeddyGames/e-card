@@ -1,15 +1,6 @@
-<script lang='ts' setup>
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
 const state = useGlobalState()
-
-const pauseClick = (): void => {
-  state.value.gameState = 'pause'
-}
+const toggle = () => { state.value.gameState = state.value.gameState === 'pause' ? 'start' : 'pause' }
 </script>
-
-<template>
-  <button rounded p-1 sm:p-2 hover="bg-active" @click="pauseClick">
-    <div
-      :class="{ 'i-material-symbols:play-circle-rounded': state.gameState === 'pause', 'i-material-symbols:pause-circle': state.gameState === 'start' }"
-      text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button v-if="['start', 'pause'].includes(state.gameState)" class="icon-button" :aria-label="$t(state.gameState === 'pause' ? 'menu.continue' : 'ui.pause')" :title="$t(state.gameState === 'pause' ? 'menu.continue' : 'ui.pause')" @click="toggle"><GameIcon :name="state.gameState === 'pause' ? 'play' : 'pause'" /></button></template>

@@ -1,48 +1,25 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import Card from './Card.vue'
-import { throttle, playSound } from '@/utils';
 import type { CardItem } from '@/views/Type'
-
+import { playSound } from '@/utils'
 const state = useGlobalState()
-const emits = defineEmits(['card-check'])
-
-// 选中的卡牌索引
-const selectedIndex = ref<number | null>(null)
-
-/**
- * 检查卡牌点击
- * @param cardInfo 卡牌信息
- */
-const cardCheckClick = (cardInfo: CardItem): void => {
-  // 三秒的节流 防止多次点击
-  throttle(() => {
-    playSound('flip', 0.4)
-    cardInfo.isBack = true
-    setTimeout(() => {
-      emits('card-check', cardInfo)
-    }, 1000)
-  }, 4500)
+const props = defineProps<{ disabled: boolean }>()
+const pending = ref(false)
+watch(() => props.disabled, value => { if (!value) pending.value = false })
+const slots = computed(() => Array.from({ length: 5 }, (_, index) => state.value.playerCardItems.find(card => card.sort === index + 1)))
+const emits = defineEmits<{ (event: 'card-check', card: CardItem): void }>()
+const cardCheckClick = (card: CardItem) => {
+  if (props.disabled || pending.value) return
+  pending.value = true
+  playSound('flip', 0.4)
+  emits('card-check', card)
 }
-
-defineExpose({
-  cardCheckClick
-})
 </script>
-
 <template>
-  <div class="grid grid-cols-5 gap-1 sm:gap-3 px-2">
-    <div
-      v-for="(cardItem, index) in state.playerCardItems"
-      :key="cardItem.sort"
-      class="card-size relative cursor-pointer transition-all duration-300 hover:-translate-y-3 sm:hover:-translate-y-5 animate-card-deal"
-      :style="{ animationDelay: `${index * 0.1}s` }"
-      :class="[selectedIndex === index ? '-translate-y-3 sm:-translate-y-5 scale-110' : '']"
-    >
-      <Card
-        :card-info="cardItem"
-        :is-back="cardItem.isBack"
-        @card-click="(card) => { selectedIndex = index; cardCheckClick(card) }"
-      />
+  <div class="hand">
+    <div v-for="(card, index) in slots" :key="index" class="hand-slot">
+      <Card v-if="card" :card-info="card" interactive :disabled="disabled || pending" :is-back="card.isBack" @card-click="cardCheckClick" />
+      <span v-else class="used-slot" aria-hidden="true" />
     </div>
   </div>
 </template>

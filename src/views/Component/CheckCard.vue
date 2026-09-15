@@ -1,53 +1,12 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import Card from './Card.vue'
+import GameIcon from './GameIcon.vue'
 import type { CardItem } from '@/views/Type'
-
-const { t } = useI18n()
-
-withDefaults(
-  defineProps<{
-    cardInfo?: CardItem[] | null
-    isRevealed?: boolean
-    isImpact?: boolean
-    isWinner?: boolean
-    isLoser?: boolean
-  }>(),
-  {
-    cardInfo: () => null,
-    isRevealed: () => false,
-    isImpact: () => false,
-    isWinner: () => false,
-    isLoser: () => false
-  }
-)
+defineProps<{ cardInfo?: CardItem[]; isRevealed?: boolean; isImpact?: boolean; isWinner?: boolean; isLoser?: boolean }>()
 </script>
-
 <template>
-  <div v-if="cardInfo && cardInfo[0]" class="relative">
-    <!-- 对战光效 -->
-    <div v-if="isImpact" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-      <div class="w-200px h-200px rounded-full animate-battle-impact"
-        style="background: radial-gradient(circle, rgba(0,113,227,0.5) 0%, rgba(0,113,227,0) 70%);"></div>
-    </div>
-    <!-- 胜利光效 -->
-    <div v-if="isWinner" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-      <div class="w-160px h-220px rounded-sm animate-win-glow"></div>
-    </div>
-    <!-- 失败抖动 -->
-    <div v-if="isLoser" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-      <div class="w-160px h-220px rounded-sm animate-lose-shake"
-        style="background: radial-gradient(circle, rgba(255,59,48,0.3) 0%, rgba(255,59,48,0) 70%);"></div>
-    </div>
-    <Card
-      :card-info="cardInfo[0]"
-      :is-back="!isRevealed"
-      :is-impact="isImpact"
-      :is-winner="isWinner"
-      :is-loser="isLoser"
-    />
-  </div>
-  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-sm
-    class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
-    {{ t('game.checkArea') }}
+  <div class="check-slot">
+    <Card v-if="cardInfo?.[0]" :card-info="cardInfo[0]" :is-back="!isRevealed" :is-impact="isImpact" :is-winner="isWinner" :is-loser="isLoser" />
+    <div v-else class="card-placeholder" :aria-label="$t('game.checkArea')"><GameIcon name="cards" /></div>
   </div>
 </template>

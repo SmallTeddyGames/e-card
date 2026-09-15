@@ -1,19 +1,5 @@
-<script lang="ts" setup>
-const isDark = useDark({
-  initialValue: 'dark',
-  storageKey: 'e-card-color-mode'
-})
-
-/**
- * 切换模式
- */
-const toggleMode = (): void => {
-  isDark.value = !isDark.value
-}
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
+const isDark = useDark({ initialValue: 'dark', storageKey: 'e-card-color-mode' })
 </script>
-
-<template>
-  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggleMode">
-    <div i-ph-sun-dim-duotone dark:i-ph-moon-stars-duotone text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button class="icon-button" :aria-pressed="isDark" :aria-label="$t('ui.theme')" :title="$t('ui.theme')" @click="isDark = !isDark"><GameIcon :name="isDark ? 'sun' : 'moon'" /></button></template>

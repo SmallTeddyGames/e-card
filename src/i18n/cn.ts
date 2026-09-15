@@ -1,4 +1,26 @@
 export default {
+    ui: {
+  "navigation": "导航",
+  "settings": "设置",
+  "language": "切换语言",
+  "theme": "切换主题",
+  "background": "切换背景",
+  "fullscreen": "全屏",
+  "sound": "音效",
+  "details": "对局记录",
+  "pause": "暂停游戏",
+  "hand": "手牌",
+  "resolving": "正在结算…",
+  "chooseCard": "选择一张手牌出牌",
+  "cardBack": "牌背",
+  "emptyLog": "完成第一局后，这里会显示对局记录。",
+  "matchSetup": "对战设定",
+  "ruleSummary": "皇帝胜市民，市民胜奴隶，奴隶胜皇帝。",
+  "noDiscards": "尚无弃牌",
+  "close": "关闭",
+  "notFound": "这一页不在牌组中",
+  "home": "返回游戏"
+},
     'menu': {
         'start': '开始游戏',
         'continue': '游戏继续',
@@ -9,7 +31,7 @@ export default {
         'producer': '制作人员',
         'difficulty': '选择难度',
         'betAmount': '本局押注',
-        'subtitle': '赌博默示录 · E卡对战'
+        'subtitle': '赌博默示录 / E卡对战'
     },
     'game': {
         'emperor': '国王',

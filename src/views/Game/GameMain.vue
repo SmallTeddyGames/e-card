@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { useMediaQuery } from '@vueuse/core'
+import GameIcon from '@/views/Component/GameIcon.vue'
 import GameInformation from '@/views/Component/GameInformation.vue'
 import ComputedCard from '@/views/Component/ComputedCard.vue'
 import PlayerCard from '@/views/Component/PlayerCard.vue'
@@ -6,7 +8,7 @@ import GameMenu from '@/views/Component/GameMenu.vue'
 import CheckCard from '@/views/Component/CheckCard.vue'
 import DropCard from '@/views/Component/DropCard.vue';
 import SettlePanel from '@/views/Component/SettlePanel.vue';
-import type { CardItem, LogItem, GameStatus } from '@/views/Type'
+import type { CardItem, LogItem } from '@/views/Type'
 import { deepClone, nextRounds, aiChooseCard, recordPlayerPlay, recordComputerPlay, getAiThinkDelay, settleBeans, checkBankruptcy, playSound, initRounds } from '@/utils'
 
 // 全局信息变量
@@ -30,14 +32,28 @@ const computerWinner = ref(false)
 const computerLoser = ref(false)
 // 屏幕震动
 const screenShake = ref(false)
+const busy = ref(false)
+const mobileInfo = ref(false)
+const compact = useMediaQuery('(max-width: 1099px), (max-height: 600px)')
+const infoDialog = ref<HTMLDialogElement | null>(null)
+const menuVisible = computed(() => showGameMenuRef.value?.show ?? true)
+const playerScore = computed(() => state.value.gameLogItems.reduce((sum, item) => sum + (item.playerScore || 0), 0))
+const computerScore = computed(() => state.value.gameLogItems.reduce((sum, item) => sum + (item.computerScore || 0), 0))
+watch([mobileInfo, compact], async ([open, isCompact]) => {
+  await nextTick()
+  if (open && isCompact && !infoDialog.value?.open) infoDialog.value?.showModal()
+  else if (infoDialog.value?.open) infoDialog.value.close()
+})
+
 
 /**
  * 进行检查
  */
 const playerCardCheck = (cardInfo: CardItem): void => {
-  if (showGameMenuRef.value?.show) {
+  if (busy.value || state.value.gameState !== 'start' || showGameMenuRef.value?.show) {
     return;
   }
+  busy.value = true
   if (playerCardInfo.value) {
     state.value.dropedCardItems.push(playerCardInfo.value, computerCardInfo.value);
   }
@@ -157,6 +173,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
       setTimeout(() => {
         computerCardInfo.value = null
         playerCardInfo.value = null
+        busy.value = false
       }, 1000)
       return
     }
@@ -203,6 +220,7 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
       }
 
       // 对局结束，进行下一局
+      busy.value = false
       nextRounds();
       showGameMenuRef.value?.reshow();
     }, 1500)
@@ -213,6 +231,9 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
  * 重新开始游戏
  */
 const handleRestart = () => {
+  busy.value = false
+  playerCardInfo.value = null
+  computerCardInfo.value = null
   showSettle.value = false
   state.value.gameState = 'init'
   state.value.rounds = 1
@@ -238,6 +259,9 @@ const handleRestart = () => {
  * 返回主菜单
  */
 const handleBack = () => {
+  busy.value = false
+  playerCardInfo.value = null
+  computerCardInfo.value = null
   showSettle.value = false
   state.value.gameState = 'init'
   state.value.rounds = 1
@@ -250,71 +274,40 @@ const handleBack = () => {
   state.value.computerPlayHistory = []
 }
 
-watch(
-  () => state.value.gameState,
-  (gameState: GameStatus) => {
-    if (['init', 'win', 'lose'].includes(gameState)) {
-      // 不在此重置，避免覆盖结算数据
-    }
-  }
-)
 </script>
-
 <template>
-  <div :class="['h-full w-full relative', screenShake && 'animate-screen-shake']">
+  <div class="game-root">
     <GameMenu ref="showGameMenuRef" />
-    <SettlePanel
-      :visible="showSettle"
-      @restart="handleRestart"
-      @back="handleBack"
-    />
-    <transition>
-      <!-- 手机端竖屏：纵向单列布局 -->
-      <div h-full w-full grid="~" :class="state.isShowGameInfo ? 'grid-cols-1 md:grid-cols-5' : 'grid-cols-1'">
-        <!-- 主游戏区域 -->
-        <div grid="~ rows-[repeat(4,minmax(0,1fr))]" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full overflow-hidden>
-          <div w-full bg-gray:50 flex-center overflow-hidden>
-            <!-- 电脑手牌区域 -->
+    <SettlePanel :visible="showSettle" @restart="handleRestart" @back="handleBack" />
+    <div v-show="!menuVisible" class="match-layout" :inert="menuVisible || showSettle">
+      <header class="match-topbar">
+        <div class="match-round"><GameIcon name="cards" /><span>{{ $t('game.no') }} <strong>{{ state.rounds }}</strong> {{ $t('game.round') }}</span></div>
+        <div class="match-score"><span>{{ $t('info.player') }}</span><strong>{{ playerScore }} : {{ computerScore }}</strong><span>{{ $t('info.computer') }}</span></div>
+        <div class="match-wallet"><GameIcon name="coins" /><span>{{ $t('info.beans') }}</span><strong>{{ state.playerBeans }}</strong></div>
+        <button v-if="compact" class="icon-button" :aria-label="$t('ui.details')" :title="$t('ui.details')" @click="mobileInfo = true"><GameIcon name="details" /></button>
+      </header>
+      <div class="match-body" :class="{ compact }">
+        <div class="board engraved-frame" :class="{ 'screen-impact': screenShake }">
+          <section class="hand-zone computer-hand" :aria-label="$t('info.computer')">
+            <h2 class="zone-label"><GameIcon name="opponent" /><span>{{ $t('info.computer') }}</span><span class="label-divider" /><span>{{ state.computerCardItems.length }} / 5</span></h2>
             <ComputedCard />
-          </div>
-          <div bg-gray:50 flex-center overflow-hidden>
-            <!-- 电脑检查区域 -->
-            <CheckCard
-              :card-info="[computerCardInfo]"
-              :is-revealed="isRevealed"
-              :is-impact="isImpact"
-              :is-winner="computerWinner"
-              :is-loser="computerLoser"
-            />
-          </div>
-          <div w-full bg-gray:50 flex-center overflow-hidden>
-            <!-- 玩家检查区域 -->
-            <CheckCard
-              :card-info="[playerCardInfo]"
-              :is-revealed="isRevealed"
-              :is-impact="isImpact"
-              :is-winner="playerWinner"
-              :is-loser="playerLoser"
-            />
-          </div>
-          <div w-full bg-gray:50 flex-center overflow-hidden>
-            <!-- 玩家手牌区域 -->
-            <PlayerCard @card-check="playerCardCheck" />
-          </div>
+          </section>
+          <section class="battle-zone">
+            <div class="battle-player"><span class="battle-label">{{ $t('info.computer') }}</span><CheckCard :card-info="[computerCardInfo]" :is-revealed="isRevealed" :is-impact="isImpact" :is-winner="computerWinner" :is-loser="computerLoser" /></div>
+            <div class="battle-status" role="status" aria-live="polite"><GameIcon name="swords" /><span>{{ $t(busy ? 'ui.resolving' : 'ui.chooseCard') }}</span></div>
+            <div class="battle-player"><span class="battle-label">{{ $t('info.player') }}</span><CheckCard :card-info="[playerCardInfo]" :is-revealed="isRevealed" :is-impact="isImpact" :is-winner="playerWinner" :is-loser="playerLoser" /></div>
+          </section>
+          <section class="hand-zone player-hand" :aria-label="$t('info.player')">
+            <h2 class="zone-label"><GameIcon name="user" /><span>{{ $t('info.player') }}</span><span class="label-divider" /><span>{{ $t(`game.${state.playerRole}`) }}</span></h2>
+            <PlayerCard :disabled="busy || state.gameState !== 'start'" @card-check="playerCardCheck" />
+          </section>
         </div>
-
-        <!-- 信息+弃牌区域：手机端隐藏，桌面端显示 -->
-        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-[repeat(4,minmax(0,1fr))]" col-span-2 h-full w-full overflow-hidden>
-          <div h-full w-full bg-gray:100 flex-center overflow-hidden row-span-3>
-            <!-- 电脑对局信息区域 -->
-            <GameInformation />
-          </div>
-          <div w-full bg-gray:100 flex-center overflow-hidden row-span-1>
-            <!-- 电脑弃牌区域 -->
-            <DropCard />
-          </div>
-        </div>
+        <aside v-if="!compact" class="info-panel engraved-frame" :aria-label="$t('ui.details')"><GameInformation /><DropCard /></aside>
       </div>
-    </transition>
+    </div>
+    <Teleport to="body"><dialog ref="infoDialog" class="record-dialog engraved-frame" :aria-label="$t('ui.details')" @close="mobileInfo = false">
+      <button class="icon-button dialog-close" :aria-label="$t('ui.close')" @click="mobileInfo = false"><GameIcon name="close" /></button>
+      <GameInformation /><DropCard />
+    </dialog></Teleport>
   </div>
 </template>

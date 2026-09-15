@@ -1,4 +1,26 @@
 export default {
+    ui: {
+  "navigation": "탐색",
+  "settings": "설정",
+  "language": "언어 변경",
+  "theme": "테마 변경",
+  "background": "배경 변경",
+  "fullscreen": "전체 화면",
+  "sound": "소리",
+  "details": "대전 기록",
+  "pause": "일시 정지",
+  "hand": "패",
+  "resolving": "결과 확인 중…",
+  "chooseCard": "낼 카드를 선택하세요",
+  "cardBack": "카드 뒷면",
+  "emptyLog": "첫 라운드가 끝나면 기록이 표시됩니다.",
+  "matchSetup": "대전 설정",
+  "ruleSummary": "황제는 시민을, 시민은 노예를, 노예는 황제를 이깁니다.",
+  "noDiscards": "버린 카드가 없습니다",
+  "close": "닫기",
+  "notFound": "페이지를 찾을 수 없습니다",
+  "home": "게임으로 돌아가기"
+},
   'menu': {
     'start': '게임 시작',
     'continue': '게임 계속',
@@ -9,7 +31,7 @@ export default {
     'producer': '제작자',
     'difficulty': '난이도 선택',
     'betAmount': '베팅 금액',
-    'subtitle': '도박묵시록 · E카드 배틀'
+    'subtitle': '도박묵시록 / E카드 배틀'
   },
   'game': {
     'emperor': '황제',

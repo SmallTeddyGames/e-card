@@ -6,7 +6,7 @@ const state = useGlobalState()
 </script>
 
 <template>
-  <div w-full h-full overflow-hidden bg-center bg-cover bg-no-repeat relative
+  <div class="game-content"
     :style="{ backgroundImage: `url(${getAssetsFile(`bg-${state.bgImage}.jpg`)})` }">
     <GameMain />
   </div>

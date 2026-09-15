@@ -1,0 +1,14 @@
+<script setup lang="ts">
+defineProps<{ name: string }>()
+const icons: Record<string, string> = {
+  leaf: 'i-ph-leaf', swords: 'i-ph-sword', flame: 'i-ph-flame', skull: 'i-ph-skull',
+  crown: 'i-ph-crown', opponent: 'i-ph-robot', coins: 'i-ph-coins', cards: 'i-ph-cards',
+  settings: 'i-ph-gear', pause: 'i-ph-pause', play: 'i-ph-play', sound: 'i-ph-speaker-high',
+  mute: 'i-ph-speaker-slash', language: 'i-ph-translate', sun: 'i-ph-sun', moon: 'i-ph-moon',
+  background: 'i-ph-arrows-clockwise', fullscreen: 'i-ph-arrows-out', exitFullscreen: 'i-ph-arrows-in',
+  github: 'i-ph-github-logo', details: 'i-ph-sidebar', close: 'i-ph-x', back: 'i-ph-arrow-left',
+  arrow: 'i-ph-arrow-right', check: 'i-ph-check', users: 'i-ph-users', book: 'i-ph-book-open',
+  wait: 'i-ph-hourglass', user: 'i-ph-user',
+}
+</script>
+<template><span class="game-icon" :class="icons[name] || icons.cards" aria-hidden="true" /></template>

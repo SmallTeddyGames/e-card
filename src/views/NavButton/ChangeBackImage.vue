@@ -1,20 +1,6 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
 const state = useGlobalState()
-
-/**
- * 切换背景
- */
-const toggleBackImage = (): void => {
-  if (state.value.bgImage >= 4) {
-    state.value.bgImage = 1
-  } else {
-    state.value.bgImage++
-  }
-}
+const toggle = () => { state.value.bgImage = state.value.bgImage >= 4 ? 1 : state.value.bgImage + 1 }
 </script>
-
-<template>
-  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggleBackImage">
-    <div i-humbleicons:exchange-vertical text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button class="icon-button" :aria-label="$t('ui.background')" :title="$t('ui.background')" @click="toggle"><GameIcon name="background" /></button></template>

@@ -1,44 +1,15 @@
-<script lang="ts" setup>
-import { getAssetsFile, getRandomNumber } from '@/utils'
-
-const { t } = useI18n()
+<script setup lang="ts">
+import { getAssetsFile } from '@/utils'
+import GameIcon from './GameIcon.vue'
 const state = useGlobalState()
+const recentCards = computed(() => state.value.dropedCardItems.slice(-6))
 </script>
-
 <template>
-  <div v-if="state.dropedCardItems.length > 0" class="flex-center relative card-size">
-    <div
-      v-for="(cardInfo, index) in state.dropedCardItems"
-      :key="`${cardInfo.sort}-${index}`"
-      class="card-size cursor-pointer absolute left-0 top-0 rounded-sm shadow-lg animate-card-deal"
-      :style="{
-        transform: `rotate(${(index % 2 === 0 ? 1 : -1) * getRandomNumber(30)}deg)`,
-        zIndex: index,
-        animationDelay: `${index * 0.05}s`
-      }"
-    >
-      <img
-        card-size
-        class="rounded-sm"
-        :alt="cardInfo.role"
-        :src="getAssetsFile(cardInfo.img)"
-      />
+  <section class="discard-section">
+    <h3 class="section-label"><GameIcon name="cards" /> {{ $t('game.dropArea') }} <span class="count-label">{{ state.dropedCardItems.length }}</span></h3>
+    <div class="discard-cards">
+      <img v-for="(card, index) in recentCards" :key="`${card.sort}-${index}`" :src="getAssetsFile(card.img)" :alt="$t(`game.${card.role}`)" width="375" height="513" />
+      <span v-if="!recentCards.length" class="muted">{{ $t('ui.noDiscards') }}</span>
     </div>
-    <!-- 牌堆数量提示 -->
-    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-gray-600 text-xs font-bold bg-white px-2 py-1 rounded-full shadow-sm">
-      {{ state.dropedCardItems.length }}
-    </div>
-  </div>
-  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-sm
-    class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
-    {{ t('game.dropArea') }}
-  </div>
+  </section>
 </template>
-
-<style>
-.rotate {
-  --rotation-angle: 0;
-  transform: rotate(var(--rotation-random));
-  transition: transform 0.3s ease;
-}
-</style>

@@ -1,4 +1,26 @@
 export default {
+    ui: {
+  "navigation": "ナビゲーション",
+  "settings": "設定",
+  "language": "言語切替",
+  "theme": "テーマ切替",
+  "background": "背景切替",
+  "fullscreen": "全画面",
+  "sound": "サウンド",
+  "details": "対戦記録",
+  "pause": "一時停止",
+  "hand": "手札",
+  "resolving": "判定中…",
+  "chooseCard": "出すカードを選択",
+  "cardBack": "カードの裏",
+  "emptyLog": "最初の対戦後に記録が表示されます。",
+  "matchSetup": "対戦設定",
+  "ruleSummary": "皇帝は市民に、市民は奴隷に、奴隷は皇帝に勝つ。",
+  "noDiscards": "捨て札はありません",
+  "close": "閉じる",
+  "notFound": "このページは見つかりません",
+  "home": "ゲームに戻る"
+},
   'menu': {
     'start': 'ゲーム開始',
     'continue': 'ゲーム再開',
@@ -9,7 +31,7 @@ export default {
     'producer': '制作者',
     'difficulty': '難易度選択',
     'betAmount': 'ベット額',
-    'subtitle': '賭博黙示録 · Eカードバトル'
+    'subtitle': '賭博黙示録 / Eカードバトル'
   },
   'game': {
     'emperor': '皇帝',

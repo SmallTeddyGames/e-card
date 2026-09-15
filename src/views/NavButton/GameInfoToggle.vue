@@ -1,19 +1,5 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
 const state = useGlobalState()
-
-/**
- * 切换游戏信息
- */
-const toggle = (): void => {
-  state.value.isShowGameInfo = !state.value.isShowGameInfo
-}
-
 </script>
-
-<template>
-  <button v-show="state.gameState === 'start'" rounded p-1 sm:p-2 hover="bg-active" @click="toggle">
-    <div
-      :class="{ 'i-material-symbols:right-panel-close-rounded': state.isShowGameInfo, 'i-material-symbols:right-panel-open-rounded': !state.isShowGameInfo }"
-      text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button class="icon-button" :aria-label="$t('ui.details')" :title="$t('ui.details')" :aria-pressed="state.isShowGameInfo" @click="state.isShowGameInfo = !state.isShowGameInfo"><GameIcon name="details" /></button></template>

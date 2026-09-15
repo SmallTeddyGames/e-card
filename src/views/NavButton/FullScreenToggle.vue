@@ -1,9 +1,5 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
 const { isFullscreen, toggle } = useFullscreen()
 </script>
-
-<template>
-  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggle">
-    <div :class="{ 'i-gridicons:fullscreen-exit': isFullscreen, 'i-gridicons:fullscreen': !isFullscreen }" text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button class="icon-button" :aria-pressed="isFullscreen" :aria-label="$t('ui.fullscreen')" :title="$t('ui.fullscreen')" @click="toggle"><GameIcon :name="isFullscreen ? 'exitFullscreen' : 'fullscreen'" /></button></template>

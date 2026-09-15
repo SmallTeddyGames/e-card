@@ -16,6 +16,6 @@ const producerText = [
 </script>
 
 <template>
-  <MessageInfo :title="t('menu.producer')" :info-list="producerText" @close="emits('close')" />
+  <MessageInfo credits :title="t('menu.producer')" :info-list="producerText" @close="emits('close')" />
 </template>
 

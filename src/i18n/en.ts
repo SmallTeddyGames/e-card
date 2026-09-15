@@ -1,4 +1,26 @@
 export default {
+    ui: {
+  "navigation": "Navigation",
+  "settings": "Settings",
+  "language": "Change language",
+  "theme": "Change theme",
+  "background": "Change background",
+  "fullscreen": "Fullscreen",
+  "sound": "Sound",
+  "details": "Match details",
+  "pause": "Pause game",
+  "hand": "Hand",
+  "resolving": "Resolving…",
+  "chooseCard": "Choose a card to play",
+  "cardBack": "Card back",
+  "emptyLog": "Your match history will appear after the first round.",
+  "matchSetup": "Set the table",
+  "ruleSummary": "Emperor beats Citizen. Citizen beats Slave. Slave beats Emperor.",
+  "noDiscards": "No discarded cards",
+  "close": "Close",
+  "notFound": "This page is not in the deck",
+  "home": "Back to the game"
+},
     'menu': {
         'start': 'Start Game',
         'continue': 'Continue Game',
@@ -9,7 +31,7 @@ export default {
         'producer': 'Producer List',
         'difficulty': 'Select Difficulty',
         'betAmount': 'Bet Amount',
-        'subtitle': 'Gambling Apocalypse · E-Card Battle'
+        'subtitle': 'Gambling Apocalypse / E-Card Battle'
     },
     'game': {
         'emperor': 'Emperor',

@@ -4,21 +4,10 @@ import {
   presetIcons,
   presetTypography,
   presetUno,
-  presetWebFonts,
   transformerDirectives,
 } from "unocss";
 export default defineConfig({
-  shortcuts: {
-    "border-base": "border-gray-200 dark:border-gray-700",
-    "bg-active": "bg-gray-100",
-    "flex-center": "flex items-center justify-center",
-    "card-size": "w-80px h-110px sm:w-120px sm:h-164px",
-    "bg-Mask": "bg-white-80 dark:bg-black-30",
-    "game-card": "relative rounded-xl shadow-lg overflow-hidden transition-all duration-300",
-    "game-btn": "px-6 py-3 rounded-xl font-bold text-white transition-all duration-300 cursor-pointer border-0 hover:scale-105 active:scale-95",
-    "gold-text": "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600",
-    "glow-effect": "box-shadow: 0 0 20px rgba(0, 113, 227, 0.4), 0 0 40px rgba(0, 113, 227, 0.2)",
-  },
+  shortcuts: { 'flex-center': 'flex items-center justify-center' },
   rules: [
     [/^t-a-(\d+)$/, ([, d]) => ({ transition: `all 0.${d}s linear` })],
     [
@@ -35,15 +24,15 @@ export default defineConfig({
   theme: {
     colors: {
       primary: {
-        DEFAULT: "#0071e3",
+        DEFAULT: "#a77b3c",
       },
       gold: {
-        DEFAULT: "#0071e3",
-        light: "#2997ff",
-        dark: "#0051a8",
+        DEFAULT: "#a77b3c",
+        light: "#d2ae70",
+        dark: "#75552f",
       },
       royal: {
-        DEFAULT: "#0071e3",
+        DEFAULT: "#a77b3c",
         dark: "#1d1d1f",
       },
     },
@@ -67,14 +56,6 @@ export default defineConfig({
     presetUno(),
     presetIcons(),
     presetAttributify(),
-    presetWebFonts({
-      provider: "bunny",
-      fonts: {
-        sans: "DM Sans",
-        mono: "DM Mono",
-        ping: "PingFangMedium"
-      },
-    }),
     presetTypography(),
   ],
   transformers: [transformerDirectives()],

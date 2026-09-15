@@ -1,16 +1,6 @@
-<script lang='ts' setup>
+<script setup lang="ts">
+import GameIcon from '../Component/GameIcon.vue'
 import { toggleSound } from '@/utils'
 const state = useGlobalState()
-
-const toggle = () => {
-  toggleSound()
-}
 </script>
-
-<template>
-  <button rounded p-1 sm:p-2 hover="bg-active" @click="toggle" :title="state.soundEnabled ? 'Sound On' : 'Sound Off'">
-    <div
-      :class="state.soundEnabled ? 'i-material-symbols:volume-up-rounded' : 'i-material-symbols:volume-off-rounded'"
-      text-xl sm:text-2xl />
-  </button>
-</template>
+<template><button class="icon-button" :aria-pressed="state.soundEnabled" :aria-label="$t('ui.sound')" :title="$t('ui.sound')" @click="toggleSound"><GameIcon :name="state.soundEnabled ? 'sound' : 'mute'" /></button></template>
