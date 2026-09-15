@@ -151,6 +151,19 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
 
     isImpact.value = false
 
+    // 平局不进入下一局日志，直接弃牌继续
+    if (playerCard.role === computerCard.role) {
+      state.value.dropedCardItems.push(playerCard, computerCard);
+      setTimeout(() => {
+        computerCardInfo.value = null
+        playerCardInfo.value = null
+      }, 1000)
+      return
+    }
+
+    // 记录本局日志（在破产检查之前，确保最后一局也有记录）
+    state.value.gameLogItems.push(result)
+
     // 检查破产
     const bankruptcy = checkBankruptcy()
     if (bankruptcy) {
@@ -164,18 +177,6 @@ const checkedCard = (playerCard: CardItem, computerCard: CardItem): void => {
       }, 1500)
       return
     }
-
-    // 平局不进入下一局日志，直接弃牌继续
-    if (playerCard.role === computerCard.role) {
-      state.value.dropedCardItems.push(playerCard, computerCard);
-      setTimeout(() => {
-        computerCardInfo.value = null
-        playerCardInfo.value = null
-      }, 1000)
-      return
-    }
-
-    state.value.gameLogItems.push(result)
 
     // 检查比分
     const playerScore = state.value.gameLogItems.reduce((s, i) => s + (i.playerScore || 0), 0)
@@ -242,6 +243,11 @@ const handleBack = () => {
   state.value.rounds = 1
   state.value.dropedCardItems = []
   state.value.gameLogItems = []
+  // 重置豆子到初始值
+  state.value.playerBeans = state.value.initialBeans
+  state.value.computerBeans = state.value.initialBeans
+  state.value.playerPlayHistory = []
+  state.value.computerPlayHistory = []
 }
 
 watch(
