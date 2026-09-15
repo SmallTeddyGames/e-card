@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "predeploy": "pnpm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "pnpm run build && pnpm exec gh-pages -d dist"
   },
   "dependencies": {
     "@unocss/reset": "^0.58.0",
