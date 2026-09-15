@@ -28,3 +28,6 @@ dist-ssr
 # Build
 ECard.zip
 ECard.app
+
+# pnpm store
+.pnpm-store/

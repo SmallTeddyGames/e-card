@@ -6,16 +6,19 @@ import ChangeBackImage from '@/views/NavButton/ChangeBackImage.vue'
 import FullScreenToggle from '@/views/NavButton/FullScreenToggle.vue'
 import ColorSchemeToggle from '@/views/NavButton/ColorSchemeToggle.vue'
 import GitHubButton from '@/views/NavButton/GitHubButton.vue'
+import SoundToggle from '@/views/NavButton/SoundToggle.vue'
 </script>
 
 <template>
   <nav w-screen px4 py3 text-lg border="b base" flex="~ gap-1 items-center">
-    <div title="Game">E-Card</div>
+    <div title="Game" class="gold-text font-black text-xl">E-Card</div>
     <div flex-auto />
     <!-- 游戏控制按钮 -->
     <ChangeGameStatus />
     <!-- 语言切换按钮 -->
     <ChangeLanguage />
+    <!-- 音效开关 -->
+    <SoundToggle />
     <!-- git按钮 -->
     <GitHubButton />
     <!-- 游戏信息控制按钮 -->

@@ -13,7 +13,9 @@ const explainText = [
   t('explain.explain6'),
   t('explain.explain7'),
   t('explain.explain8'),
-  t('explain.explain9')
+  t('explain.explain9'),
+  t('explain.explain10'),
+  t('explain.explain11')
 ];
 </script>
 
