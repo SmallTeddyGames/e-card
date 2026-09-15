@@ -70,6 +70,12 @@
 
 失败结算面板，与胜利结算对称展示，记录本局所有对局详情。
 
+### 最终结算
+
+![最终结算](./gameImg/final.png)
+
+最终结算页面汇总整局游戏结果与对战记录。
+
 ## 游戏玩法
 
 ### 基本规则
@@ -170,10 +176,10 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 
 感谢以下贡献者参与本项目开发：
 
-- SmallTeddy
-- wh131462
-- remember-study
-- cangbaoderen
-- Yang-mingLei
-- Medalc
-- qingjiuge
+- [SmallTeddy](https://github.com/SmallTeddy)
+- [wh131462](https://github.com/wh131462)
+- [remember-study](https://github.com/remember-study)
+- [cangbaoderen](https://github.com/cangbaoderen)
+- [Yang-mingLei](https://github.com/Yang-mingLei)
+- [Medalc](https://github.com/Medalc)
+- [qingjiuge](https://github.com/qingjiuge)
