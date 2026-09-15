@@ -28,6 +28,59 @@ body {
   color-scheme: dark;
 }
 
+.dark body {
+  background-color: #1d1d1f;
+  color: #f5f5f7;
+}
+
+/* 暗模式 - 白色卡片/面板背景 */
+.dark [style*="rgba(255, 255, 255"],
+.dark [style*="rgba(255,255,255"] {
+  background-color: rgba(44, 44, 46, 0.98) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 暗模式 - 文字颜色 */
+.dark .text-gray-700,
+.dark .text-gray-800,
+.dark .text-gray-900 {
+  color: #e5e5e7 !important;
+}
+
+.dark .text-gray-500,
+.dark .text-gray-600 {
+  color: #a1a1a6 !important;
+}
+
+/* 暗模式 - 按钮背景适配 */
+.dark [style*="rgba(255,255,255,0.9)"] {
+  background-color: rgba(44, 44, 46, 0.9) !important;
+}
+
+/* 暗模式 - 游戏信息面板表格 */
+.dark table {
+  color: #e5e5e7;
+}
+
+.dark table td,
+.dark table th {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* 暗模式 - 导航栏 */
+.dark nav {
+  background-color: rgba(29, 29, 31, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 暗模式 - 输入框 */
+.dark input,
+.dark select {
+  background-color: #2c2c2e;
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
 /* 卡牌3D翻转容器 */
 .card-3d {
   perspective: 1000px;

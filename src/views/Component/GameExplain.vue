@@ -4,7 +4,7 @@ import MessageInfo from './MessageInfo.vue';
 const { t } = useI18n()
 const emits = defineEmits(["close"]);
 
-const explainText = [
+const explainText = computed(() => [
   t('explain.explain1'),
   t('explain.explain2'),
   t('explain.explain3'),
@@ -16,7 +16,7 @@ const explainText = [
   t('explain.explain9'),
   t('explain.explain10'),
   t('explain.explain11')
-];
+]);
 </script>
 
 <template>

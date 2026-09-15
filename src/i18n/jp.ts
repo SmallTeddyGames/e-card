@@ -56,6 +56,9 @@ export default {
     'backToMenu': 'メニューに戻る',
     'playAgain': 'もう一度'
   },
+  'common': {
+    'back': '戻る'
+  },
   'explain': {
     'explain': 'ゲーム説明',
     'explain1': 'このゲームは2つの役割に分けられています：皇帝と奴隷。それぞれが5枚のカードを持っています。',

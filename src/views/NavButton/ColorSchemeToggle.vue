@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-const colorMode = useColorMode()
+const isDark = useDark({
+  initialValue: 'dark',
+  storageKey: 'e-card-color-mode'
+})
 
 /**
  * 切换模式
  */
 const toggleMode = (): void => {
-  colorMode.value = colorMode.value === 'light' ? 'dark' : 'light'
+  isDark.value = !isDark.value
 }
 </script>
 

@@ -31,6 +31,7 @@ export default defineConfig({
                 'createGlobalState',
                 'useStorage',
                 'useColorMode',
+                'useDark',
                 'useFullscreen'
             ]
         },

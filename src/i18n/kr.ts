@@ -56,6 +56,9 @@ export default {
     'backToMenu': '메뉴로 돌아가기',
     'playAgain': '다시 하기'
   },
+  'common': {
+    'back': '뒤로'
+  },
   'explain': {
     'explain': '게임 설명',
     'explain1': '이 게임은 두 가지 역할로 나누어져 있습니다: 황제와 노예. 각각 5장의 카드를 가지고 있습니다.',

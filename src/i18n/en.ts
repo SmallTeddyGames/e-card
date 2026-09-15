@@ -56,6 +56,9 @@ export default {
         'backToMenu': 'Back to Menu',
         'playAgain': 'Play Again'
     },
+    'common': {
+        'back': 'Back'
+    },
     'explain': {
         'explain': 'Game Explain',
         'explain1': 'The game is divided into two roles: Emperor and Slave, each with 5 cards.',

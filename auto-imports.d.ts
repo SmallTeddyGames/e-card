@@ -71,6 +71,7 @@ declare global {
   const useColorMode: typeof import('@vueuse/core')['useColorMode']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDark: typeof import('@vueuse/core')['useDark']
   const useFullscreen: typeof import('@vueuse/core')['useFullscreen']
   const useGlobalState: typeof import('@/store')['useGlobalState']
   const useI18n: typeof import('vue-i18n')['useI18n']

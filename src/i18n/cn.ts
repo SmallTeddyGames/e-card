@@ -56,6 +56,9 @@ export default {
         'backToMenu': '返回菜单',
         'playAgain': '再来一局'
     },
+    'common': {
+        'back': '返回'
+    },
     'explain': {
         'explain': '游戏说明',
         'explain1': '游戏共分为两种角色，皇帝和奴隶，每个角色拥有5张牌',
