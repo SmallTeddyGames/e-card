@@ -272,12 +272,12 @@ watch(
       <!-- 手机端竖屏：纵向单列布局 -->
       <div h-full w-full grid="~" :class="state.isShowGameInfo ? 'grid-cols-1 md:grid-cols-5' : 'grid-cols-1'">
         <!-- 主游戏区域 -->
-        <div grid="~ rows-[repeat(4,minmax(0,1fr))]" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full>
-          <div w-full bg-gray:50 flex-center>
+        <div grid="~ rows-[repeat(4,minmax(0,1fr))]" :class="state.isShowGameInfo ? 'col-span-1 md:col-span-3' : 'col-span-1'" h-full w-full overflow-hidden>
+          <div w-full bg-gray:50 flex-center overflow-hidden>
             <!-- 电脑手牌区域 -->
             <ComputedCard />
           </div>
-          <div bg-gray:50 flex-center>
+          <div bg-gray:50 flex-center overflow-hidden>
             <!-- 电脑检查区域 -->
             <CheckCard
               :card-info="[computerCardInfo]"
@@ -287,7 +287,7 @@ watch(
               :is-loser="computerLoser"
             />
           </div>
-          <div w-full bg-gray:50 flex-center>
+          <div w-full bg-gray:50 flex-center overflow-hidden>
             <!-- 玩家检查区域 -->
             <CheckCard
               :card-info="[playerCardInfo]"
@@ -297,19 +297,19 @@ watch(
               :is-loser="playerLoser"
             />
           </div>
-          <div w-full bg-gray:50 flex-center>
+          <div w-full bg-gray:50 flex-center overflow-hidden>
             <!-- 玩家手牌区域 -->
             <PlayerCard @card-check="playerCardCheck" />
           </div>
         </div>
 
         <!-- 信息+弃牌区域：手机端隐藏，桌面端显示 -->
-        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-[repeat(4,minmax(0,1fr))]" col-span-2 h-full w-full>
-          <div h-full w-full bg-gray:100 flex-center row-span-3>
+        <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-[repeat(4,minmax(0,1fr))]" col-span-2 h-full w-full overflow-hidden>
+          <div h-full w-full bg-gray:100 flex-center overflow-hidden row-span-3>
             <!-- 电脑对局信息区域 -->
             <GameInformation />
           </div>
-          <div w-full bg-gray:100 flex-center row-span-1>
+          <div w-full bg-gray:100 flex-center overflow-hidden row-span-1>
             <!-- 电脑弃牌区域 -->
             <DropCard />
           </div>

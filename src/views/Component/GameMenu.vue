@@ -170,7 +170,7 @@ defineExpose({
 
 <template>
   <!-- 主菜单 -->
-  <div v-if="show" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="show" class="flex flex-col items-center justify-center h-full w-full absolute inset-0 z-20 overflow-hidden"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <!-- 背景装饰 -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -188,36 +188,36 @@ defineExpose({
     </div>
 
     <!-- 对局信息展示 -->
-    <div v-if="showGameInfo" class="flex flex-col items-center gap-4 sm:gap-8 animate-scale-in z-10 px-4">
-      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-md text-base sm:text-2xl font-bold"
+    <div v-if="showGameInfo" class="flex flex-col items-center gap-2 sm:gap-4 animate-scale-in z-10 px-4">
+      <div class="px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-md text-sm sm:text-xl font-bold"
         style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.06); color: #1d1d1f;">
         {{ $t('game.no') }} <span class="gold-text">{{ info?.rounds }}</span> {{ $t('game.round') }}
       </div>
-      <div class="px-4 sm:px-8 py-2 sm:py-4 rounded-md text-base sm:text-2xl font-bold"
+      <div class="px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-md text-sm sm:text-xl font-bold"
         style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 2px 12px rgba(0,0,0,0.06); color: #1d1d1f;">
         {{ $t('game.role') }}：<span class="text-blue-500">{{ t(`game.${name}`) }}</span>
       </div>
-      <div class="text-gray-500 text-xs sm:text-sm animate-pulse">{{ t('game.prepare') }}</div>
+      <div class="text-gray-500 text-xs animate-pulse">{{ t('game.prepare') }}</div>
     </div>
 
     <!-- 主菜单界面 -->
-    <div v-else class="flex flex-col items-center gap-3 sm:gap-6 z-10 max-w-90vw px-4">
+    <div v-else class="flex flex-col items-center gap-1.5 sm:gap-3 z-10 w-full max-w-90vw px-3 min-h-0">
       <!-- 游戏标题 -->
-      <div class="text-center mb-2">
-        <h1 class="text-4xl sm:text-6xl font-black gold-text mb-2" style="text-shadow: 0 2px 20px rgba(0,113,227,0.2);">
+      <div class="text-center">
+        <h1 class="text-3xl sm:text-5xl font-black gold-text mb-1" style="text-shadow: 0 2px 20px rgba(0,113,227,0.2);">
           E-CARD
         </h1>
         <p class="text-gray-500 text-xs sm:text-sm">{{ t('menu.subtitle') }}</p>
       </div>
 
       <!-- 难度选择 -->
-      <div class="w-full max-w-500px">
-        <div class="text-gray-600 text-xs sm:text-sm font-bold mb-2 text-center">{{ t('menu.difficulty') }}</div>
+      <div class="w-full max-w-460px">
+        <div class="text-gray-600 text-xs font-bold mb-1 text-center">{{ t('menu.difficulty') }}</div>
         <div class="grid grid-cols-4 gap-1 sm:gap-2">
           <button
             v-for="diff in difficulties"
             :key="diff.key"
-            class="py-2 sm:py-3 px-1 sm:px-2 rounded-md font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-1.5 sm:py-2 px-1 rounded-md font-bold text-xs transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedDifficulty === diff.key
                 ? `bg-gradient-to-b ${diff.color} ring-2 ring-blue-400 scale-105 text-white`
@@ -226,24 +226,24 @@ defineExpose({
             style="box-shadow: 0 2px 8px rgba(0,0,0,0.06);"
             @click="selectDifficulty(diff.key)"
           >
-            <div class="text-base sm:text-xl mb-1">{{ diff.icon }}</div>
+            <div class="text-sm sm:text-base mb-0.5">{{ diff.icon }}</div>
             <div>{{ t(`difficulty.${diff.label}`) }}</div>
           </button>
         </div>
       </div>
 
       <!-- 押注选择 -->
-      <div class="w-full max-w-500px">
-        <div class="text-gray-600 text-xs sm:text-sm font-bold mb-2 text-center flex items-center justify-center gap-2">
+      <div class="w-full max-w-460px">
+        <div class="text-gray-600 text-xs font-bold mb-1 text-center flex items-center justify-center gap-1.5">
           <span>🫘</span>
           <span>{{ t('menu.betAmount') }}</span>
-          <span class="gold-text font-black text-base sm:text-lg">{{ selectedBet }}</span>
+          <span class="gold-text font-black text-sm sm:text-base">{{ selectedBet }}</span>
         </div>
         <div class="grid grid-cols-4 gap-1 sm:gap-2">
           <button
             v-for="bet in betOptions"
             :key="bet"
-            class="py-2 sm:py-3 px-1 sm:px-2 rounded-md font-bold text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="py-1.5 sm:py-2 px-1 rounded-md font-bold text-xs transition-all duration-300 hover:scale-105 active:scale-95"
             :class="[
               selectedBet === bet
                 ? 'bg-gradient-to-b from-blue-500 to-blue-700 text-white ring-2 ring-blue-400 scale-105'
@@ -258,9 +258,9 @@ defineExpose({
       </div>
 
       <!-- 操作按钮 -->
-      <div class="flex flex-col gap-2 sm:gap-3 w-full max-w-300px mt-2">
+      <div class="flex flex-col gap-1.5 sm:gap-2 w-full max-w-280px">
         <button
-          class="py-3 sm:py-4 rounded-md font-bold text-base sm:text-xl text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
+          class="py-2 sm:py-3 rounded-md font-bold text-sm sm:text-lg text-white transition-all duration-300 hover:scale-105 active:scale-95 animate-pulse-gold"
           style="background: linear-gradient(135deg, #0071e3, #0051a8);"
           @click="startGame"
         >
@@ -268,22 +268,22 @@ defineExpose({
         </button>
         <button
           v-if="state.gameState !== 'init'"
-          class="py-2 sm:py-3 rounded-md font-bold text-gray-700 text-sm sm:text-base transition-all duration-300 hover:scale-105 active:scale-95"
+          class="py-1.5 sm:py-2 rounded-md font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
           style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
           @click="restartGame"
         >
           {{ t('menu.reStart') }}
         </button>
-        <div class="flex gap-2 sm:gap-3">
+        <div class="flex gap-1.5 sm:gap-2">
           <button
-            class="flex-1 py-2 sm:py-3 rounded-md font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-1.5 sm:py-2 rounded-md font-bold text-gray-700 text-xs transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
             @click="openGameExplain"
           >
             {{ t('menu.explain') }}
           </button>
           <button
-            class="flex-1 py-2 sm:py-3 rounded-md font-bold text-gray-700 text-xs sm:text-sm transition-all duration-300 hover:scale-105 active:scale-95"
+            class="flex-1 py-1.5 sm:py-2 rounded-md font-bold text-gray-700 text-xs transition-all duration-300 hover:scale-105 active:scale-95"
             style="background: rgba(255,255,255,0.8); border: 1px solid rgba(0,0,0,0.1);"
             @click="openGameProducer"
           >
@@ -293,7 +293,7 @@ defineExpose({
       </div>
 
       <!-- 卡牌展示 -->
-      <div class="flex items-center gap-2 sm:gap-6 mt-2 sm:mt-4">
+      <div class="flex items-center gap-3 sm:gap-5 mt-1">
         <div class="animate-float" style="animation-delay: 0s;">
           <Card :card-info="{ role: 'emperor', img: 'emperor.jpg' }" is-animation size="sm" />
         </div>
@@ -308,13 +308,13 @@ defineExpose({
   </div>
 
   <!-- 游戏说明 -->
-  <div v-if="showGameExplain" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="showGameExplain" class="flex flex-col items-center justify-center h-full w-full absolute inset-0 z-20 overflow-hidden"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <GameExplain @close="closeGameExplain" />
   </div>
 
   <!-- 制作人名单 -->
-  <div v-if="showGameProducer" class="flex flex-col items-center justify-center py-4 h-full w-full absolute inset-0 z-20 overflow-y-auto"
+  <div v-if="showGameProducer" class="flex flex-col items-center justify-center h-full w-full absolute inset-0 z-20 overflow-hidden"
     style="background: radial-gradient(ellipse at center, #fafafa 0%, #e8e8ed 100%);">
     <ProducerList @close="closeProducerList" />
   </div>

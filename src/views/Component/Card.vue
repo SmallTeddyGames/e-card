@@ -25,11 +25,14 @@ const props = withDefaults(
 
 const emits = defineEmits(['card-click'])
 
-const sizeClass = computed(() => {
+const sizeStyle = computed(() => {
   switch (props.size) {
-    case 'sm': return 'w-60px h-84px sm:w-80px sm:h-112px'
-    case 'lg': return 'w-100px h-140px sm:w-160px sm:h-220px'
-    default: return 'w-80px h-110px sm:w-120px sm:h-164px'
+    case 'sm':
+      return { width: 'clamp(42px, 6.2vh, 60px)', height: 'clamp(58px, 8.6vh, 84px)' }
+    case 'lg':
+      return { width: 'clamp(70px, 10.5vh, 100px)', height: 'clamp(98px, 14.7vh, 140px)' }
+    default:
+      return { width: 'clamp(52px, 7.8vh, 80px)', height: 'clamp(72px, 10.8vh, 112px)' }
   }
 })
 </script>
@@ -38,12 +41,12 @@ const sizeClass = computed(() => {
   <div
     :class="[
       'card-3d relative cursor-pointer transition-all duration-300',
-      sizeClass,
       isAnimation && 'card-animation',
       isImpact && 'animate-battle-impact',
-      isWinner && 'animate-win-glow rounded-xl',
+      isWinner && 'animate-win-glow rounded-sm',
       isLoser && 'animate-lose-shake'
     ]"
+    :style="sizeStyle"
     @click="emits('card-click', cardInfo)"
   >
     <div :class="['card-3d-inner', isBack && 'flipped']">
