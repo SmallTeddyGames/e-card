@@ -305,11 +305,11 @@ watch(
 
         <!-- 信息+弃牌区域：手机端隐藏，桌面端显示 -->
         <div v-show="state.isShowGameInfo" class="hidden md:grid" grid="~ rows-4" col-span-2 h-full w-full>
-          <div h-full w-full bg-gray:80 flex-center row-span-3>
+          <div h-full w-full bg-gray:100 flex-center row-span-3>
             <!-- 电脑对局信息区域 -->
             <GameInformation />
           </div>
-          <div w-full bg-gray:80 flex-center row-span-1>
+          <div w-full bg-gray:100 flex-center row-span-1>
             <!-- 电脑弃牌区域 -->
             <DropCard />
           </div>

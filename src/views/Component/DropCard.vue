@@ -25,12 +25,12 @@ const state = useGlobalState()
       />
     </div>
     <!-- 牌堆数量提示 -->
-    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-white-80 text-xs font-bold bg-black-50 px-2 py-1 rounded-full">
+    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-gray-600 text-xs font-bold bg-white px-2 py-1 rounded-full shadow-sm">
       {{ state.dropedCardItems.length }}
     </div>
   </div>
-  <div v-else card-size cursor-pointer border="2px #fff dashed" flex-center rounded-xl
-    class="text-white-60 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-gold">
+  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-xl
+    class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
     {{ t('game.dropArea') }}
   </div>
 </template>

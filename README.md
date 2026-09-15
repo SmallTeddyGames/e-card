@@ -139,15 +139,6 @@ AI 会根据难度等级智能分析玩家出牌习惯并优化应对策略：
 - 状态持久化（localStorage）
 - 响应式布局，支持移动端竖屏
 
-## 开发工具
-
-| 工具 | 说明 | 官网 |
-| --- | --- | --- |
-| icon | 图标 | [https://icones.js.org/collection/all](https://icones.js.org/collection/all) |
-| vueuse | 工具函数 | [https://vueuse.org/functions.html](https://vueuse.org/functions.html) |
-| unocss | 原子化样式 | [https://unocss.dev/interactive/](https://unocss.dev/interactive/) |
-| grid | 网格布局 | [https://cssgrid-generator.netlify.app/](https://cssgrid-generator.netlify.app/) |
-
 ## 部署
 
 项目使用 GitHub Pages 部署，访问地址：[https://smallteddygames.github.io/e-card/](https://smallteddygames.github.io/e-card/)

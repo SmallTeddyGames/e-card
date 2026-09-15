@@ -9,15 +9,15 @@ import {
 } from "unocss";
 export default defineConfig({
   shortcuts: {
-    "border-base": "border-gray-200 dark:border-gray-500",
-    "bg-active": "bg-gray:10",
+    "border-base": "border-gray-200 dark:border-gray-700",
+    "bg-active": "bg-gray-100",
     "flex-center": "flex items-center justify-center",
     "card-size": "w-80px h-110px sm:w-120px sm:h-164px",
     "bg-Mask": "bg-white-80 dark:bg-black-30",
     "game-card": "relative rounded-xl shadow-lg overflow-hidden transition-all duration-300",
     "game-btn": "px-6 py-3 rounded-xl font-bold text-white transition-all duration-300 cursor-pointer border-0 hover:scale-105 active:scale-95",
-    "gold-text": "text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-amber-600",
-    "glow-effect": "box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3)",
+    "gold-text": "text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-600 to-indigo-600",
+    "glow-effect": "box-shadow: 0 0 20px rgba(0, 113, 227, 0.4), 0 0 40px rgba(0, 113, 227, 0.2)",
   },
   rules: [
     [/^t-a-(\d+)$/, ([, d]) => ({ transition: `all 0.${d}s linear` })],
@@ -35,16 +35,16 @@ export default defineConfig({
   theme: {
     colors: {
       primary: {
-        DEFAULT: "#00DC82",
+        DEFAULT: "#0071e3",
       },
       gold: {
-        DEFAULT: "#FFD700",
-        light: "#FFEC8B",
-        dark: "#B8860B",
+        DEFAULT: "#0071e3",
+        light: "#2997ff",
+        dark: "#0051a8",
       },
       royal: {
-        DEFAULT: "#4169E1",
-        dark: "#1a1a3e",
+        DEFAULT: "#0071e3",
+        dark: "#1d1d1f",
       },
     },
     animation: {

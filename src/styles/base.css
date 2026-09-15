@@ -3,7 +3,9 @@ body {
   height: 100vh;
   overflow: hidden;
   --uno: bg-base font-ping;
-  font-family: 'DM Sans', 'PingFang SC', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
 }
 
 html {
@@ -42,8 +44,9 @@ body {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card-face-back {
@@ -111,11 +114,11 @@ body {
 
 @keyframes win-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.6), 0 0 40px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.6), 0 0 40px rgba(0, 113, 227, 0.3);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.9), 0 0 80px rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 40px rgba(0, 113, 227, 0.9), 0 0 80px rgba(0, 113, 227, 0.5);
     transform: scale(1.05);
   }
 }
@@ -133,11 +136,11 @@ body {
 
 @keyframes pulse-gold {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 40px rgba(255, 215, 0, 0.9), 0 0 60px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 40px rgba(0, 113, 227, 0.7), 0 0 60px rgba(0, 113, 227, 0.3);
     transform: scale(1.03);
   }
 }
@@ -214,7 +217,7 @@ body {
 
 @keyframes number-pop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.3); color: #FFD700; }
+  50% { transform: scale(1.3); color: #0071e3; }
   100% { transform: scale(1); }
 }
 
@@ -274,15 +277,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.05);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 215, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 215, 0, 0.8);
+  background: rgba(0, 0, 0, 0.35);
 }

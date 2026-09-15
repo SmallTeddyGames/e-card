@@ -10,7 +10,8 @@ import SoundToggle from '@/views/NavButton/SoundToggle.vue'
 </script>
 
 <template>
-  <nav w-screen px2 sm:px4 py2 sm:py3 text-base sm:text-lg border="b base" flex="~ gap-0.5 sm:gap-1 items-center">
+  <nav w-screen px2 sm:px4 py2 sm:py3 text-base sm:text-lg border="b" border-color="gray-200" flex="~ gap-0.5 sm:gap-1 items-center"
+    style="background: rgba(255,255,255,0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);">
     <div title="Game" class="gold-text font-black text-base sm:text-xl">E-Card</div>
     <div flex-auto />
     <!-- 游戏控制按钮 -->

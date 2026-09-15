@@ -27,7 +27,7 @@ withDefaults(
     <!-- 对战光效 -->
     <div v-if="isImpact" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
       <div class="w-200px h-200px rounded-full animate-battle-impact"
-        style="background: radial-gradient(circle, rgba(255,215,0,0.6) 0%, rgba(255,215,0,0) 70%);"></div>
+        style="background: radial-gradient(circle, rgba(0,113,227,0.5) 0%, rgba(0,113,227,0) 70%);"></div>
     </div>
     <!-- 胜利光效 -->
     <div v-if="isWinner" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
@@ -36,7 +36,7 @@ withDefaults(
     <!-- 失败抖动 -->
     <div v-if="isLoser" class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
       <div class="w-160px h-220px rounded-xl animate-lose-shake"
-        style="background: radial-gradient(circle, rgba(255,0,0,0.3) 0%, rgba(255,0,0,0) 70%);"></div>
+        style="background: radial-gradient(circle, rgba(255,59,48,0.3) 0%, rgba(255,59,48,0) 70%);"></div>
     </div>
     <Card
       :card-info="cardInfo[0]"
@@ -46,8 +46,8 @@ withDefaults(
       :is-loser="isLoser"
     />
   </div>
-  <div v-else card-size cursor-pointer border="2px #fff dashed" flex-center rounded-xl
-    class="text-white-60 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-gold">
+  <div v-else card-size cursor-pointer border="2px #c7c7cc dashed" flex-center rounded-xl
+    class="text-gray-400 text-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:border-blue-400">
     {{ t('game.checkArea') }}
   </div>
 </template>
