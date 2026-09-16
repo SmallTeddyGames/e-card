@@ -6,7 +6,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/e-card/',
+  base: process.env.VITE_DESKTOP ? './' : '/e-card/',
   plugins: [
     vue(),
     UnoCSS(),
@@ -22,7 +22,8 @@ export default defineConfig({
         {
             'vue-router': [
                 'createRouter',
-                'createWebHistory'
+              'createWebHistory',
+              'createWebHashHistory'
             ]
         },
         // @vueuse/core auto import

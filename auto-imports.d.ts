@@ -13,6 +13,7 @@ declare global {
   const createI18n: typeof import('vue-i18n')['createI18n']
   const createPinia: typeof import('pinia')['createPinia']
   const createRouter: typeof import('vue-router')['createRouter']
+  const createWebHashHistory: typeof import('vue-router')['createWebHashHistory']
   const createWebHistory: typeof import('vue-router')['createWebHistory']
   const customRef: typeof import('vue')['customRef']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']

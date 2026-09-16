@@ -1,5 +1,7 @@
 const router = createRouter({
-  history: createWebHistory('/e-card'),
+  history: import.meta.env.VITE_DESKTOP
+    ? createWebHashHistory()
+    : createWebHistory('/e-card'),
   routes: [
     {
       path: '/',

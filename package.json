@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build:desktop": "vue-tsc && vite build --mode desktop",
+    "desktop": "pnpm run build:desktop && electron .",
+    "dist:mac": "pnpm run build:desktop && electron-builder --mac dmg",
+    "dist:win": "pnpm run build:desktop && electron-builder --win nsis",
     "deploy": "pnpm run deploy:pages",
     "deploy:pages": "pnpm run build && pnpm exec gh-pages -d dist"
   },
@@ -23,11 +27,39 @@
     "@types/node": "^20.10.4",
     "@vitejs/plugin-vue": "^4.5.0",
     "eslint": "^8.54.0",
+    "electron": "^31.7.7",
+    "electron-builder": "^25.1.8",
     "gh-pages": "^6.1.0",
     "typescript": "^5.2.2",
     "unocss": "^0.58.0",
     "unplugin-auto-import": "^0.17.2",
     "vite": "^5.0.0",
     "vue-tsc": "^1.8.22"
+  },
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "com.smallteddygames.ecard",
+    "productName": "E-Card",
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.games",
+      "icon": "king.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "king.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
